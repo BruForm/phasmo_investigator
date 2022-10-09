@@ -23,15 +23,14 @@ hamburgerToggler.addEventListener('click', toggleNav);
 
 // -- Roller sur DIV externe -- DEBUT --
 let x = 0;
-while (x <= rollLink3.children.length) {
+while (x <= 4) {
   const linkXToggle = '.link' + x + 'Toggle';
   const linkXToggler = document.querySelector(linkXToggle);
   const rollLinkX = '.rollLink' + x;
   const rollerLinkX = document.querySelector(rollLinkX);
 
   const openRoll = function () {
-    if (linkXToggler.getAttribute('aria-expanded') == 'false') {
-      console.log('TEST');
+    if (linkXToggler.getAttribute('aria-expanded') === 'false') {
       linkXToggler.setAttribute('aria-expanded', 'true');
       rollerLinkX.setAttribute('aria-expanded', 'true');
       rollerLinkX.classList.toggle('open');
@@ -39,18 +38,18 @@ while (x <= rollLink3.children.length) {
     }
   };
   const closeRoll = function () {
-    if (linkXToggler.getAttribute('aria-expanded') == 'true') {
+    if (linkXToggler.getAttribute('aria-expanded') === 'true') {
       linkXToggler.setAttribute('aria-expanded', 'false');
       rollerLinkX.setAttribute('aria-expanded', 'false');
       rollerLinkX.classList.toggle('close');
       rollerLinkX.classList.toggle('open');
     }
   };
-
   const test = document.getElementsByClassName(
-    linkXToggle.slice(1, linkXToggle.length)
+    linkXToggle.slice(1, linkXToggle.length) // pour supprimer le . devant le nom de mla classe
   );
-  if (test.length == 1) {
+  // Si on trouve que l'element a une classe linkXtoggle on gere le passage de la souris dessus
+  if (test.length === 1) {
     linkXToggler.addEventListener('mouseover', openRoll);
     rollerLinkX.addEventListener('mouseover', openRoll);
     rollerLinkX.addEventListener('mouseleave', closeRoll);
@@ -75,6 +74,8 @@ new ResizeObserver((entries) => {
     rollLink3.style.left =
       navlinksContainer.offsetLeft + navlinksContainer.offsetWidth + 'px';
     rollLink3.style.height = navlinksContainer.offsetHeight + 'px';
+    // console.log('navlink', navlinksContainer.offsetHeight);
+    // console.log('rolllink', rollLink3.offsetHeight);
   } else {
     navlinksContainer.style.transition = 'none';
 
