@@ -39,6 +39,14 @@ class EntityRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllOrderName(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Entity[] Returns an array of Entity objects
 //     */

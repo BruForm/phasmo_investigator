@@ -20,7 +20,7 @@ class Characteristic
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $decription = null;
+    private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $value = null;
@@ -54,14 +54,14 @@ class Characteristic
         return $this;
     }
 
-    public function getDecription(): ?string
+    public function getdescription(): ?string
     {
-        return $this->decription;
+        return $this->description;
     }
 
-    public function setDecription(string $decription): self
+    public function setdescription(string $description): self
     {
-        $this->decription = $decription;
+        $this->description = $description;
 
         return $this;
     }
