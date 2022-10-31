@@ -25,9 +25,13 @@ class Evidence
     #[ORM\ManyToMany(targetEntity: Entity::class, mappedBy: 'evidences')]
     private Collection $entities;
 
+    #[ORM\ManyToMany(targetEntity: Equipment::class, mappedBy: 'evidences')]
+    private Collection $equipments;
+
     public function __construct()
     {
         $this->entities = new ArrayCollection();
+        $this->equipments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,6 +85,33 @@ class Evidence
     {
         if ($this->entities->removeElement($entity)) {
             $entity->removeEvidence($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Equipment>
+     */
+    public function getEquipments(): Collection
+    {
+        return $this->equipments;
+    }
+
+    public function addEquipment(Equipment $equipment): self
+    {
+        if (!$this->equipments->contains($equipment)) {
+            $this->equipments->add($equipment);
+            $equipment->addEvidence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEquipment(Equipment $equipment): self
+    {
+        if ($this->equipments->removeElement($equipment)) {
+            $equipment->removeEvidence($this);
         }
 
         return $this;
