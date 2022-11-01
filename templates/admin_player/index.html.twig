@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Player index{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Players index</h1>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+
+    <a href="{{ path('app_admin_player_new') }}">Create new</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nickname</th>
+            <th>Password</th>
+            <th>Lastname</th>
+            <th>Firstname</th>
+            <th>NbInvestig</th>
+            <th>NbSuccess</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for player in players %}
+            <tr>
+                <td>{{ player.nickname }}</td>
+                <td>{{ player.password }}</td>
+                <td>{{ player.lastname }}</td>
+                <td>{{ player.firstname }}</td>
+                <td>{{ player.nbInvestig }}</td>
+                <td>{{ player.nbSuccess }}</td>
+                <td>
+                    <a href="{{ path('app_admin_player_show', {'id': player.id}) }}">show</a>
+                    <a href="{{ path('app_admin_player_edit', {'id': player.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_player_new') }}">Create new</a>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+{% endblock %}

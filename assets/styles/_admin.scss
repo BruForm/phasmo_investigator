@@ -1,0 +1,59 @@
+.main_container > a {
+  margin-right: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.admin_menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  a {
+    margin: 10px;
+  }
+}
+
+.back_admin {
+  padding: 10px 0;
+}
+
+form {
+
+  .form_content {
+    display: flex;
+    flex-direction: column;
+
+    .form_item {
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-gap: 5px;
+      align-items: center;
+
+      & > * {
+        margin-bottom: 5px;
+      }
+
+      //& > :nth-child(2) {
+      //  margin-left: 5px;
+      //}
+    }
+  }
+
+  button {
+    margin: 5px 0;
+  }
+}
+
+.form_checkbox {
+  display: grid;
+  grid-template-columns: 30px auto;
+
+}
+
+//.form_checkbox:has(div) {
+//  display: flex;
+//  flex-direction: column;
+//}

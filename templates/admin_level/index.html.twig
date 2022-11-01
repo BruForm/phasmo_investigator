@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Level index{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Levels index</h1>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+
+    <a href="{{ path('app_admin_level_new') }}">Create new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Free Run Time</th>
+                <th>Hunt Grace Time</th>
+                <th>Sanity By Pill</th>
+                <th>Insurance Payment</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for level in levels %}
+            <tr>
+                <td>{{ level.id }}</td>
+                <td>{{ level.name }}</td>
+                <td>{{ level.freeRunTime ? level.freeRunTime|date('H:i:s') : '' }}</td>
+                <td>{{ level.huntGraceTime ? level.huntGraceTime|date('H:i:s') : '' }}</td>
+                <td>{{ level.sanityByPill }}</td>
+                <td>{{ level.insurancePayment }}</td>
+                <td>
+                    <a href="{{ path('app_admin_level_show', {'id': level.id}) }}">show</a>
+                    <a href="{{ path('app_admin_level_edit', {'id': level.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_level_new') }}">Create new</a>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Level{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Level</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ level.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ level.name }}</td>
+            </tr>
+            <tr>
+                <th>FreeRunTime</th>
+                <td>{{ level.freeRunTime ? level.freeRunTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>HuntGraceTime</th>
+                <td>{{ level.huntGraceTime ? level.huntGraceTime|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SanityByPill</th>
+                <td>{{ level.sanityByPill }}</td>
+            </tr>
+            <tr>
+                <th>InsurancePayment</th>
+                <td>{{ level.insurancePayment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_level_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_level_edit', {'id': level.id}) }}">edit</a>
+
+    {{ include('admin_level/_delete_form.html.twig') }}
+{% endblock %}

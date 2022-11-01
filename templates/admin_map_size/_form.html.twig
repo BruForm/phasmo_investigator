@@ -1,0 +1,16 @@
+<div class="form_main">
+    {{ form_start(form) }}
+    <div class="form_content">
+        {#    {{ form_widget(form) }} #}
+        <div class="form_item">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.nbMaxLightsOn) }}
+            {{ form_widget(form.nbMaxLightsOn) }}
+        </div>
+    </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evidence{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Evidence</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evidence.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ evidence.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ evidence.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_evidence_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_evidence_edit', {'id': evidence.id}) }}">edit</a>
+
+    {{ include('admin_evidence/_delete_form.html.twig') }}
+{% endblock %}

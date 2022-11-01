@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Characteristic index{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Characteristics index</h1>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+
+    <a href="{{ path('app_admin_characteristic_new') }}">Create new</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>description</th>
+            <th>Value</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for characteristic in characteristics %}
+            <tr>
+                <td>{{ characteristic.type }}</td>
+                <td>{{ characteristic.name }}</td>
+                <td>{{ characteristic.description }}</td>
+                <td>{{ characteristic.value }}</td>
+                <td>
+                    <a href="{{ path('app_admin_characteristic_show', {'id': characteristic.id}) }}">show</a>
+                    <a href="{{ path('app_admin_characteristic_edit', {'id': characteristic.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_characteristic_new') }}">Create new</a>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+{% endblock %}

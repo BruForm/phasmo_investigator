@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CursedObject{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Create new CursedObject</h1>
+
+    {{ include('admin_cursed_object/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_cursed_object_index') }}">back to list</a>
+{% endblock %}

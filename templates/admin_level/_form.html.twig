@@ -1,0 +1,28 @@
+<div class="form_main">
+    {{ form_start(form) }}
+    <div class="form_content">
+        {#    {{ form_widget(form) }} #}
+        <div class="form_item">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.freeRunTime) }}
+            {{ form_widget(form.freeRunTime) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.huntGraceTime) }}
+            {{ form_widget(form.huntGraceTime) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.sanityByPill) }}
+            {{ form_widget(form.sanityByPill) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.insurancePayment) }}
+            {{ form_widget(form.insurancePayment) }}
+        </div>
+    </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

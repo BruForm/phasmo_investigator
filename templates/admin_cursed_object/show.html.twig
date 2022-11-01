@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CursedObject{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>CursedObject</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cursed_object.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ cursed_object.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ cursed_object.description }}</td>
+            </tr>
+            <tr>
+                <th>Utilisation</th>
+                <td>{{ cursed_object.utilisation }}</td>
+            </tr>
+            <tr>
+                <th>Utility</th>
+                <td>{{ cursed_object.utility }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_cursed_object_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_cursed_object_edit', {'id': cursed_object.id}) }}">edit</a>
+
+    {{ include('admin_cursed_object/_delete_form.html.twig') }}
+{% endblock %}

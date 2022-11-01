@@ -1,0 +1,28 @@
+<div class="form_main">
+    {{ form_start(form) }}
+    <div class="form_content">
+        {#    {{ form_widget(form) }} #}
+        <div class="form_item">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.nbFloor) }}
+            {{ form_widget(form.nbFloor) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.nbRoom) }}
+            {{ form_widget(form.nbRoom) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.mapSize) }}
+            {{ form_widget(form.mapSize) }}
+        </div>
+    </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

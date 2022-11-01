@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Player{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Player</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ player.id }}</td>
+            </tr>
+            <tr>
+                <th>Nickname</th>
+                <td>{{ player.nickname }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ player.password }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ player.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ player.firstname }}</td>
+            </tr>
+            <tr>
+                <th>NbInvestig</th>
+                <td>{{ player.nbInvestig }}</td>
+            </tr>
+            <tr>
+                <th>NbSuccess</th>
+                <td>{{ player.nbSuccess }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_player_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_player_edit', {'id': player.id}) }}">edit</a>
+
+    {{ include('admin_player/_delete_form.html.twig') }}
+{% endblock %}

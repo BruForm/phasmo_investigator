@@ -1,0 +1,32 @@
+<div class="form_main">
+    {{ form_start(form) }}
+    <div class="form_content">
+        {#    {{ form_widget(form) }} #}
+        <div class="form_item">
+            {{ form_label(form.nickname) }}
+            {{ form_widget(form.nickname) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.password) }}
+            {{ form_widget(form.password) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.lastname) }}
+            {{ form_widget(form.lastname) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.nbInvestig) }}
+            {{ form_widget(form.nbInvestig) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.nbSuccess) }}
+            {{ form_widget(form.nbSuccess) }}
+        </div>
+    </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

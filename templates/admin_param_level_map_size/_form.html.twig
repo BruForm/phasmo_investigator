@@ -1,0 +1,32 @@
+<div class="form_main">
+    {{ form_start(form) }}
+    <div class="form_content">
+        {#    {{ form_widget(form) }} #}
+        <div class="form_item">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.value) }}
+            {{ form_widget(form.value) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.duration) }}
+            {{ form_widget(form.duration) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.level) }}
+            {{ form_widget(form.level) }}
+        </div>
+        <div class="form_item">
+            {{ form_label(form.mapSize) }}
+            {{ form_widget(form.mapSize) }}
+        </div>
+    </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>

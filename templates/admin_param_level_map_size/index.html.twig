@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ParamLevelMapSize index{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Params Level MapSize index</h1>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+
+    <a href="{{ path('app_admin_param_level_map_size_new') }}">Create new</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Value</th>
+                <th>Duration</th>
+                <th>Level</th>
+                <th>Map size</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for param_level_map_size in param_level_map_sizes %}
+            <tr>
+                <td>{{ param_level_map_size.id }}</td>
+                <td>{{ param_level_map_size.name }}</td>
+                <td>{{ param_level_map_size.description }}</td>
+                <td>{{ param_level_map_size.value }}</td>
+                <td>{{ param_level_map_size.duration ? param_level_map_size.duration|date('H:i:s') : '' }}</td>
+                <td>{{ param_level_map_size.level }}</td>
+                <td>{{ param_level_map_size.mapSize }}</td>
+                <td>
+                    <a href="{{ path('app_admin_param_level_map_size_show', {'id': param_level_map_size.id}) }}">show</a>
+                    <a href="{{ path('app_admin_param_level_map_size_edit', {'id': param_level_map_size.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_param_level_map_size_new') }}">Create new</a>
+
+    <div class="back_admin">
+        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+    </div>
+{% endblock %}

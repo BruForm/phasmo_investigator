@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ParamLevelMapSize{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <h1>Create new Param Level MapSize</h1>
+
+    {{ include('admin_param_level_map_size/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_param_level_map_size_index') }}">back to list</a>
+{% endblock %}
