@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LevelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,14 @@ class Level
 
     #[ORM\Column]
     private ?int $insurancePayment = null;
+
+    #[ORM\OneToMany(mappedBy: 'level', targetEntity: ParamLevelMapSize::class)]
+    private Collection $paramLevelMapSizes;
+
+    public function __construct()
+    {
+        $this->paramLevelMapSizes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -92,5 +102,40 @@ class Level
         $this->insurancePayment = $insurancePayment;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, ParamLevelMapSize>
+     */
+    public function getParamLevelMapSizes(): Collection
+    {
+        return $this->paramLevelMapSizes;
+    }
+
+    public function addParamLevelMapSize(ParamLevelMapSize $paramLevelMapSize): self
+    {
+        if (!$this->paramLevelMapSizes->contains($paramLevelMapSize)) {
+            $this->paramLevelMapSizes->add($paramLevelMapSize);
+            $paramLevelMapSize->setLevel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParamLevelMapSize(ParamLevelMapSize $paramLevelMapSize): self
+    {
+        if ($this->paramLevelMapSizes->removeElement($paramLevelMapSize)) {
+            // set the owning side to null (unless already changed)
+            if ($paramLevelMapSize->getLevel() === $this) {
+                $paramLevelMapSize->setLevel(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }
