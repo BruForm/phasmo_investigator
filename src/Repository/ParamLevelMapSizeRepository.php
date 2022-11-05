@@ -39,6 +39,15 @@ class ParamLevelMapSizeRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllOrderByMapSizeLevel(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.mapSize', 'ASC')
+            ->addOrderBy('p.level', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return ParamLevelMapSize[] Returns an array of ParamLevelMapSize objects
 //     */

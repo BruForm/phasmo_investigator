@@ -3,14 +3,38 @@ body, ::before, ::after {
   margin: 0;
   padding: 0;
 }
-html, body{
-  height: 100%;
-}
-body{
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+
+html, body {
+  height: 100vh;
 }
 
-.main_container{
-  padding: 0 10%;
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--dark);
+}
+
+.main_container {
+  display: grid;
+  grid-template-rows: repeat(12, 1fr);
+  gap: 10px;
+  padding: 0 2%;
+}
+
+@media screen and (min-width: 720px) {
+
+  .main_container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    padding: 0 5%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+  .main_container {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    padding: 0 10%;
+  }
 }

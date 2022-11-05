@@ -2,6 +2,111 @@
 
 {% block title %}Home{% endblock %}
 
+{% block main_class %}main_container{% endblock %}
+
 {% block main %}
-    WELCOME
+    <div class="text_zone">
+        <p>Venez profiter de l’aide précieuse de l’enquêteur
+            pour réussir à coup sur toutes vos investigations...
+        </p>
+        <p>Les entités ne pourrons plus vous échapper.
+            <br>Alors lancer une nouvelle enquette sans hésiter !!!
+        </p>
+    </div>
+    <div class="remember_zone">
+        <h3>Petits rappels</h3>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                {% for level in levels %}
+                    <th scope="col">{{ level.name }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Free run</th>
+                {% for level in levels %}
+                    {#                    <td>{{ level.freeRunTime | date('i : s') }}</td> #}
+                    <td>
+                        {% if level.freeRunTime | date('i') > 0 %}
+                            {{ level.freeRunTime | date('i') }} min
+                        {% endif %}
+                        {% if level.freeRunTime | date('s') > 0 %}
+                            {{ level.freeRunTime | date('s') }} sec
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Grace time</th>
+                {% for level in levels %}
+                    {#                    <td>{{ level.huntGraceTime | date('i : s') }}</td> #}
+                    <td>
+                        {% if level.huntGraceTime | date('i') > 0 %}
+                            {{ level.huntGraceTime | date('i') }} min
+                        {% endif %}
+                        {% if level.huntGraceTime | date('s') > 0 %}
+                            {{ level.huntGraceTime | date('s') }} sec
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Pilules +s.m.</th>
+                {% for level in levels %}
+                    <td>{{ level.sanityByPill }}%</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Assurance</th>
+                {% for level in levels %}
+                    <td>{{ level.insurancePayment }}%</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <th scope="row" colspan="4">Durée chasse</th>
+            </tr>
+            {% for mapSize in mapSizes %}
+                <tr>
+                    <th scope="row">{{ mapSize.name }} map</th>
+                    {% for level in levels %}
+                        {% for param in params %}
+                            {% if param.level.id == level.id and param.mapSize.id == mapSize.id %}
+                                <td>
+                                    {% if param.duration | date('i') > 0 %}
+                                        {{ param.duration | date('i') }} min
+                                    {% endif %}
+                                    {% if param.duration | date('s') > 0 %}
+                                        {{ param.duration | date('s') }} sec
+                                    {% endif %}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="tweeter_zone">
+        <div class="tweeter">
+            <a
+                    class="twitter-timeline"
+                    data-lang="fr"
+                    data-width="100%"
+                    data-height="400"
+                    data-theme="dark"
+                    href="https://twitter.com/KineticGame?ref_src=twsrc%5Etfw"
+            >Tweets by KineticGame</a
+            >
+            <script
+                    async
+                    src="https://platform.twitter.com/widgets.js"
+                    charset="utf-8"
+            ></script>
+        </div>
+    </div>
 {% endblock %}
