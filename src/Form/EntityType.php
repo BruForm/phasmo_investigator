@@ -2,9 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Characteristic;
 use App\Entity\Entity;
 use App\Entity\Evidence;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +20,10 @@ class EntityType extends AbstractType
             ->add('specialMove', TextareaType::class)
             ->add('evidences', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class, [
                 'class' => Evidence::class,
+                'query_builder' => function(EntityRepository $entityRepository){
+                    return $entityRepository->createQueryBuilder('e')
+                        ->addOrderBy('e.name', 'Asc');
+                },
                 'label' => 'Evidences :',
                 'attr' => [
                     'class' => 'form_checkbox',

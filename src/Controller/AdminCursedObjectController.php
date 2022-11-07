@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/cursed/object')]
+#[Route('/admin/cursed_object')]
 class AdminCursedObjectController extends AbstractController
 {
     #[Route('/', name: 'app_admin_cursed_object_index', methods: ['GET'])]

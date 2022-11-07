@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Equipment;
 use App\Entity\Evidence;
 use App\Entity\OptionalGoal;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,6 +23,10 @@ class EquipmentType extends AbstractType
             ->add('utilisation', TextareaType::class)
             ->add('evidences', EntityType::class, [
                 'class' => Evidence::class,
+                'query_builder' => function(EntityRepository $entityRepository){
+                    return $entityRepository->createQueryBuilder('e')
+                        ->addOrderBy('e.name', 'Asc');
+                },
                 'label' => 'Evidences :',
                 'attr' => [
                     'class' => 'form_checkbox',

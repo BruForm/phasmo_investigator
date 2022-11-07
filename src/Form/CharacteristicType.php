@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Characteristic;
 use App\Entity\Entity;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,10 @@ class CharacteristicType extends AbstractType
             ->add('value')
             ->add('entities', EntityType::class, [
                 'class' => Entity::class,
+                'query_builder' => function(EntityRepository $entityRepository){
+                    return $entityRepository->createQueryBuilder('e')
+                        ->addOrderBy('e.name', 'Asc');
+                },
                 'label' => 'Entities :',
                 'attr' => [
                     'class' => 'form_checkbox',

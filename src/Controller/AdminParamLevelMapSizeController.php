@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/param/level/map/size')]
+#[Route('/admin/param_level_map_size')]
 class AdminParamLevelMapSizeController extends AbstractController
 {
     #[Route('/', name: 'app_admin_param_level_map_size_index', methods: ['GET'])]

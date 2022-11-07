@@ -5,11 +5,15 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Edit Map</h1>
+    <div class="admin_zone">
+        <h1>Edit Map</h1>
 
-    {{ include('admin_map/_form.html.twig', {'button_label': 'Update'}) }}
+        <a href="{{ path('app_admin_map_index') }}">back to list</a>
 
-    <a href="{{ path('app_admin_map_index') }}">back to list</a>
+        {{ include('admin_map/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('admin_map/_delete_form.html.twig') }}
+        {{ include('admin_map/_delete_form.html.twig') }}
+
+        <a href="{{ path('app_admin_map_index') }}">back to list</a>
+    </div>
 {% endblock %}

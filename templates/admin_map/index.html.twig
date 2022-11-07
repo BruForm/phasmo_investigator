@@ -5,16 +5,17 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Maps index</h1>
+    <div class="admin_zone">
+        <h1>Maps index</h1>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
-    </div>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
 
-    <a href="{{ path('app_admin_map_new') }}">Create new</a>
+        <a href="{{ path('app_admin_map_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
@@ -24,32 +25,33 @@
                 <th>Size</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for map in maps %}
-            <tr>
-                <td>{{ map.id }}</td>
-                <td>{{ map.name }}</td>
-                <td>{{ map.description }}</td>
-                <td>{{ map.nbFloor }}</td>
-                <td>{{ map.nbRoom }}</td>
-                <td>{{ map.mapSize }}</td>
-                <td>
-                    <a href="{{ path('app_admin_map_show', {'id': map.id}) }}">show</a>
-                    <a href="{{ path('app_admin_map_edit', {'id': map.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for map in maps %}
+                <tr>
+                    <td>{{ map.id }}</td>
+                    <td>{{ map.name }}</td>
+                    <td>{{ map.description }}</td>
+                    <td>{{ map.nbFloor }}</td>
+                    <td>{{ map.nbRoom }}</td>
+                    <td>{{ map.mapSize }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_map_show', {'id': map.id}) }}">show</a>
+                        <a href="{{ path('app_admin_map_edit', {'id': map.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_map_new') }}">Create new</a>
+        <a href="{{ path('app_admin_map_new') }}">Create new</a>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
     </div>
 {% endblock %}

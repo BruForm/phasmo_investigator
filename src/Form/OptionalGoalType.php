@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Equipment;
 use App\Entity\OptionalGoal;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,6 +20,10 @@ class OptionalGoalType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('equipments', EntityType::class, [
                 'class' => Equipment::class,
+                'query_builder' => function(EntityRepository $entityRepository){
+                    return $entityRepository->createQueryBuilder('e')
+                        ->addOrderBy('e.name', 'Asc');
+                },
                 'label' => 'Equipments :',
                 'attr' => [
                     'class' => 'form_checkbox',

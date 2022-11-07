@@ -5,10 +5,14 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Type</h1>
+    <div class="admin_zone">
+        <h1>Type</h1>
 
-    <table class="table">
-        <tbody>
+        <a href="{{ path('app_admin_type_index') }}">back to list</a>
+        <a href="{{ path('app_admin_type_edit', {'id': type.id}) }}">edit</a>
+
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ type.id }}</td>
@@ -21,12 +25,12 @@
                 <th>Description</th>
                 <td>{{ type.description }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_type_index') }}">back to list</a>
+        <a href="{{ path('app_admin_type_index') }}">back to list</a>
+        <a href="{{ path('app_admin_type_edit', {'id': type.id}) }}">edit</a>
 
-    <a href="{{ path('app_admin_type_edit', {'id': type.id}) }}">edit</a>
-
-    {{ include('admin_type/_delete_form.html.twig') }}
+        {{ include('admin_type/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

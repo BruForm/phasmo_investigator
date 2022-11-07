@@ -5,10 +5,14 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Player</h1>
+    <div class="admin_zone">
+        <h1>Player</h1>
 
-    <table class="table">
-        <tbody>
+        <a href="{{ path('app_admin_player_index') }}">back to list</a>
+        <a href="{{ path('app_admin_player_edit', {'id': player.id}) }}">edit</a>
+
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ player.id }}</td>
@@ -37,12 +41,12 @@
                 <th>NbSuccess</th>
                 <td>{{ player.nbSuccess }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_player_index') }}">back to list</a>
+        <a href="{{ path('app_admin_player_index') }}">back to list</a>
+        <a href="{{ path('app_admin_player_edit', {'id': player.id}) }}">edit</a>
 
-    <a href="{{ path('app_admin_player_edit', {'id': player.id}) }}">edit</a>
-
-    {{ include('admin_player/_delete_form.html.twig') }}
+        {{ include('admin_player/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

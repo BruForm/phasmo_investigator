@@ -5,16 +5,17 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Entities index</h1>
+    <div class="admin_zone">
+        <h1>Entities index</h1>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
-    </div>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
 
-    <a href="{{ path('app_admin_entity_new') }}">Create new</a>
+        <a href="{{ path('app_admin_entity_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>Description</th>
@@ -22,30 +23,31 @@
                 <th>Evidences</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.description }}</td>
-                <td>{{ entity.specialMove }}</td>
-                <td>{{ entity.evidences | join(' / ') }}</td>
-                <td>
-                    <a href="{{ path('app_admin_entity_show', {'id': entity.id}) }}">show</a>
-                    <a href="{{ path('app_admin_entity_edit', {'id': entity.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.description }}</td>
+                    <td>{{ entity.specialMove }}</td>
+                    <td>{{ entity.evidences | join(' / ') }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_entity_show', {'id': entity.id}) }}">show</a>
+                        <a href="{{ path('app_admin_entity_edit', {'id': entity.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_entity_new') }}">Create new</a>
+        <a href="{{ path('app_admin_entity_new') }}">Create new</a>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
     </div>
 {% endblock %}

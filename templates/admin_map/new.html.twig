@@ -5,7 +5,10 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
+<div class="admin_zone">
     <h1>Create new Map</h1>
+
+    <a href="{{ path('app_admin_map_index') }}">back to list</a>
 
     {{ include('admin_map/_form.html.twig') }}
 

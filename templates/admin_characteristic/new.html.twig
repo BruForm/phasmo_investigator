@@ -5,9 +5,13 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Create new Characteristic</h1>
+    <div class="admin_zone">
+        <h1>Create new Characteristic</h1>
 
-    {{ include('admin_characteristic/_form.html.twig') }}
+        <a href="{{ path('app_admin_characteristic_index') }}">back to list</a>
 
-    <a href="{{ path('app_admin_characteristic_index') }}">back to list</a>
+        {{ include('admin_characteristic/_form.html.twig') }}
+
+        <a href="{{ path('app_admin_characteristic_index') }}">back to list</a>
+    </div>
 {% endblock %}

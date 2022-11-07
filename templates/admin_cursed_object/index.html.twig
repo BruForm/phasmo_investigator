@@ -5,16 +5,17 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Cursed Objects index</h1>
+    <div class="admin_zone">
+        <h1>Cursed Objects index</h1>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
-    </div>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
 
-    <a href="{{ path('app_admin_cursed_object_new') }}">Create new</a>
+        <a href="{{ path('app_admin_cursed_object_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>Description</th>
@@ -22,30 +23,31 @@
                 <th>Utility</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for cursed_object in cursed_objects %}
-            <tr>
-                <td>{{ cursed_object.name }}</td>
-                <td>{{ cursed_object.description }}</td>
-                <td>{{ cursed_object.utilisation }}</td>
-                <td>{{ cursed_object.utility }}</td>
-                <td>
-                    <a href="{{ path('app_admin_cursed_object_show', {'id': cursed_object.id}) }}">show</a>
-                    <a href="{{ path('app_admin_cursed_object_edit', {'id': cursed_object.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for cursed_object in cursed_objects %}
+                <tr>
+                    <td>{{ cursed_object.name }}</td>
+                    <td>{{ cursed_object.description }}</td>
+                    <td>{{ cursed_object.utilisation }}</td>
+                    <td>{{ cursed_object.utility }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_cursed_object_show', {'id': cursed_object.id}) }}">show</a>
+                        <a href="{{ path('app_admin_cursed_object_edit', {'id': cursed_object.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_cursed_object_new') }}">Create new</a>
+        <a href="{{ path('app_admin_cursed_object_new') }}">Create new</a>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
     </div>
 {% endblock %}

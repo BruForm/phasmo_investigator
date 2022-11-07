@@ -6,21 +6,22 @@
 
 {% block main %}
 
-    <h1>ADMINISTRATION MENU</h1>
+    <div class="admin_zone">
+        <h1>ADMINISTRATION MENU</h1>
 
-    <div class="admin_menu">
-        <a href="{{ path('app_admin_player_index') }}">Players</a>
-        <a href="{{ path('app_admin_evidence_index') }}">Evidences</a>
-        <a href="{{ path('app_admin_entity_index') }}">Entities</a>
-        <a href="{{ path('app_admin_type_index') }}">Types</a>
-        <a href="{{ path('app_admin_characteristic_index') }}">Characteristics</a>
-        <a href="{{ path('app_admin_cursed_object_index') }}">Cursed Objects</a>
-        <a href="{{ path('app_admin_equipment_index') }}">Equipments</a>
-        <a href="{{ path('app_admin_optional_goal_index') }}">Optional Goals</a>
-        <a href="{{ path('app_admin_level_index') }}">Levels</a>
-        <a href="{{ path('app_admin_map_size_index') }}">Map Sizes</a>
-        <a href="{{ path('app_admin_param_level_map_size_index') }}">Params Level Mapsize</a>
-        <a href="{{ path('app_admin_map_index') }}">Maps</a>
+        <div class="admin_menu">
+            <a href="{{ path('app_admin_player_index') }}">Players</a>
+            <a href="{{ path('app_admin_evidence_index') }}">Evidences</a>
+            <a href="{{ path('app_admin_entity_index') }}">Entities</a>
+            <a href="{{ path('app_admin_type_index') }}">Types</a>
+            <a href="{{ path('app_admin_characteristic_index') }}">Characteristics</a>
+            <a href="{{ path('app_admin_cursed_object_index') }}">Cursed Objects</a>
+            <a href="{{ path('app_admin_equipment_index') }}">Equipments</a>
+            <a href="{{ path('app_admin_optional_goal_index') }}">Optional Goals</a>
+            <a href="{{ path('app_admin_level_index') }}">Levels</a>
+            <a href="{{ path('app_admin_map_size_index') }}">Map Sizes</a>
+            <a href="{{ path('app_admin_param_level_map_size_index') }}">Params Level Mapsize</a>
+            <a href="{{ path('app_admin_map_index') }}">Maps</a>
+        </div>
     </div>
-
 {% endblock %}

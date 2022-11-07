@@ -5,10 +5,14 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Evidence</h1>
+    <div class="admin_zone">
+        <h1>Evidence</h1>
 
-    <table class="table">
-        <tbody>
+        <a href="{{ path('app_admin_evidence_index') }}">back to list</a>
+        <a href="{{ path('app_admin_evidence_edit', {'id': evidence.id}) }}">edit</a>
+
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ evidence.id }}</td>
@@ -21,12 +25,11 @@
                 <th>Description</th>
                 <td>{{ evidence.description }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_evidence_index') }}">back to list</a>
+        <a href="{{ path('app_admin_evidence_index') }}">back to list</a>
+        <a href="{{ path('app_admin_evidence_edit', {'id': evidence.id}) }}">edit</a>
 
-    <a href="{{ path('app_admin_evidence_edit', {'id': evidence.id}) }}">edit</a>
-
-    {{ include('admin_evidence/_delete_form.html.twig') }}
+        {{ include('admin_evidence/_delete_form.html.twig') }}</div>
 {% endblock %}

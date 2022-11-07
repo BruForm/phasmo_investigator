@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/optional/goal')]
+#[Route('/admin/optional_goal')]
 class AdminOptionalGoalController extends AbstractController
 {
     #[Route('/', name: 'app_admin_optional_goal_index', methods: ['GET'])]

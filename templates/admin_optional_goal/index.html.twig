@@ -5,45 +5,47 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Optional Goals index</h1>
+    <div class="admin_zone">
+        <h1>Optional Goals index</h1>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
-    </div>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
 
-    <a href="{{ path('app_admin_optional_goal_new') }}">Create new</a>
+        <a href="{{ path('app_admin_optional_goal_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for optional_goal in optional_goals %}
-            <tr>
-                <td>{{ optional_goal.id }}</td>
-                <td>{{ optional_goal.name }}</td>
-                <td>{{ optional_goal.description }}</td>
-                <td>
-                    <a href="{{ path('app_admin_optional_goal_show', {'id': optional_goal.id}) }}">show</a>
-                    <a href="{{ path('app_admin_optional_goal_edit', {'id': optional_goal.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for optional_goal in optional_goals %}
+                <tr>
+                    <td>{{ optional_goal.id }}</td>
+                    <td>{{ optional_goal.name }}</td>
+                    <td>{{ optional_goal.description }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_optional_goal_show', {'id': optional_goal.id}) }}">show</a>
+                        <a href="{{ path('app_admin_optional_goal_edit', {'id': optional_goal.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_optional_goal_new') }}">Create new</a>
+        <a href="{{ path('app_admin_optional_goal_new') }}">Create new</a>
 
-    <div class="back_admin">
-        <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        <div class="back_admin">
+            <a href="{{ path('app_admin') }}">Back to ADMIN MENU</a>
+        </div>
     </div>
 {% endblock %}

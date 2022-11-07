@@ -5,10 +5,14 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-    <h1>Optional Goal</h1>
+    <div class="admin_zone">
+        <h1>Optional Goal</h1>
 
-    <table class="table">
-        <tbody>
+        <a href="{{ path('app_admin_optional_goal_index') }}">back to list</a>
+        <a href="{{ path('app_admin_optional_goal_edit', {'id': optional_goal.id}) }}">edit</a>
+
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ optional_goal.id }}</td>
@@ -21,12 +25,12 @@
                 <th>Description</th>
                 <td>{{ optional_goal.description }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_optional_goal_index') }}">back to list</a>
+        <a href="{{ path('app_admin_optional_goal_index') }}">back to list</a>
+        <a href="{{ path('app_admin_optional_goal_edit', {'id': optional_goal.id}) }}">edit</a>
 
-    <a href="{{ path('app_admin_optional_goal_edit', {'id': optional_goal.id}) }}">edit</a>
-
-    {{ include('admin_optional_goal/_delete_form.html.twig') }}
+        {{ include('admin_optional_goal/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
