@@ -20,23 +20,38 @@
                 <span></span>
             </button>
             <div class="navlinks-container">
-{#                <a href="#" aria-current="page">Home</a>#}
+                {#                <a href="#" aria-current="page">Home</a> #}
                 <a href="#">Maps</a>
                 <a href="#">Objets</a>
                 <a href="#">Matos</a>
                 <a href="#">Preuves</a>
                 <a href="#">Entitées</a>
                 <a href="#">Objectifs</a>
+                {% if (is_granted('ROLE_ADMIN')) %}
+                    <a href="{{ path('app_admin') }}">Admin</a>
+                {% endif %}
             </div>
         </div>
         <div class="nav-authentication">
-            <a href="#" class="user_sign_in" aria-label="Sign in page">
-{#                <img src="assets/pictos/user-solid.svg" alt="user icon" />#}
-                <img src="{{asset('/build/pictos/user-solid.svg')}}" alt="user icon" />
-            </a>
-            <div class="sign-btn">
-                <button type="button">Sign In</button>
-            </div>
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="user_sign_in" aria-label="Sign out">
+                    <img src="{{ asset('/build/pictos/user-solid.svg') }}" alt="user icon"/>
+                </a>
+                <div class="sign-btn">
+                    <a href="{{ path('app_logout') }}" aria-label="Sign out">
+                        <button type="button">Sign Out</button>
+                    </a>
+                </div>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="user_sign_in" aria-label="Sign in">
+                    <img src="{{ asset('/build/pictos/user-solid.svg') }}" alt="user icon"/>
+                </a>
+                <div class="sign-btn">
+                    <a href="{{ path('app_login') }}" aria-label="Sign in">
+                        <button type="button">Sign In</button>
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </nav>
 </header>

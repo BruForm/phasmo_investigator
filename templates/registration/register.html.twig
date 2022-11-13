@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block main_class %}main_container{% endblock %}
+
+{% block main %}
+    <div class="auth_zone">
+        <h1>Création de compte</h1>
+        <div class="form_main">
+            {{ form_start(registrationForm) }}
+            <div class="form_content">
+                <div class="form_item">
+                    {#                {{ form_row(registrationForm.email) }} #}
+                    {{ form_label(registrationForm.email) }}
+                    {{ form_widget(registrationForm.email) }}
+                </div>
+                <div class="form_item">
+{#                    {{ form_row(registrationForm.plainPassword, {#}
+{#                        label: 'Password'#}
+{#                    }) }}#}
+                    {{ form_label(registrationForm.plainPassword) }}
+                    {{ form_widget(registrationForm.plainPassword) }}
+                </div>
+                <div class="form_item">
+                    {{ form_label(registrationForm.nickname) }}
+                    {{ form_widget(registrationForm.nickname) }}
+                </div>
+                <div class="form_item">
+                    {{ form_label(registrationForm.lastname) }}
+                    {{ form_widget(registrationForm.lastname) }}
+                </div>
+                <div class="form_item">
+                    {{ form_label(registrationForm.firstname) }}
+                    {{ form_widget(registrationForm.firstname) }}
+                </div>
+                <div class="form_item">
+{#                    {{ form_row(registrationForm.agreeTerms) }}#}
+                    {{ form_label(registrationForm.agreeTerms) }}
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Register</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

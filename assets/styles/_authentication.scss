@@ -1,0 +1,93 @@
+.auth_zone {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+
+  * {
+    color: var(--light)
+  }
+
+  h1 {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .back_admin {
+    padding-bottom: 10px;
+  }
+
+  a {
+    color: var(--light);
+    padding: 0 25px 0 0;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  button {
+    margin: 5px 0;
+  }
+
+  .admin_menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    a {
+      margin: 10px;
+    }
+  }
+
+  .form_main {
+    margin-top: 20px;
+
+    .form_content {
+      display: flex;
+      flex-direction: column;
+
+      .form_item {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        grid-gap: 5px;
+        align-items: center;
+
+        & > * {
+          margin-bottom: 5px;
+        }
+
+        label + * {
+          color: var(--dark);
+        }
+
+        select, select > * {
+          color: var(--dark);
+        }
+
+        .form_checkbox {
+          display: grid;
+          grid-template-columns: repeat(3, 30px 1fr);
+          align-items: center;
+
+          input {
+            height: 20px;
+          }
+        }
+
+        .item_checkbox {
+          justify-self: start;
+        }
+
+        //& > :nth-child(2) {
+        //  margin-left: 5px;
+        //}
+      }
+    }
+  }
+}
+
+//.form_checkbox:has(div) {
+//  display: flex;
+//  flex-direction: column;
+//}
