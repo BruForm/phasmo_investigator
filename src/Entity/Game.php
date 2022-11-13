@@ -17,24 +17,20 @@ class Game
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $duration = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'games')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Player $player = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'games')]
     private ?Map $map = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'games')]
     private ?Level $level = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'games')]
     private ?Entity $entity = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'games')]
     private ?Entity $chosenEntity = null;
 
     public function getId(): ?int
@@ -59,7 +55,7 @@ class Game
         return $this->player;
     }
 
-    public function setPlayer(Player $player): self
+    public function setPlayer(?Player $player): self
     {
         $this->player = $player;
 
@@ -71,7 +67,7 @@ class Game
         return $this->map;
     }
 
-    public function setMap(Map $map): self
+    public function setMap(?Map $map): self
     {
         $this->map = $map;
 
@@ -83,7 +79,7 @@ class Game
         return $this->level;
     }
 
-    public function setLevel(Level $level): self
+    public function setLevel(?Level $level): self
     {
         $this->level = $level;
 
@@ -95,7 +91,7 @@ class Game
         return $this->entity;
     }
 
-    public function setEntity(Entity $entity): self
+    public function setEntity(?Entity $entity): self
     {
         $this->entity = $entity;
 
@@ -107,7 +103,7 @@ class Game
         return $this->chosenEntity;
     }
 
-    public function setChosenEntity(Entity $chosenEntity): self
+    public function setChosenEntity(?Entity $chosenEntity): self
     {
         $this->chosenEntity = $chosenEntity;
 

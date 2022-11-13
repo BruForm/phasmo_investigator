@@ -34,9 +34,13 @@ class Level
     #[ORM\OneToMany(mappedBy: 'level', targetEntity: ParamLevelMapSize::class)]
     private Collection $paramLevelMapSizes;
 
+    #[ORM\OneToMany(mappedBy: 'level', targetEntity: Game::class)]
+    private Collection $games;
+
     public function __construct()
     {
         $this->paramLevelMapSizes = new ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -137,5 +141,35 @@ class Level
     public function __toString(): string
     {
         return $this->getName();
+    }
+
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games->add($game);
+            $game->setLevel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGame(Game $game): self
+    {
+        if ($this->games->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getLevel() === $this) {
+                $game->setLevel(null);
+            }
+        }
+
+        return $this;
     }
 }
