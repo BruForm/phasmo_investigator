@@ -7,10 +7,10 @@
 {% block main %}
     <div class="text_zone">
         <p>Venez profiter de l’aide précieuse de l’enquêteur
-            pour réussir à coup sur toutes vos investigations...
+            pour réussir à coup sûr toutes vos investigations...
         </p>
-        <p>Les entités ne pourrons plus vous échapper.
-            <br>Alors lancer une nouvelle enquette sans hésiter !!!
+        <p>Les entités ne pourront plus vous échapper.
+            <br>Alors lancez une nouvelle enquette sans hésiter !!!
         </p>
     </div>
     <div class="remember_zone">
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
             <tr>
-                <th scope="row">Free run</th>
+                <th scope="row">Temps libre</th>
                 {% for level in levels %}
                     {#                    <td>{{ level.freeRunTime | date('i : s') }}</td> #}
                     <td>
@@ -36,11 +36,15 @@
                         {% if level.freeRunTime | date('s') > 0 %}
                             {{ level.freeRunTime | date('s') }} sec
                         {% endif %}
+                        {% if level.freeRunTime | date('i') == 0
+                            and level.freeRunTime | date('s') == 0 %}
+                            -
+                        {% endif %}
                     </td>
                 {% endfor %}
             </tr>
             <tr>
-                <th scope="row">Grace time</th>
+                <th scope="row">Grâce</th>
                 {% for level in levels %}
                     {#                    <td>{{ level.huntGraceTime | date('i : s') }}</td> #}
                     <td>
@@ -62,7 +66,13 @@
             <tr>
                 <th scope="row">Assurance</th>
                 {% for level in levels %}
-                    <td>{{ level.insurancePayment }}%</td>
+                    <td>
+                        {% if level.insurancePayment > 0 %}
+                            {{ level.insurancePayment }}%
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
                 {% endfor %}
             </tr>
             <tr>
@@ -90,6 +100,7 @@
             {% endfor %}
             </tbody>
         </table>
+        <p>(s.m. = santé mentale)</p>
     </div>
     <div class="tweeter_zone">
         <div class="tweeter">

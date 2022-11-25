@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\CursedObject;
 use App\Form\CursedObjectType;
 use App\Repository\CursedObjectRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/cursed_object')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminCursedObjectController extends AbstractController
 {
     #[Route('/', name: 'app_admin_cursed_object_index', methods: ['GET'])]

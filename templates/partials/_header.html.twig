@@ -6,7 +6,10 @@
                 aria-label="Visit homepage"
                 aria-current="page"
         >
-            <span>Phasmo: L'enquêteur</span>
+            <span>Phasmo: L'enquêteur</span><br>
+            {% if app.user %}
+                <span class="userName">{{ app.user.nickname }}</span>
+            {% endif %}
         </a>
         <div class="nav-links">
             <button

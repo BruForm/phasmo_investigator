@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Player;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
@@ -36,6 +37,17 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
+
+            // Create the player with user data
+            $player = new Player();
+            $player->setLastname($user->getLastname());
+            $player->setFirstname($user->getFirstname());
+            $player->setNickname($user->getNickname());
+            $player->setPassword($user->getPassword());
+            $player->setNbInvestig(0);
+            $player->setNbSuccess(0);
+            $entityManager->persist($player);
+            $entityManager->flush();
 
             return $userAuthenticator->authenticateUser(
                 $user,

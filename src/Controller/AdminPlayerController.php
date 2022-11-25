@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/player')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminPlayerController extends AbstractController
 {
     #[Route('/', name: 'app_admin_player_index', methods: ['GET'])]

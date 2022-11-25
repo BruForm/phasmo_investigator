@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Entity;
 use App\Form\EntityType;
 use App\Repository\EntityRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/entity')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminEntityController extends AbstractController
 {
     #[Route('/', name: 'app_admin_entity_index', methods: ['GET'])]

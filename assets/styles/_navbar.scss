@@ -7,6 +7,7 @@
     justify-items: center;
     padding: 15px 25px;
     background: var(--dark);
+    text-align: center;
 
     box-shadow: inset 0 -2px 0 var(--light);
 
@@ -26,9 +27,14 @@
 
         span {
             font-family: var(--fontPhasmo);
-            font-size: calc(var(--sizeLogo) * 2.5/4);
+            font-size: calc(var(--sizeLogo) * 2.5/3);
+            line-height: 1.0;
             color: var(--light);
             padding: 0;
+        }
+        .userName{
+            font-family: var(--fontText);
+            font-size: calc(var(--sizeLogo) * 2.5/5);
         }
     }
 
@@ -119,6 +125,10 @@
 
             span {
                 font-size: calc(var(--sizeLogo) * 2/4);
+            }
+
+            .userName{
+                font-size: calc(var(--sizeLogo) * 2/5);
             }
         }
 
@@ -241,6 +251,10 @@
 
             span {
                 font-size: calc(var(--sizeLogo) * 1.6/4);
+            }
+
+            .userName{
+                font-size: calc(var(--sizeLogo) * 1.6/5);
             }
         }
 

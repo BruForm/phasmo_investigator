@@ -5,14 +5,15 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
-<div class="admin_zone">
-    <h1>Map</h1>
+    {% include('partials/_adminSideMenu.html.twig') %}
+    <div class="admin_zone">
+        <h1>Map</h1>
 
-    <a href="{{ path('app_admin_map_index') }}">back to list</a>
-    <a href="{{ path('app_admin_map_edit', {'id': map.id}) }}">edit</a>
+        <a href="{{ path('app_admin_map_index') }}">back to list</a>
+        <a href="{{ path('app_admin_map_edit', {'id': map.id}) }}">edit</a>
 
-    <table class="table">
-        <tbody>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ map.id }}</td>
@@ -33,12 +34,12 @@
                 <th>Nb Room</th>
                 <td>{{ map.nbRoom }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_map_index') }}">back to list</a>
-    <a href="{{ path('app_admin_map_edit', {'id': map.id}) }}">edit</a>
+        <a href="{{ path('app_admin_map_index') }}">back to list</a>
+        <a href="{{ path('app_admin_map_edit', {'id': map.id}) }}">edit</a>
 
-    {{ include('admin_map/_delete_form.html.twig') }}
-</div>
+        {{ include('admin_map/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Map;
 use App\Form\MapType;
 use App\Repository\MapRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/map')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminMapController extends AbstractController
 {
     #[Route('/', name: 'app_admin_map_index', methods: ['GET'])]

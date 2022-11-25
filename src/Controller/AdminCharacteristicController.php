@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Characteristic;
 use App\Form\CharacteristicType;
 use App\Repository\CharacteristicRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/characteristic')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminCharacteristicController extends AbstractController
 {
     #[Route('/', name: 'app_admin_characteristic_index', methods: ['GET'])]

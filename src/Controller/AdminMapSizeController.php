@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\MapSize;
 use App\Form\MapSizeType;
 use App\Repository\MapSizeRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/map_size')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminMapSizeController extends AbstractController
 {
     #[Route('/', name: 'app_admin_map_size_index', methods: ['GET'])]

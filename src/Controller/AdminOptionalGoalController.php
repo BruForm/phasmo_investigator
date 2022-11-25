@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\OptionalGoal;
 use App\Form\OptionalGoalType;
 use App\Repository\OptionalGoalRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/optional_goal')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminOptionalGoalController extends AbstractController
 {
     #[Route('/', name: 'app_admin_optional_goal_index', methods: ['GET'])]

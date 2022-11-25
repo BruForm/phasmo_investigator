@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\ParamLevelMapSize;
 use App\Form\ParamLevelMapSizeType;
 use App\Repository\ParamLevelMapSizeRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/param_level_map_size')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminParamLevelMapSizeController extends AbstractController
 {
     #[Route('/', name: 'app_admin_param_level_map_size_index', methods: ['GET'])]

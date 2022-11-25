@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Level;
 use App\Form\LevelType;
 use App\Repository\LevelRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/admin/level')]
+#[Security("is_granted('ROLE_ADMIN')")]
 class AdminLevelController extends AbstractController
 {
     #[Route('/', name: 'app_admin_level_index', methods: ['GET'])]

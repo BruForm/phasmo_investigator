@@ -3,7 +3,11 @@
   grid-row: 1 / -1;
 
   * {
-    color: var(--light)
+    color: var(--light);
+  }
+
+  .alert-danger {
+    color: var(--blood);
   }
 
   h1 {

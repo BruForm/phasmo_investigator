@@ -5,8 +5,13 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
+    {% include('partials/_adminSideMenu.html.twig') %}
     <div class="admin_zone">
         <h1>Entity</h1>
+
+        <a href="{{ path('app_admin_entity_index') }}">back to list</a>
+
+        <a href="{{ path('app_admin_entity_edit', {'id': entity.id}) }}">edit</a>
 
         <table class="table">
             <tbody>
