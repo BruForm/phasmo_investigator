@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Player;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,38 @@ class PlayerRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function sumForStats(): array
+    {
+//        SELECT SUM(p.nbInvestig), SUM (p.nbSuccess)
+//        FROM player
+        return $this->createQueryBuilder('p')
+            ->select('SUM(p.nbInvestig) as nbInvestig', 'SUM(p.nbSuccess) as nbSuccess')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function sumForStatsByEmail(string $email): array
+    {
+//        SELECT SUM(p.nbInvestig), SUM (p.nbSuccess)
+//        FROM player p
+//        WHERE p.nickname =
+//          (SELECT u.nickname FROM user u
+//           WHERE u.email = $email)
+//        OU :
+//        SELECT SUM(p.nb_investig) , SUM(p.nb_success)
+//        FROM player p
+//        INNER JOIN user u ON u.nickname = p.nickname
+//          AND u.email = 'bruno@mail.fr';
+        return $this->createQueryBuilder('p')
+            ->select('SUM(p.nbInvestig) as nbInvestig', 'SUM(p.nbSuccess) as nbSuccess')
+            ->innerJoin(User::class, 'u', 'WITH', 'u.nickname = p.nickname AND u.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getResult();
+
+//        ->where('p.nickname = (SELECT nickname FROM user WHERE email = :email)')
     }
 
 //    /**

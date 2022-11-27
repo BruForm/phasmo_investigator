@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-class Traduction
+class TraductionService
 {
     private array $tradEnFr = [
         'small' => 'petite',

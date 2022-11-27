@@ -17,8 +17,13 @@ body {
 .main_container {
   display: grid;
   grid-template-rows: repeat(12, 1fr);
-  gap: 10px;
+  gap: 2px;
   padding: 0 2%;
+  font-size: calc(var(--fontSizeText) * 0.8);
+
+  h3 {
+    font-size: calc(var(--fontSizeH3) * .75);
+  }
 }
 
 @media screen and (min-width: 720px) {
@@ -26,7 +31,13 @@ body {
   .main_container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(12, 1fr);
+    gap: 15px;
     padding: 0 5%;
+    font-size: calc(var(--fontSizeText) * 1);
+
+    h3 {
+      font-size: calc(var(--fontSizeH3) * 1);
+    }
   }
 }
 
@@ -35,6 +46,7 @@ body {
   .main_container {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, 1fr);
+    gap: 10px;
     padding: 0 10%;
   }
 }

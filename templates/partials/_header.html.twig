@@ -1,16 +1,17 @@
 <header>
     <nav class="navbar">
-        <a
-                href="{{ path('app_home') }}"
-                class="nav-icon"
-                aria-label="Visit homepage"
-                aria-current="page"
-        >
-            <span>Phasmo: L'enquêteur</span><br>
-            {% if app.user %}
-                <span class="userName">{{ app.user.nickname }}</span>
-            {% endif %}
-        </a>
+        <div class="nav-icon">
+            <a
+                    href="{{ path('app_home') }}"
+{#                    class="nav-icon"#}
+                    aria-label="Visit homepage"
+                    aria-current="page"
+            >
+                <span>Phasmo: L'enquêteur</span><br>
+                {% if app.user %}
+                    <span class="userName">{{ app.user.nickname }}</span>
+                {% endif %}
+            </a></div>
         <div class="nav-links">
             <button
                     class="hamburger"
@@ -55,6 +56,11 @@
                     </a>
                 </div>
             {% endif %}
+        </div>
+        <div class="go-btn">
+            <a href="{{ path('app_home') }}">
+                <button>GO</button>
+            </a>
         </div>
     </nav>
 </header>

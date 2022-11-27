@@ -10,7 +10,7 @@
             pour réussir à coup sûr toutes vos investigations...
         </p>
         <p>Les entités ne pourront plus vous échapper.
-            <br>Alors lancez une nouvelle enquette sans hésiter !!!
+            <br>Alors lancez une <a href="{{ path('app_home') }}">nouvelle enquette</a> sans hésiter !!!
         </p>
     </div>
     <div class="remember_zone">
@@ -102,6 +102,50 @@
         </table>
         <p>(s.m. = santé mentale)</p>
     </div>
+    <div class="stat_zone">
+        <h3>Les stats
+            {% if app.user %}
+                <span>[joueur]</span>
+            {% endif %}
+        </h3>
+        <table>
+            <tr>
+                <td>Nombre d'enquètes:</td>
+                <td>{{ stats.nbInvestigTotal }}</td>
+                {% if app.user %}
+                    <td>[{{ statsUser[0].nbInvestigTotal }}]</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Enquètes résolues:</td>
+                <td>{{ stats.nbSuccessTotal }}</td>
+                {% if app.user %}
+                    <td>[{{ statsUser[0].nbSuccessTotal }}]</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>soit:</td>
+                <td>{{ stats.percentSuccessTotal }}%</td>
+                {% if app.user %}
+                    <td>[{{ statsUser[0].percentSuccessTotal }}%]</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Enquètes non résolues:</td>
+                <td>{{ stats.nbFailTotal }}</td>
+                {% if app.user %}
+                    <td>[{{ statsUser[0].nbFailTotal }}]</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>soit:</td>
+                <td>{{ stats.percentFailTotal }}%</td>
+                {% if app.user %}
+                    <td>[{{ statsUser[0].percentFailTotal }}%]</td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
     <div class="tweeter_zone">
         <div class="tweeter">
             <a
@@ -111,13 +155,8 @@
                     data-height="400"
                     data-theme="dark"
                     href="https://twitter.com/KineticGame?ref_src=twsrc%5Etfw"
-            >Tweets by KineticGame</a
-            >
-            <script
-                    async
-                    src="https://platform.twitter.com/widgets.js"
-                    charset="utf-8"
-            ></script>
+            >Tweets by KineticGame</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
 {% endblock %}
