@@ -10,7 +10,17 @@
             pour réussir à coup sûr toutes vos investigations...
         </p>
         <p>Les entités ne pourront plus vous échapper.
-            <br>Alors lancez une <a href="{{ path('app_home') }}">nouvelle enquette</a> sans hésiter !!!
+            <br>Alors
+            {% if not (app.user) %}
+                <a href="{{ path('app_login') }}">connectez-vous</a>
+            et
+            {% endif %}
+            lancez une
+            {% if(app.user) %}
+            <a href="{{ path('app_investigation') }}">nouvelle enquette</a>
+            {% else %}nouvelle enquette
+            {% endif %}
+            sans hésiter !!!
         </p>
     </div>
     <div class="remember_zone">

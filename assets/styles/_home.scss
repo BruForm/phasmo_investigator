@@ -1,12 +1,12 @@
 .text_zone {
   grid-column: 1 / -1;
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
+  align-self: start;
 
   color: var(--light);
   padding: 2px;
   text-align: center;
   font-family: var(--fontDefault);
-  align-self: center;
 
   p {
     margin-bottom: .25rem;
@@ -24,15 +24,15 @@
 .stat_zone {
   grid-column: 1 / -1;
   grid-row: 3 / 6;
+  align-self: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  //align-items: center;
 
   color: var(--light);
-  padding: 2px;
+  padding: 2px 20px;
   text-align: center;
   font-family: var(--fontDefault);
-  align-self: center;
 
   h3 {
     font-family: var(--fontTitre);
@@ -82,11 +82,7 @@
 .tweeter_zone {
   grid-column: 1 / -1;
   grid-row: 6 / 13;
-  align-self: center;
-
-  height: fit-content;
-  padding: 0;
-  margin: 2px 0;
+  align-self: end;
 }
 
 @media screen and (min-width: 720px) {
@@ -99,6 +95,7 @@
     border-radius: 10px;
     box-shadow: -4px 4px 5px 0 var(--light);
 
+    align-self: start;
     p {
       margin-bottom: 1rem;
     }
@@ -108,7 +105,6 @@
     grid-column: 2 / -1;
     grid-row: 4 / -1;
     padding: 5px;
-    margin-bottom: 20px;
 
     border: solid 1px var(--light);
     border-radius: 10px;
@@ -117,7 +113,6 @@
   .tweeter_zone {
     grid-column: 1 / 2;
     grid-row: 6 / -1;
-    padding: 0;
 
     border: solid 1px var(--light);
     border-radius: 10px;
@@ -125,12 +120,14 @@
   }
   .stat_zone {
     grid-column: 1 / 2;
-    grid-row: 1 / 6;
+    grid-row: 1 / 7;
     padding: 5px;
 
     border: solid 1px var(--light);
     border-radius: 10px;
     box-shadow: -4px 4px 5px 0 var(--light);
+
+    align-self: start;
 
     h3 span {
       font-size: calc(var(--fontSizeH3) * 0.75);
@@ -151,7 +148,7 @@
 @media screen and (min-width: 1200px) {
   .text_zone {
     grid-column: 7 / -1;
-    grid-row: 1 / 5;
+    grid-row: 2 / 5;
     padding: 10px;
   }
   .remember_zone {
@@ -160,7 +157,6 @@
     grid-column: 7 / -1;
     grid-row: 5 / 12;
     padding: 10px;
-    margin-bottom: 0;
 
     border: solid 1px var(--light);
     border-radius: 10px;
@@ -168,13 +164,12 @@
   }
   .tweeter_zone {
     grid-column: 1 / 6;
-    grid-row: 6 / 12;
-    padding: 0;
+    grid-row: 5 / 12;
   }
   .stat_zone {
     grid-column: 1 / 6;
-    grid-row: 1 / 6;
-    padding: 10px;
+    grid-row: 2 / 6;
+    padding: 10px 0;
 
     border: solid 1px var(--light);
     border-radius: 10px;

@@ -3,11 +3,11 @@
         <div class="nav-icon">
             <a
                     href="{{ path('app_home') }}"
-{#                    class="nav-icon"#}
+                    {#                    class="nav-icon" #}
                     aria-label="Visit homepage"
                     aria-current="page"
             >
-                <span>Phasmo: L'enquêteur</span><br>
+                <span>Phasmophobia: L'enquêteur</span><br>
                 {% if app.user %}
                     <span class="userName">{{ app.user.nickname }}</span>
                 {% endif %}
@@ -58,9 +58,11 @@
             {% endif %}
         </div>
         <div class="go-btn">
-            <a href="{{ path('app_home') }}">
-                <button>GO</button>
-            </a>
+            {% if(app.user) %}
+                <a href="{{ path('app_investigation') }}">
+                    <button>GO</button>
+                </a>
+            {% endif %}
         </div>
     </nav>
 </header>

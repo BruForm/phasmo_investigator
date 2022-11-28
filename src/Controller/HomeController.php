@@ -17,7 +17,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(Request $request, LevelRepository $levelRepository, MapSizeRepository $mapSizeRepository, ParamLevelMapSizeRepository $paramLevelMapSizeRepository, TraductionService $traductionService, PlayerRepository $playerRepository, PlayerService $playerService, ?UserInterface $user): Response
+    public function index(
+        Request                     $request,
+        LevelRepository             $levelRepository,
+        MapSizeRepository           $mapSizeRepository,
+        ParamLevelMapSizeRepository $paramLevelMapSizeRepository,
+        TraductionService           $traductionService,
+        PlayerRepository            $playerRepository,
+        PlayerService               $playerService,
+        ?UserInterface              $user
+    ): Response
     {
         $levels = $levelRepository->findAll();
         $mapSizes = $mapSizeRepository->findAll();

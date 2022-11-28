@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Investigation{% endblock %}
+
+{% block main_class %}investigation_container{% endblock %}
+
+{% block main %}
+
+    <div class="infos_zone">
+        <p>
+            <label for="level-select">Difficulté :</label>
+            <select id="level-select">
+                {% for level in levels %}
+                    <option value="{{ level.id }}">{{ level.name }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label for="map-select">Map :</label>
+            <select id="map-select">
+                {% for map in maps %}
+                    <option value="{{ map.id }}">{{ map.name }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label for="level-select">Chasses :</label>
+            <select id="level-select">
+                {% for map in maps %}
+                    <option value="{{ map.id }}">{{ map.name }}</option>
+                {% endfor %}
+            </select>
+        </p>
+    </div>
+
+{% endblock %}
