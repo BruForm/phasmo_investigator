@@ -6,8 +6,8 @@
   color: var(--light);
   padding: 10px 5px;
   text-align: center;
-  //font-family: var(--fontDefault);
-  font-family: var(--fontText);
+  font-family: var(--fontDefault);
+  //font-family: var(--fontText);
   font-size: var(--fontSizeText);
 
   border: solid 1px var(--light);
@@ -18,7 +18,7 @@
     text-align: left;
 
     label {
-      font-family: var(--fontText);
+      //font-family: var(--fontText);
     }
 
     select {
@@ -34,128 +34,11 @@
         font-family: var(--fontDefault);
       }
     }
-  }
-}
 
-
-.admin_side_zone {
-  position: fixed;
-  display: grid;
-  grid-column: 1 / 3;
-  grid-row: 1 / -1;
-
-  //align-content: start;
-
-  h1 {
-    padding: 20px 0;
-  }
-
-  a {
-    display: block;
-    color: var(--light);
-    text-decoration: none;
-    text-transform: capitalize;
-    padding-right: 5px;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  .admin_side_menu {
-    margin-right: auto;
-    border-right: solid 1px var(--light);
-    border-bottom: solid 1px var(--light);
-    padding-bottom: 10px;
-  }
-}
-
-.admin_zone {
-  grid-column: 3 / -1;
-  grid-row: 1 / -1;
-
-  * {
-    color: var(--light)
-  }
-
-  h1 {
-    text-align: center;
-    padding: 20px 0;
-  }
-
-  .back_admin {
-    padding-bottom: 10px;
-  }
-
-  a {
-    color: var(--light);
-    padding: 0 25px 0 0;
-    text-decoration: none;
-    text-transform: capitalize;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  button {
-    margin: 5px 0;
-  }
-
-  .admin_menu {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    a {
-      margin: 10px;
-    }
-  }
-
-  .form_main {
-    margin-top: 20px;
-
-    .form_content {
-      display: flex;
-      flex-direction: column;
-
-      .form_item {
-        display: grid;
-        grid-template-columns: 1fr 4fr;
-        grid-gap: 5px;
-        align-items: center;
-
-        & > * {
-          margin-bottom: 5px;
-        }
-
-        label + * {
-          color: var(--dark);
-        }
-
-        select, select > * {
-          color: var(--dark);
-        }
-
-        .form_checkbox {
-          display: grid;
-          grid-template-columns: repeat(3, 30px 1fr);
-          align-items: center;
-
-          input {
-            height: 20px;
-          }
-        }
-
-        //& > :nth-child(2) {
-        //  margin-left: 5px;
-        //}
-      }
+    span{
+      display: block;
+      text-align: right;
+      padding-right: 10%;
     }
   }
 }
-
-//.form_checkbox:has(div) {
-//  display: flex;
-//  flex-direction: column;
-//}

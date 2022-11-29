@@ -6,7 +6,9 @@ use App\Repository\PlayerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+#[UniqueEntity(fields: 'nickname', message: 'Ce pseudo est déjà utilisé!')] // Permet de préciser que le nickname doit etre unique
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
 {

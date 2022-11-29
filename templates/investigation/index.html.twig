@@ -9,7 +9,7 @@
     <div class="infos_zone">
         <p>
             <label for="level-select">Difficulté :</label>
-            <select id="level-select">
+            <select id="level-select" class="js-select js-sel-level">
                 {% for level in levels %}
                     <option value="{{ level.id }}">{{ level.name }}</option>
                 {% endfor %}
@@ -17,20 +17,64 @@
         </p>
         <p>
             <label for="map-select">Map :</label>
-            <select id="map-select">
+            <select id="map-select" class="js-select js-sel-map">
                 {% for map in maps %}
                     <option value="{{ map.id }}">{{ map.name }}</option>
                 {% endfor %}
             </select>
         </p>
         <p>
-            <label for="level-select">Chasses :</label>
-            <select id="level-select">
-                {% for map in maps %}
-                    <option value="{{ map.id }}">{{ map.name }}</option>
-                {% endfor %}
-            </select>
+            <label for="level-select">Durée chasses [maudites] :</label>
+            <span class="js-durations">00:00 (00:00)</span>
         </p>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        function affectChaseDurations() {
+            const levelId = document.querySelector('.js-sel-level').value;
+            const mapId = document.querySelector('.js-sel-map').value;
+            const url = '/investigation/chaseDuration/' + levelId + '/' + mapId;
+            axios.post(url).then(function (response) {
+
+                let min = response.data['chaseDuration'].split(':')[0];
+                let sec = response.data['chaseDuration'].split(':')[1];
+                let duration = '';
+                if (min > 0) {
+                    min = (min < 10) ? min[1] : min;
+                    duration += min + 'min';
+                }
+                if (sec > 0) {
+                    if (duration.length) duration += ' ';
+                    duration += sec + 'sec';
+                }
+
+                min = response.data['chaseDurationCursed'].split(':')[0];
+                sec = response.data['chaseDurationCursed'].split(':')[1];
+                let durationCursed = '';
+                if (min > 0) {
+                    min = (min < 10) ? min[1] : min;
+                    durationCursed += min + 'min';
+                }
+                if (sec > 0) {
+                    if (durationCursed.length) durationCursed += ' ';
+                    durationCursed += sec + 'sec';
+                }
+                document.querySelector('.js-durations').innerHTML = duration + ' [' + durationCursed + ']';
+            });
+        }
+
+        affectChaseDurations();
+
+        document.querySelectorAll('.js-select').forEach(selected => {
+            selected.addEventListener('change', () => {
+                affectChaseDurations();
+            });
+        })
+
+    </script>
 {% endblock %}

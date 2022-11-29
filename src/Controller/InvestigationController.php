@@ -48,7 +48,7 @@ class InvestigationController extends AbstractController
                 'name' => 'Hunt Duration',
             ]
         );
-//        dd(date("i:s", strtotime('+20seconds', strtotime(date_format($res->getDuration(), "H:i:s")))));
+
         return $this->json([
             'chaseDuration' => date_format($res->getDuration(), "i:s"),
             'chaseDurationCursed' => date("i:s", strtotime('+20seconds', strtotime(date_format($res->getDuration(), "H:i:s")))),
