@@ -7,6 +7,7 @@ use App\Repository\MapRepository;
 use App\Repository\ParamLevelMapSizeRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -41,19 +42,20 @@ class InvestigationController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    #[Route('/investigation/chaseDuration/{levelId}/{mapId}', name: 'app_investigation_chase_duration')]
+    #[Route('/investigation/chaseDuration/{data}', name: 'app_investigation_chase_duration')]
     public function getChaseDuration(
-        int                         $levelId,
-        int                         $mapId,
+        Request $request,
         ParamLevelMapSizeRepository $paramLevelMapSizeRepository,
         MapRepository               $mapRepository,
         ConversionService           $conversionService
     ): Response
     {
+        $data = json_decode($request->get('data'), true);
+
         $huntDuration = $paramLevelMapSizeRepository->findOneBy(
             [
-                'level' => $levelId,
-                'mapSize' => $mapRepository->find($mapId)->getMapSize()->getId(),
+                'level' => $data['levelId'],
+                'mapSize' => $mapRepository->find($data['mapId'])->getMapSize()->getId(),
                 'name' => 'Hunt Duration',
             ]
         );
