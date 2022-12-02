@@ -34,8 +34,7 @@ class InvestigationController extends AbstractController
     }
 
     /**
-     * @param int $levelId
-     * @param int $mapId
+     * @param Request $request
      * @param ParamLevelMapSizeRepository $paramLevelMapSizeRepository
      * @param MapRepository $mapRepository
      * @param ConversionService $conversionService
@@ -44,7 +43,7 @@ class InvestigationController extends AbstractController
      */
     #[Route('/investigation/chaseDuration/{data}', name: 'app_investigation_chase_duration')]
     public function getChaseDuration(
-        Request $request,
+        Request                     $request,
         ParamLevelMapSizeRepository $paramLevelMapSizeRepository,
         MapRepository               $mapRepository,
         ConversionService           $conversionService

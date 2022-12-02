@@ -39,7 +39,7 @@
         <div class="nav-authentication">
             {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="user_sign_in" aria-label="Sign out">
-                    <img src="{{ asset('/build/pictos/user-solid.svg') }}" alt="user icon"/>
+                    <img src="{{ asset('/build/assets/pictos/user-solid.svg') }}" alt="user icon"/>
                 </a>
                 <div class="sign-btn">
                     <a href="{{ path('app_logout') }}" aria-label="Sign out">
@@ -48,7 +48,7 @@
                 </div>
             {% else %}
                 <a href="{{ path('app_login') }}" class="user_sign_in" aria-label="Sign in">
-                    <img src="{{ asset('/build/pictos/user-solid.svg') }}" alt="user icon"/>
+                    <img src="{{ asset('/build/assets/pictos/user-solid.svg') }}" alt="user icon"/>
                 </a>
                 <div class="sign-btn">
                     <a href="{{ path('app_login') }}" aria-label="Sign in">

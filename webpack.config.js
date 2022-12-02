@@ -8,7 +8,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     // directory where compiled assets will be stored
-    .setOutputPath('public/build/')
+    .setOutputPath('public/build')
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
@@ -16,11 +16,11 @@ Encore
 
     .copyFiles({
         from: './assets/pictos',
-        to: 'pictos/[path][name].[ext]'
+        to: 'assets/pictos/[path][name].[ext]'
     })
     .copyFiles({
         from: './assets/images',
-        to: 'images/[path][name].[ext]'
+        to: 'assets/images/[path][name].[ext]'
     })
 
     /*
@@ -29,10 +29,9 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
-
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+    // .addEntry('app', './assets/app.js')
+    .addEntry('assets/scripts', './assets/scripts/app.ts')
+    .addStyleEntry('assets/styles', './assets/styles/app.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -69,7 +68,7 @@ Encore
     .enableSassLoader()
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    .enableTypeScriptLoader()
 
     // uncomment if you use React
     //.enableReactPreset()

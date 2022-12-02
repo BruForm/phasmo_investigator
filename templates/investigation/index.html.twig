@@ -30,39 +30,3 @@
     </div>
 
 {% endblock %}
-
-{% block javascripts %}
-    {#    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> #}
-    <script>
-
-        function affectChaseDurations() {
-            const levelId = document.querySelector('.js-sel-level').value;
-            const mapId = document.querySelector('.js-sel-map').value;
-            const data = {
-                levelId,
-                mapId
-            }
-            const url = '/investigation/chaseDuration/' + JSON.stringify(data);
-            // axios.get(url).then(function (response) {
-            //     document.querySelector('.js-durations').innerHTML =
-            //         response.data['chaseDuration'] +
-            //         ' [' + response.data['chaseDurationCursed'] + ']';
-            // });
-            fetch(url)
-                .then(response => response.json())
-                .then(function(data) {
-                    document.querySelector('.js-durations').innerHTML =
-                        data['chaseDuration'] +
-                        ' [' + data['chaseDurationCursed'] + ']'}
-                )
-        }
-
-        affectChaseDurations();
-        document.querySelectorAll('.js-select').forEach(selected => {
-            selected.addEventListener('change', () => {
-                affectChaseDurations();
-            });
-        })
-
-    </script>
-{% endblock %}
