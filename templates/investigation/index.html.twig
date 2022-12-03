@@ -29,4 +29,47 @@
         </p>
     </div>
 
+    <div class="evidences_zone">
+        <h2>Preuves</h2>
+        <div class="checkboxes">
+            {% for evidence in evidences %}
+                <div class="checkbox">
+                    <label for="chk" class="evidence_name">{{ evidence.name }}</label>
+                    <input type="checkbox" id="chk">
+                    {#                    <img src="{{ asset('./build/assets/images/skins_evidences/' ~ format_file_name(evidence.name) ~ '.png')}}" #}
+                    {#                         alt="evidence image"> #}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="entities_zone">
+        <h2>Entités possibles</h2>
+        <div class="entity_list">
+            {% for entity in entities %}
+                {% if entity.evidences.count > 0 %}
+                    <span class="js-entity-id" data-Entity-id="{{ entity.id }}">{{ entity.name }}</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="Result_Btn_zone">
+        <div class="buttons">
+            <button class="btn btn-success">OK</button>
+            <button class="btn btn-danger">KO</button>
+        </div>
+    </div>
+
+    <div class="other_evidences_zone">
+        <div class="checkboxes">
+{#            {% for evidence in evidences %}#}
+{#                <div class="checkbox">#}
+{#                    <label for="chk">{{ evidence.name }}</label>#}
+{#                    <input type="checkbox" id="chk">#}
+{#                </div>#}
+{#            {% endfor %}#}
+        </div>
+    </div>
+
 {% endblock %}

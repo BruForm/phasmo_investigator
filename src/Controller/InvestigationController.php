@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\EntityRepository;
+use App\Repository\EvidenceRepository;
 use App\Repository\LevelRepository;
 use App\Repository\MapRepository;
 use App\Repository\ParamLevelMapSizeRepository;
@@ -20,6 +22,8 @@ class InvestigationController extends AbstractController
         ?UserInterface  $user,
         LevelRepository $levelRepository,
         MapRepository   $mapRepository,
+        EvidenceRepository $evidenceRepository,
+        EntityRepository $entityRepository
     ): Response
     {
         // If no user connected, redirect to login page
@@ -30,6 +34,8 @@ class InvestigationController extends AbstractController
         return $this->render('investigation/index.html.twig', [
             'levels' => $levelRepository->findAll(),
             'maps' => $mapRepository->findAll(),
+            'evidences' => $evidenceRepository->findAll(),
+            'entities' => $entityRepository->findAllOrderName(),
         ]);
     }
 
@@ -71,6 +77,27 @@ class InvestigationController extends AbstractController
         return $this->json([
             'chaseDuration' => $chaseDuration,
             'chaseDurationCursed' => $chaseDurationCursed,
+        ]);
+    }
+
+    #[Route('/investigation/entityEvidences/{data}', name: 'app_investigation_entity_evidences')]
+    public function getEntityEvidences(
+        Request                     $request,
+        EntityRepository $entityRepository,
+    ): Response
+    {
+        $data = json_decode($request->get('data'), true);
+
+        dump($data);
+
+        $evidences = $entityRepository->find($data['id'])->getEvidences();
+        $evidenceNames = [];
+        foreach ($evidences as $key => $evidence){
+            $evidenceNames [$key] = $evidence->getName();
+        }
+
+        return $this->json([
+            'evidenceNames' => $evidenceNames
         ]);
     }
 }
