@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CharacteristicRepository;
 use App\Repository\EntityRepository;
 use App\Repository\EvidenceRepository;
 use App\Repository\LevelRepository;
@@ -19,11 +20,11 @@ class InvestigationController extends AbstractController
 {
     #[Route('/investigation', name: 'app_investigation')]
     public function index(
-        ?UserInterface  $user,
-        LevelRepository $levelRepository,
-        MapRepository   $mapRepository,
+        ?UserInterface     $user,
+        LevelRepository    $levelRepository,
+        MapRepository      $mapRepository,
         EvidenceRepository $evidenceRepository,
-        EntityRepository $entityRepository
+        EntityRepository   $entityRepository
     ): Response
     {
         // If no user connected, redirect to login page
@@ -52,6 +53,7 @@ class InvestigationController extends AbstractController
         Request                     $request,
         ParamLevelMapSizeRepository $paramLevelMapSizeRepository,
         MapRepository               $mapRepository,
+        CharacteristicRepository    $characteristicRepository,
         ConversionService           $conversionService
     ): Response
     {
@@ -69,7 +71,9 @@ class InvestigationController extends AbstractController
         $sec = date_format($huntDuration->getDuration(), "s");
         $chaseDuration = $conversionService->minSecInStr($min, $sec);
 
-        $cursed = new DateTime(date("H:i:s", strtotime('+20seconds', strtotime(date_format($huntDuration->getDuration(), "H:i:s")))));
+        $addingToHuntTime = $characteristicRepository->findOneBy(['name' => 'cursed hunt time'])->getValue();
+
+        $cursed = new DateTime(date("H:i:s", strtotime($addingToHuntTime, strtotime(date_format($huntDuration->getDuration(), "H:i:s")))));
         $minCursed = date_format($cursed, 'i');
         $secCursed = date_format($cursed, 's');
         $chaseDurationCursed = $conversionService->minSecInStr($minCursed, $secCursed);
@@ -82,22 +86,40 @@ class InvestigationController extends AbstractController
 
     #[Route('/investigation/entityEvidences/{data}', name: 'app_investigation_entity_evidences')]
     public function getEntityEvidences(
-        Request                     $request,
+        Request          $request,
         EntityRepository $entityRepository,
     ): Response
     {
         $data = json_decode($request->get('data'), true);
 
-        dump($data);
-
         $evidences = $entityRepository->find($data['id'])->getEvidences();
         $evidenceNames = [];
-        foreach ($evidences as $key => $evidence){
+        foreach ($evidences as $key => $evidence) {
             $evidenceNames [$key] = $evidence->getName();
         }
 
         return $this->json([
             'evidenceNames' => $evidenceNames
+        ]);
+    }
+
+    #[Route('/investigation/evidenceEntities/{data}', name: 'app_investigation_evidence_entities')]
+    public function getEvidenceEntities(
+        Request          $request,
+        EvidenceRepository $evidenceRepository,
+    ): Response
+    {
+        $data = json_decode($request->get('data'), true);
+
+        //ICI>>>
+
+        $entities = $evidenceRepository->find($data['id'])->getEntities();
+        $entityNames = [];
+        foreach ($entities as $key => $entity) {
+            $entityNames [$key] = $entity->getName();
+        }
+        return $this->json([
+            'entityNames' => $entityNames
         ]);
     }
 }

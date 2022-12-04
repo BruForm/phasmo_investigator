@@ -35,9 +35,9 @@
             {% for evidence in evidences %}
                 <div class="checkbox">
                     <label for="chk" class="evidence_name">{{ evidence.name }}</label>
-                    <input type="checkbox" id="chk">
-                    {#                    <img src="{{ asset('./build/assets/images/skins_evidences/' ~ format_file_name(evidence.name) ~ '.png')}}" #}
-                    {#                         alt="evidence image"> #}
+                    <input type="checkbox" id="chk" class="js-evidence" data-evidence-id="{{ evidence.id }}">
+                    {# <img src="{{ asset('./build/assets/images/skins_evidences/' ~ format_file_name(evidence.name) ~ '.png')}}" #}
+                    {# alt="evidence image"> #}
                 </div>
             {% endfor %}
         </div>
@@ -48,7 +48,10 @@
         <div class="entity_list">
             {% for entity in entities %}
                 {% if entity.evidences.count > 0 %}
-                    <span class="js-entity-id" data-Entity-id="{{ entity.id }}">{{ entity.name }}</span>
+                    <span class="js-entity"
+                          data-entity-id="{{ entity.id }}">
+                        {{ entity.name }}
+                    </span>
                 {% endif %}
             {% endfor %}
         </div>

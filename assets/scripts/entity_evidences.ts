@@ -17,6 +17,7 @@ function entityEvidences(): void {
             fetch(url)
                 .then(response => response.json() as Promise<Evidences>)
                 .then(function (data) {
+                    console.log(data);
                     for (const evidenceName of document.querySelectorAll<HTMLSpanElement>('.evidence_name')) {
                         if (evidenceName) {
                             for (const name of data.evidenceNames) {
@@ -33,10 +34,10 @@ function entityEvidences(): void {
 
 function entityEvidencesReset(): string {
     let oldEntity: string = "";
-    for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity-id')) {
+    for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
         if (entityName.classList.contains('bloody')) {
             entityName.classList.remove('bloody');
-            oldEntity = entityName.getAttribute('data-Entity-id');
+            oldEntity = entityName.getAttribute('data-entity-id');
             break;
         }
     }
@@ -50,7 +51,7 @@ function entityEvidencesReset(): string {
 
 window.addEventListener('load', () => {
 
-    document.querySelectorAll('.js-entity-id').forEach(selected => {
+    document.querySelectorAll('.js-entity').forEach(selected => {
         selected.addEventListener('click', entityEvidences);
         // selected.addEventListener('mouseout', entityEvidencesReset);
     });
