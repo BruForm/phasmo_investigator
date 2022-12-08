@@ -12,7 +12,7 @@ function entityEvidences(): void {
             const data = {
                 'id': entitySelected,
             }
-            this.classList.toggle('bloody')
+            this.classList.toggle('selecTemp')
             const url: string = '/investigation/entityEvidences/' + JSON.stringify(data);
             fetch(url)
                 .then(response => response.json() as Promise<Evidences>)
@@ -22,7 +22,7 @@ function entityEvidences(): void {
                         if (evidenceName) {
                             for (const name of data.evidenceNames) {
                                 if (evidenceName.innerHTML == name) {
-                                    evidenceName.classList.toggle('bloody')
+                                    evidenceName.classList.toggle('selecTemp')
                                 }
                             }
                         }
@@ -35,15 +35,15 @@ function entityEvidences(): void {
 function entityEvidencesReset(): string {
     let oldEntity: string = "";
     for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
-        if (entityName.classList.contains('bloody')) {
-            entityName.classList.remove('bloody');
+        if (entityName.classList.contains('selecTemp')) {
+            entityName.classList.remove('selecTemp');
             oldEntity = entityName.getAttribute('data-entity-id');
             break;
         }
     }
     for (const evidenceName of document.querySelectorAll<HTMLSpanElement>('.evidence_name')) {
-        if (evidenceName.classList.contains('bloody')) {
-            evidenceName.classList.remove('bloody');
+        if (evidenceName.classList.contains('selecTemp')) {
+            evidenceName.classList.remove('selecTemp');
         }
     }
     return oldEntity;

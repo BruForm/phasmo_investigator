@@ -33,7 +33,7 @@
         <h2>Preuves</h2>
         <div class="checkboxes">
             {% for evidence in evidences %}
-                <div class="checkbox">
+                <div class="check_group">
                     <label for="chk" class="evidence_name">{{ evidence.name }}</label>
                     <input type="checkbox" id="chk" class="js-evidence" data-evidence-id="{{ evidence.id }}">
                     {# <img src="{{ asset('./build/assets/images/skins_evidences/' ~ format_file_name(evidence.name) ~ '.png')}}" #}

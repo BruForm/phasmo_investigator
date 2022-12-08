@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Service\ConversionService;
+use function PHPUnit\Framework\isEmpty;
 
 class InvestigationController extends AbstractController
 {
@@ -105,21 +106,27 @@ class InvestigationController extends AbstractController
 
     #[Route('/investigation/evidenceEntities/{data}', name: 'app_investigation_evidence_entities')]
     public function getEvidenceEntities(
-        Request          $request,
+        Request            $request,
         EvidenceRepository $evidenceRepository,
     ): Response
     {
         $data = json_decode($request->get('data'), true);
 
-        //ICI>>>
-
-        $entities = $evidenceRepository->find($data['id'])->getEntities();
         $entityNames = [];
-        foreach ($entities as $key => $entity) {
-            $entityNames [$key] = $entity->getName();
+        foreach ($data as $evidence) {
+            $entities = $evidenceRepository->find($evidence['id'])->getEntities();
+            $arrayTemp = [];
+            foreach ($entities as $entity) {
+                if (empty($entityNames)) {
+                    $arrayTemp[] = $entity->getName();
+                } else {
+                    if (in_array($entity->getName(), $entityNames)) {
+                        $arrayTemp[] = $entity->getName();
+                    }
+                }
+            }
+            $entityNames = $arrayTemp;
         }
-        return $this->json([
-            'entityNames' => $entityNames
-        ]);
+        return $this->json(['entityNames' => $entityNames]);
     }
 }

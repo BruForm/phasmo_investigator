@@ -1,8 +1,16 @@
-.bloody{
+.bloody {
+  //color: var(--blood);
+  text-decoration: line-through;
+  text-decoration-color: var(--blood);
+  text-decoration-thickness: 3px;
+}
+
+.selecTemp {
+  //color: #00d3ff;
   color: var(--blood);
 }
 
-.not-possible{
+.not-possible {
   color: black;
 }
 
@@ -78,12 +86,16 @@
     display: flex;
     flex-wrap: wrap;
 
-    .checkbox {
+    .check_group {
       width: 25%;
       padding: 5px;
       display: grid;
       grid-template-columns: auto 30px;
       align-items: center;
+
+      //label {
+      //  justify-self: end;
+      //}
 
       input {
         height: 20px;
@@ -118,7 +130,7 @@
     flex-direction: column;
     align-items: center;
 
-    span{
+    span {
       width: fit-content;
       cursor: pointer;
     }

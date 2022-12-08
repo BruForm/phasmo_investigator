@@ -37,7 +37,8 @@ $typeKeysFilled-font: 'TypeKeysFilled';
 
   --white: #ffffff;
   --black: #000000;
-  --dark: #1f1f1f;
+  //--dark: #1f1f1f;
+  --dark: radial-gradient(circle, rgba(31,31,31,1) 75%, rgba(220,0,0,1) 100%);
   --light: #dddddd;
   --blue: #00ccff;
   --blood: #dc0000;
