@@ -2,16 +2,16 @@
   //color: var(--blood);
   text-decoration: line-through;
   text-decoration-color: var(--blood);
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 2px;
+  color: var(--lightish);
 }
 
-.selecTemp {
-  //color: #00d3ff;
-  color: var(--blood);
+.selectEntTemp {
+  color: var(--bloodReadable);
 }
 
-.not-possible {
-  color: black;
+.selectEvTemp {
+  border: solid 2px var(--light);
 }
 
 .infos_zone {
@@ -89,19 +89,60 @@
     .check_group {
       width: 25%;
       padding: 5px;
-      display: grid;
-      grid-template-columns: auto 30px;
-      align-items: center;
+      //display: grid;
+      //grid-template-columns: auto 30px;
+      //align-items: center;
 
-      //label {
-      //  justify-self: end;
-      //}
+      label {
+        img {
+          //height: 75px;
+          height: 4rem;
+          background-color: #ffffff30;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+      }
 
       input {
-        height: 20px;
+        display: none;
+
+        &:checked ~ label {
+          img {
+            border: solid 2px var(--light);
+            box-shadow: 0 0 10px var(--light);
+          }
+        }
+
+        &:not(:checked) ~ label {
+          opacity: .5;
+          filter: grayscale(1);
+        }
       }
     }
   }
+
+  // OLD VERSION with text and checkboxes
+  //.checkboxes {
+  //  width: 100%;
+  //  display: flex;
+  //  flex-wrap: wrap;
+  //
+  //  .check_group {
+  //    width: 25%;
+  //    padding: 5px;
+  //    display: grid;
+  //    grid-template-columns: auto 30px;
+  //    align-items: center;
+  //
+  //    //label {
+  //    //  justify-self: end;
+  //    //}
+  //
+  //    input {
+  //      height: 20px;
+  //    }
+  //  }
+  //}
 }
 
 .entities_zone {
@@ -163,6 +204,45 @@
       width: 40%;
       font-size: calc(var(--fontSizeText) * 1.5);
       padding: 0;
+    }
+  }
+}
+
+.entity_card_zone {
+  grid-column: 2 / 3;
+  grid-row: 5 / 10;
+  align-self: start;
+
+  color: var(--light);
+  padding: 10px 5px;
+  margin: 0 10px;
+  text-align: center;
+  font-family: var(--fontText);
+  //font-size: var(--fontSizeText);
+
+  border: solid 1px var(--light);
+  border-radius: 10px;
+  box-shadow: -4px 4px 5px 0 var(--light);
+
+  display: flex;
+  //flex-wrap: wrap;
+  height: 100%;
+  overflow: hidden;
+
+  .one_card {
+    flex: 0 0 30%;
+    border: solid 1px var(--light);
+    border-radius: 5px;
+
+    img {
+      height: 35%;
+      width: 95%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    p {
+      overflow: hidden;
     }
   }
 }

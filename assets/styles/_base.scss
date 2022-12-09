@@ -11,7 +11,7 @@ html, body {
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background: var(--dark);
+  background: var(--darkgrad);
 }
 
 .main_container {

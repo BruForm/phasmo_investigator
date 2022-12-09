@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Service\ConversionService;
-use function PHPUnit\Framework\isEmpty;
 
 class InvestigationController extends AbstractController
 {
@@ -113,19 +112,33 @@ class InvestigationController extends AbstractController
         $data = json_decode($request->get('data'), true);
 
         $entityNames = [];
-        foreach ($data as $evidence) {
+        foreach ($data as $tabId => $evidence) {
             $entities = $evidenceRepository->find($evidence['id'])->getEntities();
-            $arrayTemp = [];
+
+            $entityTemp = [];
             foreach ($entities as $entity) {
-                if (empty($entityNames)) {
-                    $arrayTemp[] = $entity->getName();
-                } else {
-                    if (in_array($entity->getName(), $entityNames)) {
-                        $arrayTemp[] = $entity->getName();
-                    }
-                }
+                $entityTemp[] = $entity->getName();
             }
-            $entityNames = $arrayTemp;
+            if ($tabId === 0) {
+                $entityNames = $entityTemp;
+            } else {
+                // NB : array_values permet de ré-indexer les clés du tableau filtrer
+                $entityNames = array_values(array_filter($entityNames, function ($name) use ($entityTemp) {
+                    return in_array($name, $entityTemp);
+                }));
+            }
+// OLD VERSION without using array_filter
+//            $entityTemp = [];
+//            foreach ($entities as $entity) {
+//                if ($tabId === 0) {
+//                    $entityTemp[] = $entity->getName();
+//                } else {
+//                    if (in_array($entity->getName(), $entityNames)) {
+//                        $entityTemp[] = $entity->getName();
+//                    }
+//                }
+//            }
+//            $entityNames = $entityTemp;
         }
         return $this->json(['entityNames' => $entityNames]);
     }

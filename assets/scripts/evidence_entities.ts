@@ -15,16 +15,16 @@ function evidenceEntities(): void {
 
     if (i) {
         const url: string = '/investigation/evidenceEntities/' + JSON.stringify(data);
+        console.log(data);
         fetch(url)
             .then(response => response.json() as Promise<Entities>)
             .then(function (data) {
-                    console.log(data);
                     for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
-                        entityName.classList.add('bloody')
                         if (entityName) {
+                            entityName.classList.add('bloody')
                             for (const name of data.entityNames) {
                                 if (name == entityName.innerText) {
-                                    entityName.classList.remove('bloody')
+                                    entityName.classList.remove('bloody');
                                 }
                             }
                         }
@@ -34,7 +34,7 @@ function evidenceEntities(): void {
         ;
     } else {
         for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
-            entityName.classList.remove('bloody')
+            entityName.classList.remove('bloody');
         }
     }
 }
