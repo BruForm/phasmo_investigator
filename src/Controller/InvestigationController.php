@@ -142,4 +142,16 @@ class InvestigationController extends AbstractController
         }
         return $this->json(['entityNames' => $entityNames]);
     }
+
+    #[Route('/investigation/sliderentities/{data}', name: 'app_investigation_slider_entities')]
+    public function getSlideEntities(
+        Request          $request,
+        EntityRepository $entityRepository,
+    ): Response
+    {
+        $data = json_decode($request->get('data'), true);
+
+
+        return $this->json(['entityNames' => $entityNames]);
+    }
 }

@@ -58,7 +58,7 @@
         <div class="entity_list">
             {% for entity in entities %}
                 {% if entity.evidences.count > 0 %}
-                    <span class="js-entity"
+                    <span class="js-entity js-possible"
                           data-entity-id="{{ entity.id }}">
                         {{ entity.name }}
                     </span>
@@ -75,16 +75,13 @@
     </div>
 
     <div class="entity_card_zone">
-        {% for entity in entities %}
-            <div class="one_card">
-                <img src="{{ asset('./build/assets/images/skins_entities/skin' ~ random(1,11) ~ '.webp') }}"
-                     alt="Photo aléatoire de la forme de l'entité">
-                <div>
-                    <h5>{{ entity.name }}</h5>
-                    <p>{{ entity.evidences | join(' / ') }}</p>
-                </div>
-            </div>
-        {% endfor %}
+    </div>
+    <div class="entity_informations">
+        <div class="slider">
+
+        </div>
+        <button class="btn-prev btn btn-outline-info"> <</button>
+        <button class="btn-next btn btn-info"> ></button>
     </div>
 
 {% endblock %}

@@ -1,9 +1,9 @@
 import 'bootstrap';
 import '@popperjs/core';
 
-import './navbar';
-import './affect_chase_duration';
-import './entity_evidences';
-import './evidence_entities';
+import './front/navbar';
+import './async/affect_chase_duration';
+import './async/entity_evidences';
+import './async/evidence_entities';
 
 

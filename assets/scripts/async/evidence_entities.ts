@@ -22,9 +22,11 @@ function evidenceEntities(): void {
                     for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
                         if (entityName) {
                             entityName.classList.add('bloody')
+                            entityName.classList.remove('js-possible')
                             for (const name of data.entityNames) {
                                 if (name == entityName.innerText) {
                                     entityName.classList.remove('bloody');
+                                    entityName.classList.add('js-possible');
                                 }
                             }
                         }
@@ -35,6 +37,7 @@ function evidenceEntities(): void {
     } else {
         for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
             entityName.classList.remove('bloody');
+            entityName.classList.add('js-possible');
         }
     }
 }

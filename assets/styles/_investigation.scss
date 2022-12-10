@@ -224,25 +224,28 @@
   border-radius: 10px;
   box-shadow: -4px 4px 5px 0 var(--light);
 
-  display: flex;
-  //flex-wrap: wrap;
-  height: 100%;
   overflow: hidden;
+  height: 100%;
 
-  .one_card {
-    flex: 0 0 30%;
-    border: solid 1px var(--light);
-    border-radius: 5px;
+  .slider {
+    display: flex;
+    height: 90%;
+    overflow: hidden;
 
-    img {
-      height: 35%;
-      width: 95%;
-      object-fit: cover;
-      object-position: top;
-    }
+    .one_card {
+      flex: 0 0 30%;
+      border: solid 1px var(--light);
+      border-radius: 5px;
 
-    p {
-      overflow: hidden;
+      img {
+        height: 100px;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      p {
+        overflow: hidden;
+      }
     }
   }
 }
