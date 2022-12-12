@@ -76,11 +76,11 @@
 
     <div class="entity_information_zone">
         <div class="current_entity">
-            <aside style="background-image: url({{ asset('build/assets/images/skins_entities/skin' ~ random(1,11) ~ '.webp') }}
-                    )">
+            {#            <aside class="entity_skin" style="background-image: url({{ asset('build/assets/images/skins_entities/skin' ~ random(1,11) ~ '.webp') }})" #}
+            <aside class="entity_skin">
             </aside>
             <div class="entity_infos">
-                <h2 class="js-name" data-current-entity-id = ""></h2>
+                <h2 class="js-name" data-current-entity-id=""></h2>
                 <table>
                     <tr>
                         <th scope="row">Capacité</th>
@@ -109,8 +109,8 @@
                 </table>
             </div>
             <div class="buttons">
-                <button class="btn-prev" data-prev-id="">prev</button>
-                <button class="btn-next" data-next-id="">next</button>
+                <button class="js-btn-disp js-btn-prev" data-entity-id="">prev</button>
+                <button class="js-btn-disp js-btn-next" data-entity-id="">next</button>
             </div>
         </div>
     </div>

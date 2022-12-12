@@ -30,7 +30,7 @@ class Game
     #[ORM\ManyToOne(inversedBy: 'games')]
     private ?Entity $entity = null;
 
-    #[ORM\ManyToOne(inversedBy: 'games')]
+    #[ORM\ManyToOne(inversedBy: 'gamesChosenEntity')]
     private ?Entity $chosenEntity = null;
 
     public function getId(): ?int

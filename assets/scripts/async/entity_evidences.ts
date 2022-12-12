@@ -12,7 +12,7 @@ function entityEvidences(): void {
             const data = {
                 'id': entitySelected,
             }
-            this.classList.toggle('selectEntTemp')
+            this.classList.toggle('selected_entity_temp')
             const url: string = '/investigation/entityEvidences/' + JSON.stringify(data);
             fetch(url)
                 .then(response => response.json() as Promise<Evidences>)
@@ -21,12 +21,12 @@ function entityEvidences(): void {
                         if (evidenceName) {
                             for (const name of data.evidenceNames) {
                                 if (evidenceName.getAttribute('data-evidence-name') == name) {
-                                    evidenceName.classList.toggle('selectEntTemp');
-                                    evidenceName.querySelector('img').classList.toggle('selectEvTemp');
+                                    evidenceName.classList.toggle('selected_entity_temp');
+                                    evidenceName.querySelector('img').classList.toggle('selected_evidence_temp');
                                 }
                                 // OLD VERSION with text and checkboxes
                                 // if (evidenceName.innerHTML == name) {
-                                //     evidenceName.classList.toggle('selectEntTemp')
+                                //     evidenceName.classList.toggle('selected_entity_temp')
                                 // }
                             }
                         }
@@ -39,16 +39,16 @@ function entityEvidences(): void {
 function entityEvidencesReset(): string {
     let oldEntity: string = "";
     for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
-        if (entityName.classList.contains('selectEntTemp')) {
-            entityName.classList.remove('selectEntTemp');
+        if (entityName.classList.contains('selected_entity_temp')) {
+            entityName.classList.remove('selected_entity_temp');
             oldEntity = entityName.getAttribute('data-entity-id');
             break;
         }
     }
     for (const evidenceName of document.querySelectorAll<HTMLLabelElement>('.evidence_name')) {
-        if (evidenceName.classList.contains('selectEntTemp') || evidenceName.classList.contains('selectEvTemp')) {
-            evidenceName.classList.remove('selectEntTemp');
-            evidenceName.querySelector('img').classList.toggle('selectEvTemp');
+        if (evidenceName.classList.contains('selected_entity_temp') || evidenceName.classList.contains('selected_evidence_temp')) {
+            evidenceName.classList.remove('selected_entity_temp');
+            evidenceName.querySelector('img').classList.toggle('selected_evidence_temp');
         }
     }
     return oldEntity;

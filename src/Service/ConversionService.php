@@ -4,10 +4,6 @@ namespace App\Service;
 
 class ConversionService
 {
-    public function __construct()
-    {
-    }
-
     public function minSecInStr(string $min, string $sec): string
     {
         $minSecStr = "";

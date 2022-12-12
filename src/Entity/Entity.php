@@ -34,11 +34,15 @@ class Entity
     #[ORM\OneToMany(mappedBy: 'entity', targetEntity: Game::class)]
     private Collection $games;
 
+    #[ORM\OneToMany(mappedBy: 'chosenEntity', targetEntity: Game::class)]
+    private Collection $gamesChosenEntity;
+
     public function __construct()
     {
         $this->evidences = new ArrayCollection();
         $this->characteristics = new ArrayCollection();
         $this->games = new ArrayCollection();
+        $this->gamesChosenEntity = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,6 +166,36 @@ class Entity
             // set the owning side to null (unless already changed)
             if ($game->getEntity() === $this) {
                 $game->setEntity(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getgamesChosenEntity(): Collection
+    {
+        return $this->gamesChosenEntity;
+    }
+
+    public function addGameChosenEntity(Game $game): self
+    {
+        if (!$this->gamesChosenEntity->contains($game)) {
+            $this->gamesChosenEntity->add($game);
+            $game->setChosenEntity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGameChosenEntity(Game $game): self
+    {
+        if ($this->gamesChosenEntity->removeElement($game)) {
+            // set the owning side to null (unless already changed)
+            if ($game->getChosenEntity() === $this) {
+                $game->setChosenEntity(null);
             }
         }
 

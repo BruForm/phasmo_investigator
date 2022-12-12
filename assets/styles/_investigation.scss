@@ -6,11 +6,11 @@
   color: var(--lightish);
 }
 
-.selectEntTemp {
+.selected_entity_temp {
   color: var(--bloodReadable);
 }
 
-.selectEvTemp {
+.selected_evidence_temp {
   border: solid 2px var(--light);
 }
 
@@ -210,7 +210,7 @@
 
 .entity_information_zone {
   grid-column: 2 / 3;
-  grid-row: 5 / 10;
+  grid-row: 5 / 11;
   align-self: start;
 
   color: var(--light);

@@ -10,10 +10,6 @@ class TraductionService
         'large' => 'grande',
     ];
 
-    public function __construct()
-    {
-    }
-
     function translateEnFr(string $en): string
     {
         return strtolower($this->tradEnFr[strtolower($en)]);

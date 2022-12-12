@@ -13,11 +13,11 @@
             <br>Alors
             {% if not (app.user) %}
                 <a href="{{ path('app_login') }}">connectez-vous</a>
-            et
+                et
             {% endif %}
             lancez une
             {% if(app.user) %}
-            <a href="{{ path('app_investigation') }}">nouvelle enquette</a>
+                <a href="{{ path('app_investigation') }}">nouvelle enquette</a>
             {% else %}nouvelle enquette
             {% endif %}
             sans hésiter !!!
@@ -38,32 +38,16 @@
             <tr>
                 <th scope="row">Temps libre</th>
                 {% for level in levels %}
-                    {#                    <td>{{ level.freeRunTime | date('i : s') }}</td> #}
                     <td>
-                        {% if level.freeRunTime | date('i') > 0 %}
-                            {{ level.freeRunTime | date('i') }} min
-                        {% endif %}
-                        {% if level.freeRunTime | date('s') > 0 %}
-                            {{ level.freeRunTime | date('s') }} sec
-                        {% endif %}
-                        {% if level.freeRunTime | date('i') == 0
-                            and level.freeRunTime | date('s') == 0 %}
-                            -
-                        {% endif %}
+                        {{ format_time(level.freeRunTime) }}
                     </td>
                 {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Grâce</th>
                 {% for level in levels %}
-                    {#                    <td>{{ level.huntGraceTime | date('i : s') }}</td> #}
                     <td>
-                        {% if level.huntGraceTime | date('i') > 0 %}
-                            {{ level.huntGraceTime | date('i') }} min
-                        {% endif %}
-                        {% if level.huntGraceTime | date('s') > 0 %}
-                            {{ level.huntGraceTime | date('s') }} sec
-                        {% endif %}
+                        {{ format_time(level.huntGraceTime) }}
                     </td>
                 {% endfor %}
             </tr>
@@ -96,12 +80,7 @@
                         {% for param in params %}
                             {% if param.level.id == level.id and param.mapSize.id == mapSize.id %}
                                 <td>
-                                    {% if param.duration | date('i') > 0 %}
-                                        {{ param.duration | date('i') }} min
-                                    {% endif %}
-                                    {% if param.duration | date('s') > 0 %}
-                                        {{ param.duration | date('s') }} sec
-                                    {% endif %}
+                                    {{ format_time(param.duration) }}
                                 </td>
                             {% endif %}
                         {% endfor %}
@@ -162,9 +141,10 @@
                     class="twitter-timeline"
                     data-lang="fr"
                     data-width="100%"
-                    data-height="400"
+                    data-height="450"
                     data-theme="dark"
                     href="https://twitter.com/KineticGame?ref_src=twsrc%5Etfw"
+                    data-tweet-limit="3"
             >Tweets by KineticGame</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>

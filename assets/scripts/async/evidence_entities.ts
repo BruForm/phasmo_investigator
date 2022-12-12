@@ -1,3 +1,5 @@
+import {getEntityInfos} from "./shared_functions";
+
 interface Entities {
     entityNames: string[]
 }
@@ -26,10 +28,14 @@ function evidenceEntities(): void {
                                 if (name == entityName.innerText) {
                                     entityName.classList.remove('bloody');
                                     entityName.classList.add('js-possible');
+
                                 }
                             }
                         }
                     }
+                    // Reload of center entity information
+                    const current_id: number = Number(document.querySelector('.js-possible').getAttribute('data-entity-id'));
+                    entityInfos(current_id);
                 }
             )
         ;
@@ -38,7 +44,17 @@ function evidenceEntities(): void {
             entityName.classList.remove('bloody');
             entityName.classList.add('js-possible');
         }
+        // Reload of center entity information
+        const current_id: number = Number(document.querySelector('.js-possible').getAttribute('data-entity-id'));
+        entityInfos(current_id);
     }
+}
+
+function entityInfos(entityId: number): void {
+    const data = {
+        'id': entityId,
+    }
+    getEntityInfos(data);
 }
 
 window.addEventListener('load', () => {
