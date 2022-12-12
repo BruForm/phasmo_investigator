@@ -55,9 +55,7 @@ function entityEvidencesReset(): string {
 }
 
 window.addEventListener('load', () => {
-
     document.querySelectorAll('.js-entity').forEach(selected => {
         selected.addEventListener('click', entityEvidences);
-        // selected.addEventListener('mouseout', entityEvidencesReset);
     });
 });

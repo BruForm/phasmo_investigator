@@ -18,6 +18,14 @@ use App\Service\ConversionService;
 
 class InvestigationController extends AbstractController
 {
+    /**
+     * @param UserInterface|null $user
+     * @param LevelRepository $levelRepository
+     * @param MapRepository $mapRepository
+     * @param EvidenceRepository $evidenceRepository
+     * @param EntityRepository $entityRepository
+     * @return Response
+     */
     #[Route('/investigation', name: 'app_investigation')]
     public function index(
         ?UserInterface     $user,
@@ -84,6 +92,11 @@ class InvestigationController extends AbstractController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param EntityRepository $entityRepository
+     * @return Response
+     */
     #[Route('/investigation/entityEvidences/{data}', name: 'app_investigation_entity_evidences')]
     public function getEntityEvidences(
         Request          $request,
@@ -103,6 +116,11 @@ class InvestigationController extends AbstractController
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param EvidenceRepository $evidenceRepository
+     * @return Response
+     */
     #[Route('/investigation/evidenceEntities/{data}', name: 'app_investigation_evidence_entities')]
     public function getEvidenceEntities(
         Request            $request,
@@ -143,15 +161,74 @@ class InvestigationController extends AbstractController
         return $this->json(['entityNames' => $entityNames]);
     }
 
-    #[Route('/investigation/sliderentities/{data}', name: 'app_investigation_slider_entities')]
+    /**
+     * @param Request $request
+     * @param EntityRepository $entityRepository
+     * @return Response
+     * @throws \Exception
+     */
+    #[Route('/investigation/entityInfos/{data}', name: 'app_investigation_entity_infos')]
     public function getSlideEntities(
-        Request          $request,
-        EntityRepository $entityRepository,
+        Request           $request,
+        EntityRepository  $entityRepository,
+        ConversionService $conversionService,
     ): Response
     {
         $data = json_decode($request->get('data'), true);
+        $entity = $entityRepository->find($data['id']);
 
+        // Types souhaités :
+        //      id 5  = sm attack
+        $smAttack = "";
+        //      id 10 = speed
+        $speed = "";
+        //      id 6  = stun smudge
+        $stunSmudge = "";
+        //      id 7  = time attack
+        $timeAttack = "";
+        //      id 8  = time attack smudge
+        $timeAttackSmudge = "";
 
-        return $this->json(['entityNames' => $entityNames]);
+        $characteristics = $entity->getCharacteristics()->getValues();
+        foreach ($characteristics as $characteristic) {
+            dump($characteristic->getType()->getId());
+            switch ($characteristic->getType()->getId()) {
+                case '5':
+                    $smAttack = $characteristic->getValue();
+                    break;
+                case '6':
+                    $temp = new DateTime($characteristic->getValue());
+                    $min = date_format($temp, "i");
+                    $sec = date_format($temp, "s");
+                    $stunSmudge = $conversionService->minSecInStr($min, $sec);
+                    break;
+                case '7':
+                    $temp = new DateTime($characteristic->getValue());
+                    $min = date_format($temp, "i");
+                    $sec = date_format($temp, "s");
+                    $timeAttack = $conversionService->minSecInStr($min, $sec);
+                    break;
+                case '8':
+                    $temp = new DateTime($characteristic->getValue());
+                    $min = date_format($temp, "i");
+                    $sec = date_format($temp, "s");
+                    $timeAttackSmudge = $conversionService->minSecInStr($min, $sec);
+                    break;
+                case '10':
+                    $speed = $characteristic->getValue();
+                    break;
+            }
+        }
+
+        return $this->json([
+            'id' => $entity->getId(),
+            'name' => $entity->getName(),
+            'special_move' => $entity->getSpecialMove(),
+            'smAttack' => $smAttack,
+            'speed' => $speed,
+            'stunSmudge' => $stunSmudge,
+            'timeAttack' => $timeAttack,
+            'timeAttackSmudge' => $timeAttackSmudge,
+        ]);
     }
 }

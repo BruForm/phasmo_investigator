@@ -38,7 +38,7 @@
                            data-evidence-id="{{ evidence.id }}">
                     <label for="{{ 'chk' ~ evidence.id }}" class="evidence_name"
                            data-evidence-name="{{ evidence.name }}">
-                        <img src="{{ asset('./build/assets/images/skins_evidences/' ~ format_file_name(evidence.name) ~ '.png') }}"
+                        <img src="{{ asset('/build/assets/images/skins_evidences/' ~ format_file_name(evidence.name) ~ '.png') }}"
                              title="{{ evidence.name }}" alt="Icone de la preuve : {{ evidence.name }}">
                     </label>
                 </div>
@@ -74,14 +74,45 @@
         </div>
     </div>
 
-    <div class="entity_card_zone">
-    </div>
-    <div class="entity_informations">
-        <div class="slider">
-
+    <div class="entity_information_zone">
+        <div class="current_entity">
+            <aside style="background-image: url({{ asset('build/assets/images/skins_entities/skin' ~ random(1,11) ~ '.webp') }}
+                    )">
+            </aside>
+            <div class="entity_infos">
+                <h2 class="js-name" data-current-entity-id = ""></h2>
+                <table>
+                    <tr>
+                        <th scope="row">Capacité</th>
+                        <td class="js-spe-mov"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">s.m. attaque</th>
+                        <td class="js-sm_attack"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Vitesse</th>
+                        <td class="js-speed"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Stun encens</th>
+                        <td class="js-stun-smudge"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Temps entre attaques</th>
+                        <td class="js-time-attack"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Temps attaques après encens</th>
+                        <td class="js-time-attack-smudge"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="buttons">
+                <button class="btn-prev" data-prev-id="">prev</button>
+                <button class="btn-next" data-next-id="">next</button>
+            </div>
         </div>
-        <button class="btn-prev btn btn-outline-info"> <</button>
-        <button class="btn-next btn btn-info"> ></button>
     </div>
 
 {% endblock %}

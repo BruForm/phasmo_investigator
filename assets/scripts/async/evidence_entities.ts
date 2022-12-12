@@ -15,7 +15,6 @@ function evidenceEntities(): void {
 
     if (i) {
         const url: string = '/investigation/evidenceEntities/' + JSON.stringify(data);
-        console.log(data);
         fetch(url)
             .then(response => response.json() as Promise<Entities>)
             .then(function (data) {
