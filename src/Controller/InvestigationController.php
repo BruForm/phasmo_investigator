@@ -191,7 +191,6 @@ class InvestigationController extends AbstractController
 
         $characteristics = $entity->getCharacteristics()->getValues();
         foreach ($characteristics as $characteristic) {
-            dump($characteristic->getType()->getId());
             switch ($characteristic->getType()->getId()) {
                 case '5':
                     $smAttack = $characteristic->getValue();

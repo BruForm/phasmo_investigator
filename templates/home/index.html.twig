@@ -94,7 +94,7 @@
     <div class="stat_zone">
         <h3>Les stats
             {% if app.user %}
-                <span>[joueur]</span>
+                <span>[{{ app.user.nickname }}]</span>
             {% endif %}
         </h3>
         <table>

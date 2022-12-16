@@ -1,0 +1,36 @@
+.popup {
+    width: 40%;
+    height: 20%;
+
+    position: absolute;
+    left: 30%;
+    top: 20%;
+
+    z-index: 1000;
+    padding: 10px 5px;
+    background: var(--darkgrad);
+
+    color: var(--light);
+    font-family: var(--fontDefault);
+    font-size: var(--fontSizeText);
+    text-align: center;
+
+    border: solid 1px var(--light);
+    border-radius: 10px;
+    box-shadow: -4px 4px 5px 0 var(--light);
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .js-popup-ok{
+        width: 30%;
+        font-size: calc(var(--fontSizeText) * 1.5);
+        padding: 0;
+    }
+}
+
+.visible{
+    display: flex;
+}

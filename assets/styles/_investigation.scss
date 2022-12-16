@@ -41,7 +41,7 @@
 
     select {
       border-radius: 5px;
-      background-color: var(--dark);
+      background: transparent;
       color: var(--light);
       border: none;
       text-overflow: ellipsis;
@@ -49,6 +49,7 @@
       width: 95%;
 
       option {
+        background: var(--dark);
         font-family: var(--fontDefault);
       }
     }

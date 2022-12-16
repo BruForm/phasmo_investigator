@@ -22,7 +22,8 @@ export function getEntityInfos(data: object): void {
 
             const infos = document.querySelector<HTMLDivElement>('.entity_infos');
             infos.querySelector<HTMLTitleElement>('.js-name').setAttribute('data-current-entity-id', String(data.id));
-            infos.querySelector<HTMLTitleElement>('.js-name').innerText = data.name;
+            const nbChoice: number = document.querySelectorAll<HTMLSpanElement>('.js-possible').length;
+            infos.querySelector<HTMLTitleElement>('.js-name').innerText = data.name + " /" + nbChoice;
             infos.querySelector<HTMLTableCellElement>('.js-spe-mov').innerText = data.special_move;
             infos.querySelector<HTMLTableCellElement>('.js-sm_attack').innerText = data.smAttack;
             infos.querySelector<HTMLTableCellElement>('.js-speed').innerText = data.speed;
@@ -35,28 +36,32 @@ export function getEntityInfos(data: object): void {
 }
 
 function labelingButtons(id: number) {
-    const tab_nav = document.querySelectorAll<HTMLSpanElement>('.js-possible');
-    let tab_id = [];
-    document.querySelectorAll<HTMLSpanElement>('.js-possible').forEach(entity => {
-        tab_id.push(entity.getAttribute('data-entity-id'));
-        entity.innerText
-    });
+    const tab_possible = document.querySelectorAll<HTMLSpanElement>('.js-possible');
 
     let prev_id: string;
     let prev_name: string;
     let next_id: string;
     let next_name: string;
-    for (const key in tab_id) {
+    for (const key in tab_possible) {
         let ind: number = Number(key);
-        if (Number(tab_id[ind]) === id) {
-            prev_id = (ind === 0) ? tab_id[tab_id.length - 1] : tab_id[ind - 1];
-            prev_name = (ind === 0) ? tab_nav[tab_id.length - 1].innerText : tab_nav[ind - 1].innerText;
-            next_id = (ind === tab_id.length - 1) ? tab_id[0] : tab_id[ind + 1];
-            next_name = (ind === tab_id.length - 1) ? tab_nav[0].innerText : tab_nav[ind + 1].innerText;
+        if (Number(tab_possible[ind].getAttribute('data-entity-id')) === id) {
+            prev_id = (ind === 0) ?
+                tab_possible[tab_possible.length - 1].getAttribute('data-entity-id') :
+                tab_possible[ind - 1].getAttribute('data-entity-id');
+            prev_name = (ind === 0) ?
+                tab_possible[tab_possible.length - 1].innerText :
+                tab_possible[ind - 1].innerText;
+            next_id = (ind === tab_possible.length - 1) ?
+                tab_possible[0].getAttribute('data-entity-id') :
+                tab_possible[ind + 1].getAttribute('data-entity-id');
+            next_name = (ind === tab_possible.length - 1) ?
+                tab_possible[0].innerText :
+                tab_possible[ind + 1].innerText;
             break;
         }
     }
-    if (Number(prev_id) != id) {
+
+    if (Number(prev_id) != id && Number(prev_id) != Number(next_id)) {
         document.querySelector<HTMLButtonElement>('.js-btn-prev').style.display = 'inline';
         document.querySelector<HTMLButtonElement>('.js-btn-prev').innerText = '< ' + prev_name;
         document.querySelector<HTMLButtonElement>('.js-btn-prev').setAttribute('data-entity-id', prev_id);

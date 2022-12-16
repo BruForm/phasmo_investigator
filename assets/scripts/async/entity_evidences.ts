@@ -55,7 +55,7 @@ function entityEvidencesReset(): string {
 }
 
 window.addEventListener('load', () => {
-    document.querySelectorAll('.js-entity').forEach(selected => {
-        selected.addEventListener('click', entityEvidences);
+    document.querySelectorAll('.js-entity').forEach(entity => {
+        entity.addEventListener('click', entityEvidences);
     });
 });
