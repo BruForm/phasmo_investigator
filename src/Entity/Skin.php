@@ -19,6 +19,9 @@ class Skin
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
+    #[ORM\ManyToOne(inversedBy: 'skins')]
+    private ?Type $type = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,5 +49,22 @@ class Skin
         $this->url = $url;
 
         return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getName();
     }
 }

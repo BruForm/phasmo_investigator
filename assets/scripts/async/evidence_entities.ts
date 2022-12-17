@@ -24,6 +24,10 @@ function evidenceEntities(): void {
                         if (entityName) {
                             entityName.classList.add('bloody')
                             entityName.classList.remove('js-possible')
+                            entityName.classList.remove('selected_entity_temp')
+                            document.querySelectorAll<HTMLImageElement>('.selected_evidence_temp').forEach(image => {
+                                image.classList.remove('selected_evidence_temp');
+                            });
                             for (const name of data.entityNames) {
                                 if (name == entityName.innerText) {
                                     entityName.classList.remove('bloody');
@@ -51,7 +55,12 @@ function evidenceEntities(): void {
     } else {
         for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
             entityName.classList.remove('bloody');
+            entityName.classList.remove('selected_entity_temp')
+            document.querySelectorAll<HTMLImageElement>('.selected_evidence_temp').forEach(image => {
+                image.classList.remove('selected_evidence_temp');
+            });
             entityName.classList.add('js-possible');
+
         }
         // Reload of center entity information
         const current_id: number = Number(document.querySelector('.js-possible').getAttribute('data-entity-id'));

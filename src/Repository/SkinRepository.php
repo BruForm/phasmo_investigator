@@ -39,6 +39,22 @@ class SkinRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param $typeId
+     * @return Skin|null
+     * @throws \Exception
+     */
+    public function findOneRandomByType($typeId): ?Skin
+    {
+        $skins = $this->createQueryBuilder('s')
+            ->andWhere('s.type = :type')
+            ->setParameter('type', $typeId)
+            ->getQuery()
+            ->getResult();
+        shuffle($skins);
+        return $skins[random_int(0, count($skins) - 1)>0??0];
+    }
+
 //    /**
 //     * @return Skin[] Returns an array of Skin objects
 //     */

@@ -8,6 +8,8 @@ use App\Repository\EvidenceRepository;
 use App\Repository\LevelRepository;
 use App\Repository\MapRepository;
 use App\Repository\ParamLevelMapSizeRepository;
+use App\Repository\SkinRepository;
+use App\Repository\TypeRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -172,6 +174,8 @@ class InvestigationController extends AbstractController
         Request           $request,
         EntityRepository  $entityRepository,
         ConversionService $conversionService,
+        SkinRepository    $skinRepository,
+        TypeRepository    $typeRepository,
     ): Response
     {
         $data = json_decode($request->get('data'), true);
@@ -219,6 +223,10 @@ class InvestigationController extends AbstractController
             }
         }
 
+        $skinUrl = $skinRepository->findOneRandomByType(
+            $typeRepository->findOneBy(['name' => 'skin_entity'])->getId()
+        )->getUrl();
+
         return $this->json([
             'id' => $entity->getId(),
             'name' => $entity->getName(),
@@ -228,6 +236,7 @@ class InvestigationController extends AbstractController
             'stunSmudge' => $stunSmudge,
             'timeAttack' => $timeAttack,
             'timeAttackSmudge' => $timeAttackSmudge,
+            'skin_url' => $skinUrl,
         ]);
     }
 }

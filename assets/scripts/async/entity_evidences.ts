@@ -12,7 +12,7 @@ function entityEvidences(): void {
             const data = {
                 'id': entitySelected,
             }
-            this.classList.toggle('selected_entity_temp')
+            this.classList.add('selected_entity_temp')
             const url: string = '/investigation/entityEvidences/' + JSON.stringify(data);
             fetch(url)
                 .then(response => response.json() as Promise<Evidences>)
@@ -21,8 +21,8 @@ function entityEvidences(): void {
                         if (evidenceName) {
                             for (const name of data.evidenceNames) {
                                 if (evidenceName.getAttribute('data-evidence-name') == name) {
-                                    evidenceName.classList.toggle('selected_entity_temp');
-                                    evidenceName.querySelector('img').classList.toggle('selected_evidence_temp');
+                                    evidenceName.classList.add('selected_entity_temp');
+                                    evidenceName.querySelector('img').classList.add('selected_evidence_temp');
                                 }
                                 // OLD VERSION with text and checkboxes
                                 // if (evidenceName.innerHTML == name) {
@@ -40,17 +40,20 @@ function entityEvidencesReset(): string {
     let oldEntity: string = "";
     for (const entityName of document.querySelectorAll<HTMLSpanElement>('.js-entity')) {
         if (entityName.classList.contains('selected_entity_temp')) {
-            entityName.classList.remove('selected_entity_temp');
+            // entityName.classList.remove('selected_entity_temp');
             oldEntity = entityName.getAttribute('data-entity-id');
             break;
         }
     }
     for (const evidenceName of document.querySelectorAll<HTMLLabelElement>('.evidence_name')) {
-        if (evidenceName.classList.contains('selected_entity_temp') || evidenceName.classList.contains('selected_evidence_temp')) {
+        if (evidenceName.classList.contains('selected_entity_temp') ) {
             evidenceName.classList.remove('selected_entity_temp');
-            evidenceName.querySelector('img').classList.toggle('selected_evidence_temp');
+            evidenceName.querySelector('img').classList.remove('selected_evidence_temp');
         }
     }
+    document.querySelectorAll<HTMLElement>('.selected_entity_temp').forEach(element => {
+        element.classList.remove('selected_entity_temp');
+    });
     return oldEntity;
 }
 

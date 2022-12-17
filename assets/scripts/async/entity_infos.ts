@@ -1,7 +1,9 @@
 import {getEntityInfos} from "./shared_functions";
 
 function displayEntity(): void {
-    if (this.classList.contains('js-possible') || this.classList.contains('js-btn-disp')) {
+    if ((this.classList.contains('js-possible')
+        && !this.classList.contains('selected_entity_temp'))
+        || this.classList.contains('js-btn-disp')) {
         const data = {
             'id': this.getAttribute('data-entity-id'),
         }

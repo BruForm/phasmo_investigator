@@ -7,6 +7,7 @@ interface Entity_Infos {
     stunSmudge: string,
     timeAttack: string,
     timeAttackSmudge: string,
+    skin_url: string,
 }
 
 export function getEntityInfos(data: object): void {
@@ -16,9 +17,10 @@ export function getEntityInfos(data: object): void {
         .then(function (data) {
             // Change the picture
             document.querySelector<HTMLElement>('.entity_skin').style.backgroundImage =
-                'url(build/assets/images/skins_entities/skin' +
-                Math.floor(Math.random() * 11 + 1) +
-                '.webp)';
+                'url(build/assets/' + data.skin_url;
+            // 'url(build/assets/images/skins_entities/skin' +
+            // Math.floor(Math.random() * 11 + 1) +
+            // '.webp)';
 
             const infos = document.querySelector<HTMLDivElement>('.entity_infos');
             infos.querySelector<HTMLTitleElement>('.js-name').setAttribute('data-current-entity-id', String(data.id));
