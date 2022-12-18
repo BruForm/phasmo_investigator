@@ -30,8 +30,6 @@
   border-radius: 10px;
   box-shadow: -4px 4px 5px 0 var(--light);
 
-  height: 100%;
-
   p {
     text-align: left;
 
@@ -46,7 +44,7 @@
       border: none;
       text-overflow: ellipsis;
       text-align: right;
-      width: 95%;
+      width: 100%;
 
       option {
         background: var(--dark);
@@ -179,7 +177,7 @@
   }
 }
 
-.Result_Btn_zone {
+.result_btn_zone {
   grid-column: 3 / -1;
   grid-row: 12 / -1;
   align-self: start;
@@ -284,7 +282,7 @@
         border: solid 1px var(--lightish);
         border-radius: 5px;
 
-        &:hover{
+        &:hover {
           color: var(--bloodReadable);
           border-color: var(--blood);
         }
@@ -293,44 +291,63 @@
   }
 }
 
-//.entity_card_zone {
-//  grid-column: 2 / 3;
-//  grid-row: 5 / 10;
-//  align-self: start;
-//
-//  color: var(--light);
-//  padding: 10px 5px;
-//  margin: 0 10px;
-//  text-align: center;
-//  font-family: var(--fontText);
-//  //font-size: var(--fontSizeText);
-//
-//  border: solid 1px var(--light);
-//  border-radius: 10px;
-//  box-shadow: -4px 4px 5px 0 var(--light);
-//
-//  overflow: hidden;
-//  height: 100%;
-//
-//  .slider {
-//    display: flex;
-//    height: 90%;
-//    overflow: hidden;
-//
-//    .one_card {
-//      flex: 0 0 30%;
-//      border: solid 1px var(--light);
-//      border-radius: 5px;
-//
-//      img {
-//        height: 100px;
-//        object-fit: cover;
-//        object-position: top;
-//      }
-//
-//      p {
-//        overflow: hidden;
-//      }
-//    }
-//  }
-//}
+.chronos_zone {
+  grid-column: 1 / 2;
+  grid-row: 5 / -1;
+  align-self: start;
+
+  color: var(--light);
+  padding: 10px 5px;
+  text-align: center;
+  font-family: var(--fontText);
+  font-size: var(--fontSizeText);
+
+  border: solid 1px var(--light);
+  border-radius: 10px;
+  box-shadow: -4px 4px 5px 0 var(--light);
+
+  height: 100%;
+
+  .chrono_hunt, .chrono_smudge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 50%;
+
+    .display {
+      width: 50%;
+      padding: 15% 10px 5% 10px;
+      margin-bottom: 10px;
+      border: solid 1px var(--light);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--light);
+      line-height: 1.5rem;
+      cursor: pointer;
+
+      span {
+        font-size: calc(var(--fontSizeText) * 2.0);
+        padding: 0;
+        margin: 0;
+
+        &:nth-of-type(3) {
+          display: block;
+          font-size: calc(var(--fontSizeText) * 1.5);
+        }
+      }
+    }
+  }
+
+  button {
+    width: 40%;
+    margin: 2px;
+    background: transparent;
+    color: var(--light);
+    border: solid 1px var(--light);
+    border-radius: 10px;
+  }
+
+  .hidden {
+    display: none
+  }
+}
