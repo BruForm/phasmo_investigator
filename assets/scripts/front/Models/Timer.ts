@@ -2,9 +2,9 @@ import {color} from '../variables';
 
 export class Timer {
 
-    // btPause: HTMLButtonElement;
-    // btStart: HTMLButtonElement;
-    // timerHuntShape: HTMLElement;
+    private btPause: HTMLButtonElement;
+    private btStart: HTMLButtonElement;
+    private timerHuntShape: HTMLElement;
 
     private min: HTMLSpanElement;
     private sec: HTMLSpanElement;
@@ -14,14 +14,13 @@ export class Timer {
     private pause: boolean = false;
     private start: boolean = false;
     private loop: NodeJS.Timer;
-    private blink1: NodeJS.Timer;
-    private blink2: NodeJS.Timer;
+    private blink: NodeJS.Timer;
 
     constructor(private timerElement: HTMLDivElement) {
 
-        // this.btPause = this.timerElement.querySelector<HTMLButtonElement>('#pause');
-        // this.btStart = this.timerElement.querySelector<HTMLButtonElement>('#start');
-        // this.timerHuntShape = this.timerElement.querySelector<HTMLElement>('.display');
+        this.btPause = this.timerElement.querySelector<HTMLButtonElement>('#pause');
+        this.btStart = this.timerElement.querySelector<HTMLButtonElement>('#start');
+        this.timerHuntShape = this.timerElement.querySelector<HTMLElement>('.display');
 
         this.min = this.timerElement.querySelector<HTMLSpanElement>('#min');
         this.sec = this.timerElement.querySelector<HTMLSpanElement>('#sec');
@@ -30,9 +29,6 @@ export class Timer {
 
     // DISPLAY ----------------------------------------------------------------------------------
     private display() {
-        // const min = this.timerElement.querySelector<HTMLSpanElement>('#min');
-        // const sec = this.timerElement.querySelector<HTMLSpanElement>('#sec');
-        // const ms = this.timerElement.querySelector<HTMLSpanElement>('#ms');
         let d: Date;
         let time: number;
         let msX: number;
@@ -88,24 +84,23 @@ export class Timer {
     // START/STOP ----------------------------------------------------------------------------------
     public timerStartStop() {
 
-        const btPause = this.timerElement.querySelector<HTMLButtonElement>('#pause');
-        const btStart = this.timerElement.querySelector<HTMLButtonElement>('#start');
-        const timerHuntShape = this.timerElement.querySelector<HTMLElement>('.display');
-
         if (!this.start) {
             this.d0 = new Date;
-            this.loop = setInterval(this.display.bind(this), 100);
-            btStart.innerText = 'STOP';
+            // this.loop = setInterval(this.display.bind(this), 1);
+            // NB : Ci dessus besoin du .bind(this) pour fonctionner alors que pas avec la fonction fléchée ci dessous!!!
+            this.loop = setInterval(() => {
+                this.display()
+            }, 1);
+            this.btStart.innerText = 'STOP';
             this.start = true;
         } else {
             //stop
             clearInterval(this.loop);
-            btStart.innerText = 'START';
+            this.btStart.innerText = 'START';
             if (this.pause) {
-                clearInterval(this.blink1);
-                clearInterval(this.blink2);
-                btPause.style.color = color.light;
-                timerHuntShape.style.color = color.light;
+                clearInterval(this.blink);
+                this.btPause.style.color = color.light;
+                this.timerHuntShape.style.color = color.light;
                 this.pause = false;
             }
             this.start = false;
@@ -116,27 +111,28 @@ export class Timer {
 
     // PAUSE ----------------------------------------------------------------------------------
     public timerPause() {
-        const btPause = this.timerElement.querySelector<HTMLButtonElement>('#pause');
-        const timerHuntShape = this.timerElement.querySelector<HTMLElement>('.display');
-
         if (this.start) {
             if (!this.pause) {
                 clearInterval(this.loop);
-                this.blink1 = setInterval(function () {
-                    btPause.style.color = color.blood;
-                    timerHuntShape.style.color = color.blood;
+                let $i: boolean = true;
+                this.blink = setInterval(() => {
+                    if ($i) {
+                        this.btPause.style.color = color.blood;
+                        this.timerHuntShape.style.color = color.blood;
+                    } else {
+                        this.btPause.style.color = color.light;
+                        this.timerHuntShape.style.color = color.light;
+                    }
+                    $i = !$i;
                 }, 500);
-                this.blink2 = setInterval(function () {
-                    btPause.style.color = color.light;
-                    timerHuntShape.style.color = color.light;
-                }, 1000);
                 this.pause = true;
             } else {
-                this.loop = setInterval(this.display.bind(this), 1);
-                clearInterval(this.blink1);
-                clearInterval(this.blink2);
-                btPause.style.color = color.light;
-                timerHuntShape.style.color = color.light;
+                this.loop = setInterval(() => {
+                    this.display();
+                }, 1);
+                clearInterval(this.blink);
+                this.btPause.style.color = color.light;
+                this.timerHuntShape.style.color = color.light;
                 this.pause = false;
             }
         }
@@ -144,18 +140,11 @@ export class Timer {
 
     // RESET ----------------------------------------------------------------------------------
     public timerReset() {
-        const btPause = this.timerElement.querySelector<HTMLButtonElement>('#pause');
-        const btStart = this.timerElement.querySelector<HTMLButtonElement>('#start');
-        // const min = this.timerElement.querySelector<HTMLSpanElement>('#min');
-        // const sec = this.timerElement.querySelector<HTMLSpanElement>('#sec');
-        // const ms = this.timerElement.querySelector<HTMLSpanElement>('#ms');
-
         clearInterval(this.loop);
-        btStart.innerText = 'START';
+        this.btStart.innerText = 'START';
         if (this.pause) {
-            clearInterval(this.blink1);
-            clearInterval(this.blink2);
-            btPause.style.color = color.light;
+            clearInterval(this.blink);
+            this.btPause.style.color = color.light;
         }
         this.ms.innerText = '000';
         this.sec.innerText = '00';
