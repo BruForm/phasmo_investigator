@@ -80,14 +80,18 @@
             <aside class="entity_skin">
             </aside>
             <div class="entity_infos">
-                <h2 class="js-name" data-current-entity-id=""></h2>
+                <div class="title_navigation">
+                    <button class="js-btn-disp js-btn-prev" data-entity-id="">prev</button>
+                    <h2 class="js-name" data-current-entity-id=""></h2>
+                    <button class="js-btn-disp js-btn-next" data-entity-id="">next</button>
+                </div>
                 <table>
                     <tr>
                         <th scope="row">Capacité</th>
                         <td class="js-spe-mov"></td>
                     </tr>
                     <tr>
-                        <th scope="row">s.m. attaque</th>
+                        <th scope="row">s.m. chasse</th>
                         <td class="js-sm_attack"></td>
                     </tr>
                     <tr>
@@ -99,7 +103,7 @@
                         <td class="js-stun-smudge"></td>
                     </tr>
                     <tr>
-                        <th scope="row">Temps entre attaques</th>
+                        <th scope="row">Temps entre chasses</th>
                         <td class="js-time-attack"></td>
                     </tr>
                     <tr>
@@ -108,15 +112,16 @@
                     </tr>
                 </table>
             </div>
-            <div class="buttons">
-                <button class="js-btn-disp js-btn-prev" data-entity-id="">prev</button>
-                <button class="js-btn-disp js-btn-next" data-entity-id="">next</button>
-            </div>
+{#            <div class="buttons">#}
+{#                <button class="js-btn-disp js-btn-prev" data-entity-id="">prev</button>#}
+{#                <button class="js-btn-disp js-btn-next" data-entity-id="">next</button>#}
+{#            </div>#}
         </div>
     </div>
 
-    <div class="chronos_zone">
-        <div class="chrono_hunt">
+    <div class="timers_zone">
+        <div class="timer_hunt">
+            <h2>Chasse</h2>
             <main class="display">
                 <span id="min">00</span> :
                 <span id="sec">00</span>
@@ -126,7 +131,8 @@
             <button class="btn_pause" id="pause" type="submit" title='Touche "Droite" du clavier'>PAUSE</button>
             <button class="btn_reset hidden" id="reset" type="reset">RESET</button>
         </div>
-        <div class="chrono_smudge">
+        <div class="timer_smudge">
+            <h2>Encens</h2>
             <main class="display">
                 <span id="min">00</span> :
                 <span id="sec">00</span>

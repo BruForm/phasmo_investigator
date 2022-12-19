@@ -11,7 +11,7 @@ html, body {
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  background: var(--darkgrad);
+  background: $darkGrad;
 }
 
 .main_container {
@@ -19,21 +19,22 @@ body {
   grid-template-rows: repeat(12, 1fr);
   gap: 2px;
   padding: 5px 2%;
-  font-size: calc(var(--fontSizeText) * 0.8);
+  font-size: calc($fontSizeText * 0.8);
 
   h3 {
-    font-size: calc(var(--fontSizeH3) * .75);
+    font-size: calc($fontSizeH3 * .75);
   }
 }
 
 .investigation_container {
   display: grid;
   grid-template-rows: repeat(12, 1fr);
-  padding: 0 1%;
-  font-size: calc(var(--fontSizeText) * 0.8);
+  padding: 1% 1%;
+  gap: 5px;
+  font-size: calc($fontSizeText * 0.8);
 
   h3 {
-    font-size: calc(var(--fontSizeH3) * .75);
+    font-size: calc($fontSizeH3 * .75);
   }
 }
 
@@ -44,12 +45,13 @@ body {
     grid-template-rows: repeat(12, 1fr);
     gap: 15px;
     padding: 20px 5%;
-    font-size: calc(var(--fontSizeText) * 1);
+    font-size: calc($fontSizeText * 1);
 
     h3 {
-      font-size: calc(var(--fontSizeH3) * 1);
+      font-size: calc($fontSizeH3 * 1);
     }
   }
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -62,9 +64,7 @@ body {
   }
 
   .investigation_container {
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
     grid-template-rows: repeat(12, 1fr);
-    gap: 5px;
-    padding: 1% 1%;
   }
 }

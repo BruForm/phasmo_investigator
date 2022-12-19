@@ -4,10 +4,10 @@
   display: grid;
   grid-template-columns: repeat(4, auto);
   padding: 0 20px;
-  background: var(--darkgrad);
+  background: $darkGrad;
   text-align: center;
 
-  box-shadow: inset 0 -1px 0 var(--light);
+  box-shadow: inset 0 -1px 0 $light;
 
   .nav-icon {
     order: 1;
@@ -17,16 +17,16 @@
       text-decoration: none;
 
       span {
-        font-family: var(--fontPhasmo);
-        font-size: calc(var(--sizeLogo) * 2.5 / 3);
+        font-family: $fontPhasmo;
+        font-size: calc($sizeLogo * 2.5 / 3);
         line-height: 1.0;
-        color: var(--light);
-        text-shadow: 2px 2px 2px var(--blood);
+        color: $light;
+        text-shadow: 2px 2px 2px $blood;
       }
 
       .userName {
-        font-family: var(--fontText);
-        font-size: calc(var(--sizeLogo) * 2.5 / 5);
+        font-family: $fontText;
+        font-size: calc($sizeLogo * 2.5 / 5);
       }
     }
   }
@@ -46,15 +46,15 @@
         display: inline-block;
         margin: 0 10px;
         width: fit-content;
-        //font-family: var(--fontDefault);
-        font-family: var(--fontPhasmo);
-        font-size: var(--fontsizeNavLinks);
+        //font-family: $fontDefault;
+        font-family: $fontPhasmo;
+        font-size: $fontsizeNavLinks;
         font-weight: 100;
         text-decoration: none;
-        color: var(--light);
+        color: $light;
 
         &:hover {
-          color: var(--blood);
+          color: $blood;
         }
 
         &::after {
@@ -63,7 +63,7 @@
           width: 100%;
           height: 1px;
           bottom: -1px;
-          background: var(--blood);
+          background: $blood;
           transform: scaleX(0);
           transform-origin: center;
           transition: transform 0.2s ease-out;
@@ -92,10 +92,10 @@
         padding: 5px 10px;
         margin: 0 5px;
         cursor: pointer;
-        font-family: var(--fontDefault);
-        font-size: var(--fontsizeSignBtn);
-        background: var(--light);
-        color: var(--dark);
+        font-family: $fontDefault;
+        font-size: $fontsizeSignBtn;
+        background: $light;
+        color: $dark;
       }
     }
   }
@@ -104,20 +104,20 @@
     order: 2;
 
     button {
-      background: var(--dark);
-      color: var(--blood);
+      background: $dark;
+      color: $blood;
       text-align: center;
-      font-family: var(--fontPhasmo);
-      font-size: calc(var(--sizeLogo) * 2.5 / 3);
+      font-family: $fontPhasmo;
+      font-size: calc($sizeLogo * 2.5 / 3);
       line-height: 1.0;
       padding: 5px 20px;
-      border: solid 2px var(--light);
+      border: solid 2px $light;
       border-radius: 15px;
     }
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
 
   .navbar {
     position: relative;
@@ -130,11 +130,11 @@
 
       a {
         span {
-          font-size: calc(var(--sizeLogo) * 2 / 4);
+          font-size: calc($sizeLogo * 2 / 4);
         }
 
         .userName {
-          font-size: calc(var(--sizeLogo) * 2 / 5);
+          font-size: calc($sizeLogo * 2 / 5);
         }
       }
     }
@@ -159,7 +159,7 @@
           display: block;
           width: 100%;
           height: 3px;
-          background: var(--light);
+          background: $light;
           pointer-events: none;
           transition: opacity 0.6s ease-out;
 
@@ -201,23 +201,23 @@
         left: 0;
         margin: 0;
         padding: 5px 10px;
-        border-right: 1px solid var(--light);
-        border-bottom: 1px solid var(--light); // pour ajouter border bottom si on ne prend pas toute la hauteur
-        background: var(--dark);
+        border-right: 1px solid $light;
+        border-bottom: 1px solid $light; // pour ajouter border bottom si on ne prend pas toute la hauteur
+        background: $dark;
         transform: translate(-100%);
 
         a {
           height: fit-content;
-          font-size: calc(var(--fontsizeNavLinks) * 90 / 100);
+          font-size: calc($fontsizeNavLinks * 90 / 100);
           margin-top: 5px;
-          //color: var(--dark);
+          //color: ($dark);
 
           &:hover {
-            color: var(--blood);
+            color: $blood;
           }
 
           &::after {
-            background: var(--blood);
+            background: $blood;
           }
         }
       }
@@ -231,7 +231,7 @@
       order: 4;
       padding: 5px;
       border-radius: 15px;
-      background: var(--light);
+      background: $light;
 
       .user_sign_in {
         display: block;
@@ -249,7 +249,7 @@
       order: 3;
 
       button {
-        font-size: calc(var(--sizeLogo) * 2 / 4);
+        font-size: calc($sizeLogo * 2 / 4);
       }
     }
   }
@@ -265,11 +265,11 @@
 
       a {
         span {
-          font-size: calc(var(--sizeLogo) * 1.6 / 4);
+          font-size: calc($sizeLogo * 1.6 / 4);
         }
 
         .userName {
-          font-size: calc(var(--sizeLogo) * 1.6 / 5);
+          font-size: calc($sizeLogo * 1.6 / 5);
         }
       }
     }
@@ -300,7 +300,7 @@
         padding: 2px 5px 0 5px;
 
         a {
-          font-size: calc(var(--fontsizeNavLinks) * 75 / 100);
+          font-size: calc($fontsizeNavLinks * 75 / 100);
           margin-top: 5px;
         }
       }
@@ -318,7 +318,7 @@
       order: 3;
 
       button {
-        font-size: calc(var(--sizeLogo) * 1.6 / 4);
+        font-size: calc($sizeLogo * 1.6 / 4);
       }
     }
   }

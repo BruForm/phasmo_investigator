@@ -3,19 +3,19 @@
   grid-row: 1 / 4;
   align-self: start;
 
-  color: var(--light);
+  color: $light;
   padding: 2px;
   text-align: center;
-  font-family: var(--fontDefault);
+  font-family: $fontDefault;
 
   p {
     margin-bottom: .25rem;
 
     a {
-      color: var(--light);
+      color: $light;
 
       &:hover {
-        color: var(--bloodReadable);
+        color: $bloodReadable;
       }
     }
   }
@@ -29,16 +29,16 @@
   flex-direction: column;
   //align-items: center;
 
-  color: var(--light);
+  color: $light;
   padding: 2px 20px;
   text-align: center;
-  font-family: var(--fontDefault);
+  font-family: $fontDefault;
 
   h3 {
-    font-family: var(--fontTitre);
+    font-family: $fontTitre;
 
     span {
-      font-size: calc(var(--fontSizeH3) * 0.5);
+      font-size: calc($fontSizeH3 * 0.5);
     }
   }
 
@@ -60,16 +60,16 @@
 
 .remember_zone {
   display: none;
-  color: var(--light);
+  color: $light;
   padding: 2px;
   text-align: center;
-  font-family: var(--fontDefault);
+  font-family: $fontDefault;
 
   h3 {
-    font-family: var(--fontText);
+    font-family: $fontText;
 
     span {
-      font-size: calc(var(--fontSizeH3) * 0.75);
+      font-size: calc($fontSizeH3 * 0.75);
     }
   }
 
@@ -91,9 +91,9 @@
     grid-row: 1 / 4;
     padding: 5px;
 
-    border: solid 1px var(--light);
+    border: solid 1px $light;
     border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 var(--light);
+    box-shadow: -4px 4px 5px 0 $light;
 
     align-self: start;
     p {
@@ -106,31 +106,31 @@
     grid-row: 4 / -1;
     padding: 5px;
 
-    border: solid 1px var(--light);
+    border: solid 1px $light;
     border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 var(--light);
+    box-shadow: -4px 4px 5px 0 $light;
   }
   .tweeter_zone {
     grid-column: 1 / 2;
     grid-row: 5 / -1;
 
-    border: solid 1px var(--light);
+    border: solid 1px $light;
     border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 var(--light);
+    box-shadow: -4px 4px 5px 0 $light;
   }
   .stat_zone {
     grid-column: 1 / 2;
     grid-row: 1 / 5;
     padding: 5px;
 
-    border: solid 1px var(--light);
+    border: solid 1px $light;
     border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 var(--light);
+    box-shadow: -4px 4px 5px 0 $light;
 
     align-self: start;
 
     h3 span {
-      font-size: calc(var(--fontSizeH3) * 0.75);
+      font-size: calc($fontSizeH3 * 0.75);
     }
 
     table {
@@ -158,9 +158,9 @@
     grid-row: 5 / 13;
     padding: 10px;
 
-    border: solid 1px var(--light);
+    border: solid 1px $light;
     border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 var(--light);
+    box-shadow: -4px 4px 5px 0 $light;
   }
   .tweeter_zone {
     grid-column: 1 / 6;
@@ -171,8 +171,8 @@
     grid-row: 2 / 6;
     padding: 10px;
 
-    border: solid 1px var(--light);
+    border: solid 1px $light;
     border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 var(--light);
+    box-shadow: -4px 4px 5px 0 $light;
   }
 }

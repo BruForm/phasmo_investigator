@@ -8,16 +8,16 @@
 
     z-index: 1000;
     padding: 10px 5px;
-    background: var(--darkgrad);
+    background: $darkGrad;
 
-    color: var(--light);
-    font-family: var(--fontDefault);
-    font-size: var(--fontSizeText);
+    color: $light;
+    font-family: $fontDefault;
+    font-size: $fontSizeText;
     text-align: center;
 
-    border: solid 1px var(--light);
+    border: solid 1px $light;
     border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 var(--light);
+    box-shadow: -4px 4px 5px 0 $light;
 
     display: none;
     flex-direction: column;
@@ -26,7 +26,7 @@
 
     .js-popup-ok{
         width: 30%;
-        font-size: calc(var(--fontSizeText) * 1.5);
+        font-size: calc($fontSizeText * 1.5);
         padding: 0;
     }
 }

@@ -1,7 +1,7 @@
 .main-footer {
     text-align: center;
     padding: 10px 0;
-    background: var(--dark);
-    color: var(--light);
-    border-top: solid 1px var(--light);
+    background: $darkGrad;
+    color: $light;
+    border-top: solid 1px $light;
 }

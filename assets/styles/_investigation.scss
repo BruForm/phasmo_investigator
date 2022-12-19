@@ -1,54 +1,57 @@
+@mixin zone_border {
+  align-self: start;
+
+  color: $light;
+  padding: 10px 5px;
+  text-align: center;
+  font-family: $fontDefault;
+  font-size: $fontSizeText;
+
+  border: solid 1px $light;
+  border-radius: 10px;
+  box-shadow: -4px 4px 5px 0 $light;
+}
+
 .bloody {
-  //color: var(--blood);
+  //color: $blood;
   text-decoration: line-through;
-  text-decoration-color: var(--blood);
+  text-decoration-color: $blood;
   text-decoration-thickness: 2px;
-  color: var(--lightish);
+  color: $lightIsh;
 }
 
 .selected_entity_temp {
-  color: var(--bloodReadable);
+  color: $bloodReadable;
 }
 
 .selected_evidence_temp {
-  border: solid 2px var(--light);
+  border: solid 2px $light;
 }
 
 .infos_zone {
   grid-column: 1 / 2;
   grid-row: 1 / 5;
-  align-self: start;
-
-  color: var(--light);
-  padding: 10px 5px;
-  text-align: center;
-  font-family: var(--fontDefault);
-  //font-family: var(--fontText);
-  font-size: var(--fontSizeText);
-
-  border: solid 1px var(--light);
-  border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 var(--light);
+  @include zone_border;
 
   p {
     text-align: left;
 
     label {
-      //font-family: var(--fontText);
+      //font-family: $fontText;
     }
 
     select {
       border-radius: 5px;
       background: transparent;
-      color: var(--light);
+      color: $light;
       border: none;
       text-overflow: ellipsis;
       text-align: right;
       width: 100%;
 
       option {
-        background: var(--dark);
-        font-family: var(--fontDefault);
+        background: $dark;
+        font-family: $fontDefault;
       }
     }
 
@@ -61,23 +64,14 @@
 }
 
 .evidences_zone {
-  grid-column: 2 / 3;
+  grid-column: 2 / 4;
   grid-row: 1 / 5;
-  align-self: start;
+  @include zone_border;
 
-  color: var(--light);
-  padding: 10px 5px;
   margin: 0 10px;
-  text-align: center;
-  font-family: var(--fontDefault);
-  font-size: var(--fontSizeText);
-
-  border: solid 1px var(--light);
-  border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 var(--light);
 
   h2 {
-    font-family: var(--fontTitre);
+    font-family: $fontTitre;
   }
 
   .checkboxes {
@@ -107,8 +101,8 @@
 
         &:checked ~ label {
           img {
-            border: solid 2px var(--light);
-            box-shadow: 0 0 10px var(--light);
+            border: solid 2px $light;
+            box-shadow: 0 0 10px $light;
           }
         }
 
@@ -144,25 +138,24 @@
   //}
 }
 
+//@mixin entity_hover($color){
+//  @if $color == $light {
+//    color: $blood;
+//  }
+//  @if $color == $blood{
+//    color: $light;
+//  }
+//}
+
 .entities_zone {
-  grid-column: 3 / -1;
+  grid-column: 4 / -1;
   grid-row: 1 / 12;
-  align-self: start;
-
-  color: var(--light);
-  padding: 10px 5px;
-  text-align: center;
-  font-family: var(--fontDefault);
-  font-size: var(--fontSizeText);
-
-  border: solid 1px var(--light);
-  border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 var(--light);
+  @include zone_border;
 
   height: 100%;
 
   h2 {
-    font-family: var(--fontTitre);
+    font-family: $fontTitre;
   }
 
   .entity_list {
@@ -173,24 +166,18 @@
     span {
       width: fit-content;
       cursor: pointer;
+
+      &:hover {
+        color: $blood;
+      }
     }
   }
 }
 
 .result_btn_zone {
-  grid-column: 3 / -1;
+  grid-column: 4 / -1;
   grid-row: 12 / -1;
-  align-self: start;
-
-  color: var(--light);
-  padding: 10px 5px;
-  text-align: center;
-  font-family: var(--fontText);
-  font-size: var(--fontSizeText);
-
-  border: solid 1px var(--light);
-  border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 var(--light);
+  @include zone_border;
 
   height: 100%;
 
@@ -201,27 +188,17 @@
 
     button {
       width: 40%;
-      font-size: calc(var(--fontSizeText) * 1.5);
+      font-size: calc($fontSizeText * 1.5);
       padding: 0;
     }
   }
 }
 
 .entity_information_zone {
-  grid-column: 2 / 3;
+  grid-column: 2 / 4;
   grid-row: 5 / 11;
-  align-self: start;
-
-  color: var(--light);
+  @include zone_border;
   margin: 0 10px;
-  text-align: center;
-  font-family: var(--fontText);
-  //font-size: var(--fontSizeText);
-
-  border: solid 1px var(--light);
-  border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 var(--light);
-
   height: 100%;
 
   .current_entity {
@@ -235,23 +212,48 @@
       grid-row: 1 / -1;
       background-size: cover;
       background-position: top right;
+      margin-top: 10px;
     }
 
     .entity_infos {
       grid-column: 2 / -1;
       grid-row: 1 / 2;
+      margin: 0 10px;
 
-      h2 {
-        padding: 5px 0;
-        margin: 0;
+      .title_navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+          padding: 5px 0;
+          margin: 0;
+        }
+
+        button {
+          height: 2rem;
+          padding: 0 5px;
+          margin: 0;
+
+          background: none;
+          color: $light;
+          font-family: $fontDefault;
+          border: solid 1px $lightIsh;
+          border-radius: 5px;
+
+          &:hover {
+            color: $bloodReadable;
+            border-color: $blood;
+          }
+        }
       }
 
       table {
-        font-family: var(--fontDefault);
-        margin: 0 10px;
+        font-family: $fontDefault;
+        //margin: 0 10px;
 
         & * {
-          border-bottom: solid 1px var(--light);
+          border-bottom: solid 1px $light;
           padding: 2px 10px 2px 0;
         }
 
@@ -266,49 +268,44 @@
       }
     }
 
-    .buttons {
-      grid-column: 2 / -1;
-      grid-row: 2 / -1;
-      align-self: center;
-
-      button {
-        height: 2rem;
-        padding: 0 5px;
-        margin: 0;
-
-        background: none;
-        color: var(--light);
-        font-family: var(--fontDefault);
-        border: solid 1px var(--lightish);
-        border-radius: 5px;
-
-        &:hover {
-          color: var(--bloodReadable);
-          border-color: var(--blood);
-        }
-      }
-    }
+    //.buttons {
+    //  grid-column: 2 / -1;
+    //  grid-row: 2 / -1;
+    //  align-self: center;
+    //
+    //  button {
+    //    height: 2rem;
+    //    padding: 0 5px;
+    //    margin: 0;
+    //
+    //    background: none;
+    //    color: $light);
+    //    font-family: $fontDefault);
+    //    border: solid 1px $lightish);
+    //    border-radius: 5px;
+    //
+    //
+    //    &:hover {
+    //      color: $bloodReadable);
+    //      border-color: $blood);
+    //    }
+    //  }
+    //}
   }
 }
 
-.chronos_zone {
+.timers_zone {
   grid-column: 1 / 2;
   grid-row: 5 / -1;
-  align-self: start;
-
-  color: var(--light);
-  padding: 10px 5px;
-  text-align: center;
-  font-family: var(--fontText);
-  font-size: var(--fontSizeText);
-
-  border: solid 1px var(--light);
-  border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 var(--light);
-
+  @include zone_border;
   height: 100%;
 
-  .chrono_hunt, .chrono_smudge {
+  display: flex;
+  flex-direction: column;
+
+  .timer_hunt, .timer_smudge {
+    flex-grow: 1;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -316,23 +313,23 @@
     max-height: 50%;
 
     .display {
-      width: 50%;
+      min-width: 50%;
       padding: 15% 10px 5% 10px;
       margin-bottom: 10px;
-      border: solid 1px var(--light);
+      border: solid 1px $light;
       border-radius: 50%;
-      box-shadow: 0 0 10px var(--light);
+      box-shadow: 0 0 10px $light;
       line-height: 1.5rem;
       cursor: pointer;
 
       span {
-        font-size: calc(var(--fontSizeText) * 2.0);
-        padding: 0;
-        margin: 0;
+        //font-size: calc($fontSizeText * 2.0);
+        font-size: 2rem;
 
         &:nth-of-type(3) {
           display: block;
-          font-size: calc(var(--fontSizeText) * 1.5);
+          //font-size: calc($fontSizeText * 1.5);
+          font-size: 1.5rem;
         }
       }
     }
@@ -342,8 +339,8 @@
     width: 40%;
     margin: 2px;
     background: transparent;
-    color: var(--light);
-    border: solid 1px var(--light);
+    color: $light;
+    border: solid 1px $light;
     border-radius: 10px;
   }
 

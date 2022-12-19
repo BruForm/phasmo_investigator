@@ -3,11 +3,11 @@
   grid-row: 1 / -1;
 
   * {
-    color: var(--light);
+    color: $light;
   }
 
   .alert-danger {
-    color: var(--blood);
+    color: $blood;
   }
 
   h1 {
@@ -20,7 +20,7 @@
   }
 
   a {
-    color: var(--light);
+    color: $light;
     padding: 0 25px 0 0;
     text-decoration: none;
     text-transform: capitalize;
@@ -62,11 +62,11 @@
         }
 
         label + * {
-          color: var(--dark);
+          color: $dark;
         }
 
         select, select > * {
-          color: var(--dark);
+          color: $dark;
         }
 
         .form_checkbox {
