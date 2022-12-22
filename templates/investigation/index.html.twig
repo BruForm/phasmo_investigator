@@ -68,10 +68,8 @@
     </div>
 
     <div class="result_btn_zone">
-        <div class="buttons">
-            <button class="btn btn-success">OK</button>
-            <button class="btn btn-danger">KO</button>
-        </div>
+        <button class="btn_ok btn btn-success">OK</button>
+        <button class="btn_ko btn btn-danger">KO</button>
     </div>
 
     <div class="entity_information_zone">
@@ -112,10 +110,10 @@
                     </tr>
                 </table>
             </div>
-{#            <div class="buttons">#}
-{#                <button class="js-btn-disp js-btn-prev" data-entity-id="">prev</button>#}
-{#                <button class="js-btn-disp js-btn-next" data-entity-id="">next</button>#}
-{#            </div>#}
+            {#            <div class="buttons"> #}
+            {#                <button class="js-btn-disp js-btn-prev" data-entity-id="">prev</button> #}
+            {#                <button class="js-btn-disp js-btn-next" data-entity-id="">next</button> #}
+            {#            </div> #}
         </div>
     </div>
 
@@ -141,6 +139,26 @@
             <button class="btn_start" id="start" type="submit" title='Touche "Bas" du clavier'>START</button>
             <button class="btn_pause" id="pause" type="submit" title='Touche "Gauche" du clavier'>PAUSE</button>
             <button class="btn_reset hidden" id="reset" type="reset">RESET</button>
+        </div>
+    </div>
+
+    <div class="end_game_zone">
+        <h2>Fin de partie</h2>
+        <div class="selected_entity">
+            <h3>Entité sélectionnée</h3>
+            <p>TOTO</p>
+        </div>
+        <div class="real_entity">
+            <label id="real" for="entity-select">Entité réelle</label>
+            <select name="entity-select" id="entity-select">
+                {% for entity in entities %}
+                    <option value="{{ entity.id }}">{{ entity.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="js-ok">OK</button>
+            <button class="js-cancel">Cancel</button>
         </div>
     </div>
 

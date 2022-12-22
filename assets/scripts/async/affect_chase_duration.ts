@@ -1,7 +1,7 @@
 
 interface ChaseDuration {
-    chaseDuration: string
-    chaseDurationCursed: string;
+    chaseDuration: string,
+    chaseDurationCursed: string
 }
 
 function affectChaseDuration(): void {

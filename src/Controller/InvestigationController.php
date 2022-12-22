@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
+use App\Entity\Player;
 use App\Repository\CharacteristicRepository;
 use App\Repository\EntityRepository;
 use App\Repository\EvidenceRepository;
+use App\Repository\GameRepository;
 use App\Repository\LevelRepository;
 use App\Repository\MapRepository;
 use App\Repository\ParamLevelMapSizeRepository;
+use App\Repository\PlayerRepository;
 use App\Repository\SkinRepository;
 use App\Repository\TypeRepository;
 use DateTime;
@@ -238,5 +242,56 @@ class InvestigationController extends AbstractController
             'timeAttackSmudge' => $timeAttackSmudge,
             'skin_url' => $skinUrl,
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param GameRepository $gameRepository
+     * @param PlayerRepository $playerRepository
+     * @param LevelRepository $levelRepository
+     * @param MapRepository $mapRepository
+     * @param EntityRepository $entityRepository
+     * @return Response
+     */
+    #[Route('/investigation/endGame/{data}', name: 'app_investigation_end_game')]
+    public function endGame(
+        Request          $request,
+        GameRepository   $gameRepository,
+        PlayerRepository $playerRepository,
+        LevelRepository  $levelRepository,
+        MapRepository    $mapRepository,
+        EntityRepository $entityRepository,
+    ): Response
+    {
+        $data = json_decode($request->get('data'), true);
+
+        $player = $playerRepository->findOneBy(['nickname' => $data['player']]);
+
+        $game = new Game();
+        $game->setDuration(new DateTime('00:00:00'));
+        $game->setPlayer($player);
+        $game->setLevel($levelRepository->find($data['levelId']));
+        $game->setMap($mapRepository->find($data['mapId']));
+        $game->setChosenEntity($entityRepository->find($data['chosenEntityId']));
+        $game->setEntity($entityRepository->find($data['entityId']));
+
+        $player->setNbInvestig($player->getNbInvestig() + 1);
+        if($data['result'] === 'success'){
+            $player->setNbSuccess($player->getNbSuccess() + 1 );
+        }
+
+        try {
+            $playerRepository->save($player, true);
+            $gameRepository->save($game, true);
+            return $this->json([
+                'status' => 1,
+                'message' => 'game recorded',
+            ]);
+        } catch (\Exception $exception) {
+            return $this->json([
+                'status' => 2,
+                'message' => $exception->getMessage(),
+            ]);
+        }
     }
 }

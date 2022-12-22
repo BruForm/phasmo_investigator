@@ -12,6 +12,14 @@
   box-shadow: -4px 4px 5px 0 $light;
 }
 
+@mixin button_shape {
+  margin: 2px;
+  background: transparent;
+  color: $light;
+  border: solid 1px $light;
+  border-radius: 10px;
+}
+
 .bloody {
   //color: $blood;
   text-decoration: line-through;
@@ -138,15 +146,6 @@
   //}
 }
 
-//@mixin entity_hover($color){
-//  @if $color == $light {
-//    color: $blood;
-//  }
-//  @if $color == $blood{
-//    color: $light;
-//  }
-//}
-
 .entities_zone {
   grid-column: 4 / -1;
   grid-row: 1 / 12;
@@ -178,25 +177,21 @@
   grid-column: 4 / -1;
   grid-row: 12 / -1;
   @include zone_border;
-
   height: 100%;
 
-  .buttons {
-    display: flex;
-    justify-content: space-around;
-    height: 100%;
+  display: flex;
+  justify-content: space-around;
 
-    button {
-      width: 40%;
-      font-size: calc($fontSizeText * 1.5);
-      padding: 0;
-    }
+  button {
+    width: 40%;
+    font-size: calc($fontSizeText * 1.5);
+    padding: 0;
   }
 }
 
 .entity_information_zone {
   grid-column: 2 / 4;
-  grid-row: 5 / 11;
+  grid-row: 5 / 12;
   @include zone_border;
   margin: 0 10px;
   height: 100%;
@@ -337,14 +332,45 @@
 
   button {
     width: 40%;
-    margin: 2px;
-    background: transparent;
-    color: $light;
-    border: solid 1px $light;
-    border-radius: 10px;
+    @include button_shape;
   }
 
   .hidden {
     display: none
+  }
+}
+
+.end_game_zone {
+  grid-column: 2 / 4;
+  grid-row: 5 / 12;
+  @include zone_border;
+  margin: 0 10px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-family: $fontTitre;
+  }
+
+  select {
+    border-radius: 5px;
+    background: transparent;
+    color: $light;
+    border: none;
+    text-overflow: ellipsis;
+    text-align: right;
+    width: 100%;
+
+    option {
+      background: $dark;
+      font-family: $fontDefault;
+      text-align: center;
+    }
+  }
+
+  button {
+    @include button_shape;
   }
 }

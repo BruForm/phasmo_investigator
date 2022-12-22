@@ -1,3 +1,5 @@
+import * as events from "events";
+
 interface Entity_Infos {
     id: number,
     name: string,
@@ -10,6 +12,11 @@ interface Entity_Infos {
     skin_url: string,
 }
 
+// Récupération des informations d'une entité
+/**
+ *
+ * @param data = {'id': entityId}
+ */
 export function getEntityInfos(data: object): void {
     const url: string = '/investigation/entityInfos/' + JSON.stringify(data);
     fetch(url)
@@ -37,6 +44,11 @@ export function getEntityInfos(data: object): void {
         });
 }
 
+// Affectation du nom de l'entité aux bouttons suivante et précédente entité.
+/**
+ *
+ * @param id = Entity.id
+ */
 function labelingButtons(id: number) {
     const tab_possible = document.querySelectorAll<HTMLSpanElement>('.js-possible');
 
@@ -79,3 +91,55 @@ function labelingButtons(id: number) {
         document.querySelector<HTMLButtonElement>('.js-btn-next').style.display = 'none';
     }
 }
+
+// Affichage de la popup avec son message
+/**
+ *
+ * @param message
+ * @param cancelBtn => présence du bouton cancel
+ */
+export function displayPopup(message: string, cancelBtn: boolean = false) {
+    const popup = document.querySelector<HTMLDivElement>('.popup');
+    if (!cancelBtn) {
+        popup.querySelector<HTMLButtonElement>('.js-popup-ko').style.display = 'none';
+    } else {
+        popup.querySelector<HTMLButtonElement>('.js-popup-ko').style.display = 'block';
+    }
+    popup.querySelector<HTMLParagraphElement>('p').innerText = message;
+    popup.classList.add('visible');
+
+    // console.log(popup.getBoundingClientRect());
+    // console.log(getOffset(popup).left);
+    // console.log(getOffset(popup).top);
+
+    // document.addEventListener('mousemove', e => {
+    //     console.log(e.clientX + " : " + e.clientY);
+    //     const x = e.clientX;
+    //     const y = e.clientY;
+    //
+    //     if (x > popup.getBoundingClientRect().right) {
+    //         console.log('error');
+    //         document.addEventListener('click', () => {
+    //             popupOk(document.querySelector<HTMLDivElement>('.popup'))
+    //         });
+    //     }
+    // });
+    popup.querySelector<HTMLButtonElement>('.js-popup-ok').addEventListener('click', () => {
+        document.querySelector<HTMLDivElement>('.popup').classList.remove('visible');
+    })
+    popup.querySelector('.js-popup-ko').addEventListener('click', () => {
+        document.querySelector<HTMLDivElement>('.popup').classList.remove('visible');
+    })
+}
+
+// function popupOk(popup: HTMLDivElement) {
+//     document.querySelector<HTMLDivElement>('.popup').classList.remove('visible');
+// }
+
+// function getOffset(el) {
+//     const rect = el.getBoundingClientRect();
+//     return {
+//         left: rect.left + window.scrollX,
+//         top: rect.top + window.scrollY
+//     };
+// }

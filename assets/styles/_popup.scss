@@ -1,36 +1,51 @@
 .popup {
-    width: 40%;
-    height: 20%;
+  width: 40%;
+  height: 20%;
 
-    position: absolute;
-    left: 30%;
-    top: 20%;
+  position: absolute;
+  left: 30%;
+  top: 20%;
 
-    z-index: 1000;
-    padding: 10px 5px;
-    background: $darkGrad;
+  z-index: 1000;
+  padding: 10px 5px;
+  background: $darkGrad;
 
-    color: $light;
-    font-family: $fontDefault;
-    font-size: $fontSizeText;
-    text-align: center;
+  color: $light;
+  font-family: $fontDefault;
+  font-size: $fontSizeText;
+  text-align: center;
 
-    border: solid 1px $light;
-    border-radius: 10px;
-    box-shadow: -4px 4px 5px 0 $light;
+  border: solid 1px $light;
+  border-radius: 10px;
+  box-shadow: -4px 4px 5px 0 $light;
 
-    display: none;
-    flex-direction: column;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .buttons {
+    display: flex;
+    gap: 0 10px;
     justify-content: center;
-    align-items: center;
+    width: 100%;
 
-    .js-popup-ok{
-        width: 30%;
-        font-size: calc($fontSizeText * 1.5);
-        padding: 0;
+    .js-popup-ok {
+      width: 30%;
+      min-width: fit-content;
+      font-size: calc($fontSizeText * 1.5);
+      padding: 0;
     }
+
+    .js-popup-ko {
+      width: 30%;
+      min-width: fit-content;
+      font-size: calc($fontSizeText * 1.5);
+      padding: 0;
+    }
+  }
 }
 
-.visible{
-    display: flex;
+.visible {
+  display: flex;
 }

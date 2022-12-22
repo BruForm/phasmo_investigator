@@ -1,4 +1,5 @@
 import {getEntityInfos} from "./shared_functions";
+import {displayPopup} from "./shared_functions";
 
 interface Entities {
     entityNames: string[]
@@ -42,12 +43,8 @@ function evidenceEntities(): void {
                         const current_id: number = Number(document.querySelector('.js-possible').getAttribute('data-entity-id'));
                         entityInfos(current_id);
                     } catch (e) {
-                        const popup = document.querySelector<HTMLDivElement>('.popup');
-                        popup.querySelector<HTMLParagraphElement>('p').innerText = 'Attention ! Aucune Entité possible avec ces choix.';
-                        popup.classList.add('visible');
-                        popup.querySelector('.js-popup-ok').addEventListener('click', () => {
-                            document.querySelector<HTMLDivElement>('.popup').classList.remove('visible');
-                        })
+                        const $message: string = "Attention ! Aucune Entité possible avec ces choix.";
+                        displayPopup($message);
                     }
                 }
             )
