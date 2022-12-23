@@ -1,25 +1,3 @@
-@mixin zone_border {
-  align-self: start;
-
-  color: $light;
-  padding: 10px 5px;
-  text-align: center;
-  font-family: $fontDefault;
-  font-size: $fontSizeText;
-
-  border: solid 1px $light;
-  border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 $light;
-}
-
-@mixin button_shape {
-  margin: 2px;
-  background: transparent;
-  color: $light;
-  border: solid 1px $light;
-  border-radius: 10px;
-}
-
 .bloody {
   //color: $blood;
   text-decoration: line-through;
@@ -94,29 +72,34 @@
       //grid-template-columns: auto 30px;
       //align-items: center;
 
-      label {
-        img {
-          //height: 75px;
-          height: 4rem;
-          background-color: #ffffff30;
-          border-radius: 50%;
-          cursor: pointer;
-        }
-      }
-
       input {
         display: none;
 
         &:checked ~ label {
           img {
             border: solid 2px $light;
-            box-shadow: 0 0 10px $light;
+            box-shadow: 0 0 5px $light, inset 0 0 10px $light;
           }
         }
 
         &:not(:checked) ~ label {
           opacity: .5;
           filter: grayscale(1);
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      label {
+        border-radius: 50%;
+        background-color: #ffffff30;
+        cursor: pointer;
+
+        img {
+          height: 4rem;
+          border-radius: 50%;
         }
       }
     }
@@ -150,8 +133,9 @@
   grid-column: 4 / -1;
   grid-row: 1 / 12;
   @include zone_border;
-
   height: 100%;
+  display: flex;
+  flex-direction: column;
 
   h2 {
     font-family: $fontTitre;
@@ -161,10 +145,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-grow: 1;
+    justify-content: center;
 
     span {
-      width: fit-content;
       cursor: pointer;
+      width: fit-content;
 
       &:hover {
         color: $blood;
@@ -173,27 +159,51 @@
   }
 }
 
+//.result_btn_zone {
+//  grid-column: 4 / -1;
+//  grid-row: 12 / -1;
+//  @include zone_border;
+//  padding: 0;
+//  height: 100%;
+//  display: flex;
+//  justify-content: space-evenly;
+//  align-items: center;
+//
+//  button {
+//    @include button_shape;
+//    width: 60%;
+//    height: 80%;
+//    font-size: calc($fontSizeText * 1.5);
+//
+//    &:hover {
+//      @include button_hover_light_hard;
+//    }
+//  }
+//}
 .result_btn_zone {
   grid-column: 4 / -1;
   grid-row: 12 / -1;
   @include zone_border;
+
+  background: transparent;
+  color: $light;
+
   height: 100%;
 
-  display: flex;
-  justify-content: space-around;
+  font-size: calc($fontSizeText * 1.5);
 
-  button {
-    width: 40%;
-    font-size: calc($fontSizeText * 1.5);
-    padding: 0;
+  &:hover {
+    @include button_hover_light_hard;
   }
+
 }
 
 .entity_information_zone {
   grid-column: 2 / 4;
-  grid-row: 5 / 12;
+  grid-row: 5 / -1;
   @include zone_border;
   margin: 0 10px;
+  padding: 0;
   height: 100%;
 
   .current_entity {
@@ -208,37 +218,34 @@
       background-size: cover;
       background-position: top right;
       margin-top: 10px;
+      border-radius: 0 0 0 10px;
     }
 
     .entity_infos {
       grid-column: 2 / -1;
-      grid-row: 1 / 2;
+      grid-row: 1 / -1;
       margin: 0 10px;
 
       .title_navigation {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: auto 2fr auto; //repeat(3, auto);
         align-items: center;
 
         h2 {
+          grid-column: 2 / 3;
           padding: 5px 0;
           margin: 0;
         }
 
         button {
-          height: 2rem;
+          @include button_shape;
+          height: calc($fontSizeText * 2);
           padding: 0 5px;
-          margin: 0;
-
-          background: none;
-          color: $light;
+          justify-self: center;
           font-family: $fontDefault;
-          border: solid 1px $lightIsh;
-          border-radius: 5px;
 
           &:hover {
-            color: $bloodReadable;
-            border-color: $blood;
+            @include button_hover_light_soft
           }
         }
       }
@@ -294,6 +301,7 @@
   grid-row: 5 / -1;
   @include zone_border;
   height: 100%;
+  padding: 0;
 
   display: flex;
   flex-direction: column;
@@ -308,69 +316,126 @@
     max-height: 50%;
 
     .display {
-      min-width: 50%;
-      padding: 15% 10px 5% 10px;
+      //min-width: 50%;
+      //padding: 15% 10px 5% 10px;
       margin-bottom: 10px;
       border: solid 1px $light;
       border-radius: 50%;
       box-shadow: 0 0 10px $light;
       line-height: 1.5rem;
       cursor: pointer;
+      position: relative;
+      width: calc($fontSizeText * 7.0);
 
-      span {
-        //font-size: calc($fontSizeText * 2.0);
-        font-size: 2rem;
+      &:after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+      }
 
-        &:nth-of-type(3) {
-          display: block;
-          //font-size: calc($fontSizeText * 1.5);
-          font-size: 1.5rem;
+      .timer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        span {
+          font-size: calc($fontSizeText * 1.5);
+        }
+
+        div {
+          padding-top: 10%;
+
+          span {
+            font-size: calc($fontSizeText * 2.0);
+          }
         }
       }
     }
   }
 
   button {
-    width: 40%;
     @include button_shape;
+    width: 40%;
+
+    &:hover {
+      @include button_hover_light_soft
+    }
   }
 
   .hidden {
     display: none
   }
+
 }
 
 .end_game_zone {
   grid-column: 2 / 4;
-  grid-row: 5 / 12;
+  grid-row: 5 / 11;
   @include zone_border;
   margin: 0 10px;
   height: 100%;
 
-  display: flex;
+  display: none;
   flex-direction: column;
 
   h2 {
     font-family: $fontTitre;
   }
 
-  select {
-    border-radius: 5px;
-    background: transparent;
-    color: $light;
-    border: none;
-    text-overflow: ellipsis;
-    text-align: right;
-    width: 100%;
+  .selected_entity {
+    padding: 10px 0;
 
-    option {
-      background: $dark;
-      font-family: $fontDefault;
-      text-align: center;
+    span {
+      font-size: 1.5rem;
+      border: solid;
+      border-radius: 5px;
+      padding: 1px 20px;
     }
   }
 
-  button {
-    @include button_shape;
+  .real_entity {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    select {
+      border-radius: 5px;
+      background: transparent;
+      color: $light;
+      border: solid;
+      text-overflow: ellipsis;
+      text-align: right;
+      width: fit-content;
+      font-size: 1.5rem;
+
+      option {
+        background: $dark;
+        font-family: $fontDefault;
+        text-align: center;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .buttons {
+    padding: 10px 0;
+
+    button {
+      @include button_shape;
+      margin: 2px 10px;
+      width: 15%;
+      height: 120%;
+      min-width: fit-content;
+      font-size: calc($fontSizeText * 1.5);
+
+      &:hover {
+        @include button_hover_blood_hard
+      }
+    }
   }
 }

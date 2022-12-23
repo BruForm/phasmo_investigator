@@ -1,28 +1,11 @@
-//$ABeeZee-font: 'ABeeZee';
-//$anotherTW-font: 'AnotherTW';
-//$creepster-font: 'Creepster';
-//$momsTW-font: 'MomsTW';
-//$typeKeys-font: 'TypeKeys';
-//$typeKeysFilled-font: 'TypeKeysFilled';
-
-
+// Variables
 $fontDefault: 'ABeeZee', 'Arial', 'Helvetica', 'sans-serif';
-
 $fontText: 'AnotherTW';
-
 $fontPhasmo: 'Creepster';
-
 $fontTitre: 'MomsTW';
-
 $fontKeysLight: 'TypeKeys';
-
 $fontKeysDark: 'TypeKeysFilled';
 
-// theme black and blue
-//--main-color: #0f0f0f;
-//--secondary-color: #220ff9;
-
-// theme blue tot blue
 $main-color: #1f1f1f;
 $secondary-color: #0f0f88;
 $main-gradiant: linear-gradient(90.1deg, $main-color 0%, $secondary-color 100%);
@@ -33,8 +16,7 @@ $black: #000000;
 $dark: #1f1f1f;
 $darkGrad: radial-gradient(circle, rgba(31, 31, 31, 1) 75%, rgba(220, 0, 0, 1) 100%);
 $light: #dddddd;
-$lightIsh: #dddddd95;
-$blue: #00ccff;
+$lightIsh: #dddddd50;
 $blood: #dc0000;
 $bloodReadable: #ff0000;
 
@@ -48,9 +30,58 @@ $fontSizeText: 1rem;
 
 // NavBar -- DEBUT
 $sizeLogo: 40px;
-
 $fontsizeNavLinks: 20px;
 $fontsizeNavRoll: 18px;
 $fontsizeSignBtn: 18px;
 // NavBar -- FIN
 
+// MIXINs
+@mixin zone_border {
+  align-self: start;
+
+  color: $light;
+  padding: 10px 5px;
+  text-align: center;
+  font-family: $fontDefault;
+  font-size: $fontSizeText;
+
+  border: solid 1px $light;
+  border-radius: 10px;
+  box-shadow: -4px 4px 5px $lightIsh;
+}
+
+@mixin button_shape {
+  margin: 2px;
+  background: transparent;
+  color: $light;
+  border: solid 1px $light;
+  border-radius: 10px;
+  scale: 0.9;
+}
+
+@mixin button_hover_blood_hard {
+  color: $bloodReadable;
+  border-color: $blood;
+  box-shadow: 0 0 10px $blood;
+  text-shadow: 0 0 5px $blood;
+  scale: 1.1;
+}
+@mixin button_hover_blood_soft {
+  color: $bloodReadable;
+  border-color: $blood;
+  box-shadow: 0 0 5px $light;
+  text-shadow: 0 0 1px $light;
+  scale: 1.1;
+}
+
+@mixin button_hover_light_hard {
+  box-shadow: 0 0 10px $light;
+  text-shadow: 0 0 5px $light;
+  scale: 1.1;
+}
+
+@mixin button_hover_light_soft {
+  box-shadow: 0 0 5px $light;
+  text-shadow: 0 0 1px $light;
+  scale: 1.1;
+}

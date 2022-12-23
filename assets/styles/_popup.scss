@@ -1,51 +1,44 @@
-.popup {
-  width: 40%;
-  height: 20%;
-
-  position: absolute;
-  left: 30%;
-  top: 20%;
-
-  z-index: 1000;
-  padding: 10px 5px;
-  background: $darkGrad;
-
+@mixin button_shape {
+  margin: 2px;
+  background: transparent;
   color: $light;
-  font-family: $fontDefault;
-  font-size: $fontSizeText;
-  text-align: center;
-
   border: solid 1px $light;
   border-radius: 10px;
-  box-shadow: -4px 4px 5px 0 $light;
-
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .buttons {
-    display: flex;
-    gap: 0 10px;
-    justify-content: center;
-    width: 100%;
-
-    .js-popup-ok {
-      width: 30%;
-      min-width: fit-content;
-      font-size: calc($fontSizeText * 1.5);
-      padding: 0;
-    }
-
-    .js-popup-ko {
-      width: 30%;
-      min-width: fit-content;
-      font-size: calc($fontSizeText * 1.5);
-      padding: 0;
-    }
-  }
 }
 
-.visible {
-  display: flex;
+.popup {
+  @include zone_border;
+  width: 40%;
+  height: 20%;
+  top: 25%;
+
+  //z-index: 1000;
+  background: $darkGrad;
+
+  .popup_shape {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .buttons {
+      display: flex;
+      gap: 0 10px;
+      justify-content: center;
+      width: 100%;
+
+      button {
+        @include button_shape;
+        width: 30%;
+        min-width: fit-content;
+        font-size: calc($fontSizeText * 1.5);
+        padding: 0;
+
+        &:hover {
+          @include button_hover_light_hard
+        }
+      }
+    }
+  }
 }

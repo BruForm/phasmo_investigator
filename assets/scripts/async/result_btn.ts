@@ -22,34 +22,37 @@ function checkSelection(): boolean {
         }
         return true;
     }
-
 }
 
-function investigationSuccess(): void {
+function investigationResult(): void {
     if (checkSelection()) {
-        const entity_selected = document.querySelector<HTMLSpanElement>('.js-entity.selected_entity_temp');
-
+        // Masquage de la zone entity information
         document.querySelector<HTMLDivElement>('.entity_information_zone').style.display = 'none';
-
+        // Affichage de la zone end game
         const endGameZone = document.querySelector<HTMLDivElement>('.end_game_zone');
         endGameZone.style.display = 'flex';
 
-        endGameZone.querySelector<HTMLParagraphElement>('.selected_entity p').innerText = entity_selected.innerText;
-
+        const entity_selected = document.querySelector<HTMLSpanElement>('.js-entity.selected_entity_temp');
+        endGameZone.querySelector<HTMLSpanElement>('.selected_entity span').innerText = entity_selected.innerText;
         endGameZone.querySelectorAll<HTMLOptionElement>('option').forEach(option => {
             if (option.value === entity_selected.getAttribute('data-entity-id')) {
-                option.selected = true;
+                option.setAttribute('selected', '');
             }
         });
 
         endGameZone.querySelector('.buttons .js-ok').addEventListener('click', () => {
+
+            const entityId: string = endGameZone.querySelector<HTMLOptionElement>('option:checked').value;
+            const chosenEntityId: string = entity_selected.getAttribute('data-entity-id');
+            const result: string = (entityId === chosenEntityId)?'success':'fail';
+
             const data = {
-                result: 'success',
-                player: document.querySelector<HTMLSpanElement>('.userName').innerText,
-                mapId: document.querySelector<HTMLOptionElement>('.js-sel-map option:checked').value,
-                levelId: document.querySelector<HTMLOptionElement>('.js-sel-level option:checked').value,
-                entityId: endGameZone.querySelector<HTMLOptionElement>('option:checked').value,
-                chosenEntityId: entity_selected.getAttribute('data-entity-id'),
+                result,
+                'player': document.querySelector<HTMLSpanElement>('.userName').innerText,
+                'mapId': document.querySelector<HTMLOptionElement>('.js-sel-map option:checked').value,
+                'levelId': document.querySelector<HTMLOptionElement>('.js-sel-level option:checked').value,
+                entityId,
+                chosenEntityId,
             }
             const url: string = '/investigation/endGame/' + JSON.stringify(data);
             fetch(url)
@@ -57,23 +60,26 @@ function investigationSuccess(): void {
                 .then(function (data) {
                     if (data.status === 1) {
                         displayPopup(data.message);
+                        document.querySelector<HTMLDivElement>('.entity_information_zone').style.display = 'block';
+                        const endGameZone = document.querySelector<HTMLDivElement>('.end_game_zone');
+                        endGameZone.style.display = 'none';
                     }
                 });
+        });
+
+        endGameZone.querySelector('.buttons .js-cancel').addEventListener('click', () => {
+            // Affichage de la zone entity information
+            document.querySelector<HTMLDivElement>('.entity_information_zone').style.display = 'block';
+            // Masquage de la zone end game
+            const endGameZone = document.querySelector<HTMLDivElement>('.end_game_zone');
+            endGameZone.style.display = 'none';
         });
 
     }
 }
 
-function investigationFail(): void {
-    console.log('FAIL');
-}
-
 if (document.location.pathname === '/investigation') {
     const result_btn = document.querySelector<HTMLDivElement>('.result_btn_zone');
-    const btn_ok = result_btn.querySelector('.btn_ok');
-    const btn_ko = result_btn.querySelector('.btn_ko');
 
-    btn_ok.addEventListener('click', investigationSuccess);
-
-    btn_ko.addEventListener('click', investigationFail);
+    result_btn.addEventListener('click', investigationResult);
 }

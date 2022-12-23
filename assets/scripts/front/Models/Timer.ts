@@ -114,7 +114,9 @@ export class Timer {
         if (this.start) {
             if (!this.pause) {
                 clearInterval(this.loop);
-                let $i: boolean = true;
+                this.btPause.style.color = color.blood;
+                this.timerHuntShape.style.color = color.blood;
+                let $i: boolean = false;
                 this.blink = setInterval(() => {
                     if ($i) {
                         this.btPause.style.color = color.blood;

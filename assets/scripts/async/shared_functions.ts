@@ -99,14 +99,14 @@ function labelingButtons(id: number) {
  * @param cancelBtn => présence du bouton cancel
  */
 export function displayPopup(message: string, cancelBtn: boolean = false) {
-    const popup = document.querySelector<HTMLDivElement>('.popup');
+    const popup = document.querySelector<HTMLDialogElement>('.popup');
     if (!cancelBtn) {
-        popup.querySelector<HTMLButtonElement>('.js-popup-ko').style.display = 'none';
+        popup.querySelector<HTMLButtonElement>('.js-cancel').style.display = 'none';
     } else {
-        popup.querySelector<HTMLButtonElement>('.js-popup-ko').style.display = 'block';
+        popup.querySelector<HTMLButtonElement>('.js-cancel').style.display = 'block';
     }
     popup.querySelector<HTMLParagraphElement>('p').innerText = message;
-    popup.classList.add('visible');
+    popup.setAttribute('open', '');
 
     // console.log(popup.getBoundingClientRect());
     // console.log(getOffset(popup).left);
@@ -124,11 +124,11 @@ export function displayPopup(message: string, cancelBtn: boolean = false) {
     //         });
     //     }
     // });
-    popup.querySelector<HTMLButtonElement>('.js-popup-ok').addEventListener('click', () => {
-        document.querySelector<HTMLDivElement>('.popup').classList.remove('visible');
+    popup.querySelector<HTMLButtonElement>('.js-ok').addEventListener('click', () => {
+        popup.removeAttribute('open');
     })
-    popup.querySelector('.js-popup-ko').addEventListener('click', () => {
-        document.querySelector<HTMLDivElement>('.popup').classList.remove('visible');
+    popup.querySelector<HTMLButtonElement>('.js-cancel').addEventListener('click', () => {
+        popup.removeAttribute('open');
     })
 }
 

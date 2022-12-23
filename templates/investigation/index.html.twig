@@ -37,9 +37,9 @@
                     <input type="checkbox" id="{{ 'chk' ~ evidence.id }}" class="js-evidence"
                            data-evidence-id="{{ evidence.id }}">
                     <label for="{{ 'chk' ~ evidence.id }}" class="evidence_name"
-                           data-evidence-name="{{ evidence.name }}">
+                           data-evidence-name="{{ evidence.name }}" title="{{ evidence.name }}">
                         <img src="{{ asset('/build/assets/images/skin_evidences/' ~ format_file_name(evidence.name) ~ '.png') }}"
-                             title="{{ evidence.name }}" alt="Icone de la preuve : {{ evidence.name }}">
+                             alt="Icone de la preuve : {{ evidence.name }}">
                     </label>
                 </div>
                 {#                OLD VERSION with text and checkboxes #}
@@ -67,14 +67,12 @@
         </div>
     </div>
 
-    <div class="result_btn_zone">
-        <button class="btn_ok btn btn-success">OK</button>
-        <button class="btn_ko btn btn-danger">KO</button>
-    </div>
+    <button class="result_btn_zone">Valider
+        {#        <button class="btn_ok">Valider</button> #}
+    </button>
 
     <div class="entity_information_zone">
         <div class="current_entity">
-            {#            <aside class="entity_skin" style="background-image: url({{ asset('build/assets/images/skins_entities/skin' ~ random(1,11) ~ '.webp') }})" #}
             <aside class="entity_skin">
             </aside>
             <div class="entity_infos">
@@ -110,10 +108,6 @@
                     </tr>
                 </table>
             </div>
-            {#            <div class="buttons"> #}
-            {#                <button class="js-btn-disp js-btn-prev" data-entity-id="">prev</button> #}
-            {#                <button class="js-btn-disp js-btn-next" data-entity-id="">next</button> #}
-            {#            </div> #}
         </div>
     </div>
 
@@ -121,9 +115,13 @@
         <div class="timer_hunt">
             <h2>Chasse</h2>
             <main class="display">
-                <span id="min">00</span> :
-                <span id="sec">00</span>
-                <span id="ms">000</span>
+                <div class="timer">
+                    <div>
+                        <span id="min">00</span> :
+                        <span id="sec">00</span>
+                    </div>
+                    <span id="ms">000</span>
+                </div>
             </main>
             <button class="btn_start" id="start" type="submit" title='Touche "Haut" du clavier'>START</button>
             <button class="btn_pause" id="pause" type="submit" title='Touche "Droite" du clavier'>PAUSE</button>
@@ -132,9 +130,13 @@
         <div class="timer_smudge">
             <h2>Encens</h2>
             <main class="display">
-                <span id="min">00</span> :
-                <span id="sec">00</span>
-                <span id="ms">000</span>
+                <div class="timer">
+                    <div>
+                        <span id="min">00</span> :
+                        <span id="sec">00</span>
+                    </div>
+                    <span id="ms">000</span>
+                </div>
             </main>
             <button class="btn_start" id="start" type="submit" title='Touche "Bas" du clavier'>START</button>
             <button class="btn_pause" id="pause" type="submit" title='Touche "Gauche" du clavier'>PAUSE</button>
@@ -146,10 +148,10 @@
         <h2>Fin de partie</h2>
         <div class="selected_entity">
             <h3>Entité sélectionnée</h3>
-            <p>TOTO</p>
+            <span></span>
         </div>
         <div class="real_entity">
-            <label id="real" for="entity-select">Entité réelle</label>
+            <label id="real" for="entity-select"><h3>Entité réelle</h3></label>
             <select name="entity-select" id="entity-select">
                 {% for entity in entities %}
                     <option value="{{ entity.id }}">{{ entity.name }}</option>
