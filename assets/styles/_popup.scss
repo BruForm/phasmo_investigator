@@ -1,18 +1,7 @@
-@mixin button_shape {
-  margin: 2px;
-  background: transparent;
-  color: $light;
-  border: solid 1px $light;
-  border-radius: 10px;
-}
-
 .popup {
   @include zone_border;
   width: 40%;
-  height: 20%;
   top: 25%;
-
-  //z-index: 1000;
   background: $darkGrad;
 
   .popup_shape {

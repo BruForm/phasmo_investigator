@@ -64,24 +64,25 @@ $fontsizeSignBtn: 18px;
   border-color: $blood;
   box-shadow: 0 0 10px $blood;
   text-shadow: 0 0 5px $blood;
-  scale: 1.1;
+  scale: 1.05;
 }
+
 @mixin button_hover_blood_soft {
   color: $bloodReadable;
   border-color: $blood;
   box-shadow: 0 0 5px $light;
   text-shadow: 0 0 1px $light;
-  scale: 1.1;
+  scale: 1.05;
 }
 
 @mixin button_hover_light_hard {
   box-shadow: 0 0 10px $light;
   text-shadow: 0 0 5px $light;
-  scale: 1.1;
+  scale: 1.05;
 }
 
 @mixin button_hover_light_soft {
   box-shadow: 0 0 5px $light;
   text-shadow: 0 0 1px $light;
-  scale: 1.1;
+  scale: 1.05;
 }

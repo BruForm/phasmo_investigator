@@ -144,25 +144,28 @@
         </div>
     </div>
 
-    <div class="end_game_zone">
-        <h2>Fin de partie</h2>
-        <div class="selected_entity">
-            <h3>Entité sélectionnée</h3>
-            <span></span>
+    <dialog class="end_game_zone">
+        {#    <div class="end_game_zone"> #}
+        <div class="popup_shape">
+            <h2>Fin de partie</h2>
+            <div class="selected_entity">
+                <h3>Entité sélectionnée</h3>
+                <span></span>
+            </div>
+            <div class="real_entity">
+                <label id="real" for="entity-select"><h3>Entité réelle</h3></label>
+                <select name="entity-select" id="entity-select">
+                    {% for entity in entities %}
+                        <option value="{{ entity.id }}">{{ entity.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="buttons">
+                <button class="js-ok">OK</button>
+                <button class="js-cancel">Cancel</button>
+            </div>
         </div>
-        <div class="real_entity">
-            <label id="real" for="entity-select"><h3>Entité réelle</h3></label>
-            <select name="entity-select" id="entity-select">
-                {% for entity in entities %}
-                    <option value="{{ entity.id }}">{{ entity.name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="buttons">
-            <button class="js-ok">OK</button>
-            <button class="js-cancel">Cancel</button>
-        </div>
-    </div>
+    </dialog>
 
     {% include('partials/_popup.html.twig') %}
 

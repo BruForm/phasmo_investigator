@@ -26,11 +26,10 @@ function checkSelection(): boolean {
 
 function investigationResult(): void {
     if (checkSelection()) {
-        // Masquage de la zone entity information
-        document.querySelector<HTMLDivElement>('.entity_information_zone').style.display = 'none';
-        // Affichage de la zone end game
         const endGameZone = document.querySelector<HTMLDivElement>('.end_game_zone');
-        endGameZone.style.display = 'flex';
+
+        // Affichage de la popup de validation
+        endGameZone.setAttribute('open', '');
 
         const entity_selected = document.querySelector<HTMLSpanElement>('.js-entity.selected_entity_temp');
         endGameZone.querySelector<HTMLSpanElement>('.selected_entity span').innerText = entity_selected.innerText;
@@ -44,7 +43,7 @@ function investigationResult(): void {
 
             const entityId: string = endGameZone.querySelector<HTMLOptionElement>('option:checked').value;
             const chosenEntityId: string = entity_selected.getAttribute('data-entity-id');
-            const result: string = (entityId === chosenEntityId)?'success':'fail';
+            const result: string = (entityId === chosenEntityId) ? 'success' : 'fail';
 
             const data = {
                 result,
@@ -59,20 +58,16 @@ function investigationResult(): void {
                 .then(response => response.json() as Promise<EndGame>)
                 .then(function (data) {
                     if (data.status === 1) {
+                        endGameZone.removeAttribute('open');
+                        // location.assign('/');
                         displayPopup(data.message);
-                        document.querySelector<HTMLDivElement>('.entity_information_zone').style.display = 'block';
-                        const endGameZone = document.querySelector<HTMLDivElement>('.end_game_zone');
-                        endGameZone.style.display = 'none';
                     }
                 });
         });
 
         endGameZone.querySelector('.buttons .js-cancel').addEventListener('click', () => {
-            // Affichage de la zone entity information
-            document.querySelector<HTMLDivElement>('.entity_information_zone').style.display = 'block';
-            // Masquage de la zone end game
-            const endGameZone = document.querySelector<HTMLDivElement>('.end_game_zone');
-            endGameZone.style.display = 'none';
+            // Masquage de la popup de validation
+            endGameZone.removeAttribute('open');
         });
 
     }

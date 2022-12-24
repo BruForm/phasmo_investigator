@@ -92,6 +92,39 @@ function labelingButtons(id: number) {
     }
 }
 
+// Remise à zéro de la page d'investigation pour commencer une nouvelle investigation
+/**
+ *
+ */
+function resetInvestigationPage() {
+    document.querySelectorAll<HTMLElement>('.bloody').forEach((element) => {
+        element.classList.remove('bloody');
+    });
+    document.querySelectorAll<HTMLElement>('.selected_entity_temp').forEach((element) => {
+        element.classList.remove('selected_entity_temp');
+    });
+    document.querySelectorAll<HTMLElement>('.selected_evidence_temp').forEach((element) => {
+        element.classList.remove('selected_evidence_temp');
+    });
+    document.querySelectorAll<HTMLSpanElement>('.js-entity').forEach((entity) => {
+        entity.classList.add('js-possible');
+    });
+    document.querySelectorAll<HTMLInputElement>('.ev-checked').forEach((evidence) => {
+        evidence.classList.toggle('ev-checked');
+        evidence.checked = false;
+    });
+    // Load of center entity information
+    const current_id: number = Number(document.querySelector('.js-possible').getAttribute('data-entity-id'))
+    getEntityInfos({'id': current_id});
+
+    // RàZ des timers
+    document.querySelectorAll<HTMLDivElement>('.timer').forEach((timer) => {
+        timer.querySelector<HTMLSpanElement>('#min').innerText = '00';
+        timer.querySelector<HTMLSpanElement>('#sec').innerText = '00';
+        timer.querySelector<HTMLSpanElement>('#ms').innerText = '000';
+    });
+}
+
 // Affichage de la popup avec son message
 /**
  *
@@ -125,6 +158,9 @@ export function displayPopup(message: string, cancelBtn: boolean = false) {
     //     }
     // });
     popup.querySelector<HTMLButtonElement>('.js-ok').addEventListener('click', () => {
+        if (message === 'game recorded') {
+            resetInvestigationPage();
+        }
         popup.removeAttribute('open');
     })
     popup.querySelector<HTMLButtonElement>('.js-cancel').addEventListener('click', () => {
