@@ -10,8 +10,7 @@
             <form method="post">
                 <div class="form_content">
                     {% if error %}
-{#                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-                        <div class="alert alert-danger">Informations de connection incorrectes !</div>
+                        <div class="alert alert-danger">{{ error }}</div>
                     {% endif %}
 
                     {% if app.user %}
@@ -21,7 +20,13 @@
                         </div>
                     {% endif %}
 
-                    <h1 class="h3 mb-3 font-weight-normal">Connexion à votre compte</h1>
+                    <h1 class="h3 mb-3 font-weight-normal">
+                        {% if not app.user %}
+                            Connexion à votre compte
+                        {% else %}
+                            Suppression de votre compte ?
+                        {% endif %}
+                    </h1>
                     <div class="form_item">
                         <label for="inputEmail">Email</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
@@ -48,12 +53,20 @@
                     </div>
                     #}
                 </div>
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Sign in
-                </button>
-                <div>
-                    <a href="{{ path('app_register') }}">New Account</a>
-                </div>
+                {% if not app.user %}
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        Sign in
+                    </button>
+                {% else %}
+                    <button class="btn btn-lg btn-danger" type="submit">
+                        Delete
+                    </button>
+                {% endif %}
+                {% if not app.user %}
+                    <div>
+                        <a href="{{ path('app_register') }}">New Account</a>
+                    </div>
+                {% endif %}
             </form>
         </div>
     </div>

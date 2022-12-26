@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Game;
-use App\Entity\Player;
 use App\Repository\CharacteristicRepository;
 use App\Repository\EntityRepository;
 use App\Repository\EvidenceRepository;
@@ -174,7 +173,7 @@ class InvestigationController extends AbstractController
      * @throws \Exception
      */
     #[Route('/investigation/entityInfos/{data}', name: 'app_investigation_entity_infos')]
-    public function getSlideEntities(
+    public function getEntityInfos(
         Request           $request,
         EntityRepository  $entityRepository,
         ConversionService $conversionService,

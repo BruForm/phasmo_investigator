@@ -53,11 +53,15 @@
         text-decoration: none;
         color: $light;
 
+        &.active {
+          color: $blood;
+        }
+
         &:hover {
           color: $blood;
         }
 
-        &::after {
+        &:after {
           content: "";
           display: block;
           width: 100%;
@@ -69,7 +73,11 @@
           transition: transform 0.2s ease-out;
         }
 
-        &:hover::after {
+        &:hover:after {
+          transform: scaleX(1);
+        }
+
+        &.active:after {
           transform: scaleX(1);
         }
       }

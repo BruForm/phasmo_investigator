@@ -9,7 +9,7 @@
             >
                 <span>Phasmophobia: L'enquêteur</span><br>
                 {% if app.user %}
-                    <span class="userName">{{ app.user.nickname }}</span>
+                    <a href="{{ path('app_delete_account') }}"><span class="userName">{{ app.user.nickname }}</span></a>
                 {% endif %}
             </a></div>
         <div class="nav-links">
@@ -25,14 +25,35 @@
             </button>
             <div class="navlinks-container">
                 {#                <a href="#" aria-current="page">Home</a> #}
-                <a href="#">Maps</a>
-                <a href="#">Objets</a>
-                <a href="#">Matos</a>
-                <a href="#">Preuves</a>
-                <a href="#">Entitées</a>
-                <a href="#">Objectifs</a>
+                <a href="{{ path('app_home') }}"
+                   class="{{ app.request.get('_route')[4:4] == 'maps' ? 'active' : '' }}">
+                    Maps
+                </a>
+                <a href="{{ path('app_home') }}"
+                   class="{{ app.request.get('_route')[4:4] == 'objects' ? 'active' : '' }}">
+                    Objets
+                </a>
+                <a href="{{ path('app_home') }}"
+                   class="{{ app.request.get('_route')[4:10] == 'equipments' ? 'active' : '' }}">
+                    Matos
+                </a>
+                <a href="{{ path('app_home') }}"
+                   class="{{ app.request.get('_route')[4:9] == 'evidences' ? 'active' : '' }}">
+                    Preuves
+                </a>
+                <a href="{{ path('app_home') }}"
+                   class="{{ app.request.get('_route')[4:8] == 'entities' ? 'active' : '' }}">
+                    Entitées
+                </a>
+                <a href="{{ path('app_home') }}"
+                   class="{{ app.request.get('_route')[4:13] == 'optionalGoals' ? 'active' : '' }}">
+                    Objectifs
+                </a>
                 {% if (is_granted('ROLE_ADMIN')) %}
-                    <a href="{{ path('app_admin') }}">Admin</a>
+                    <a href="{{ path('app_admin') }}"
+                       class="{{ app.request.get('_route')[4:5] == 'admin' ? 'active' : '' }}">
+                        Admin
+                    </a>
                 {% endif %}
             </div>
         </div>
