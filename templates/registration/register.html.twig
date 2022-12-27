@@ -10,28 +10,33 @@
         <div class="form_main">
             {{ form_start(registrationForm) }}
             <div class="form_content">
+                <div class="message_box bg-danger">
+                    {% for message in app.flashes('error') %}
+                        <span>{{ message }}</span>
+                    {% endfor %}
+                </div>
                 <div class="form_item">
                     {#                {{ form_row(registrationForm.email) }} #}
-                    {{ form_label(registrationForm.email) }}
+                    {{ form_label(registrationForm.email, 'E-mail') }}
                     {{ form_widget(registrationForm.email) }}
                 </div>
                 <div class="form_item">
 {#                    {{ form_row(registrationForm.plainPassword, {#}
 {#                        label: 'Password'#}
 {#                    }) }}#}
-                    {{ form_label(registrationForm.plainPassword) }}
+                    {{ form_label(registrationForm.plainPassword, 'Mot de passe') }}
                     {{ form_widget(registrationForm.plainPassword) }}
                 </div>
                 <div class="form_item">
-                    {{ form_label(registrationForm.nickname) }}
+                    {{ form_label(registrationForm.nickname, 'Pseudo') }}
                     {{ form_widget(registrationForm.nickname) }}
                 </div>
                 <div class="form_item">
-                    {{ form_label(registrationForm.lastname) }}
+                    {{ form_label(registrationForm.lastname, 'Nom') }}
                     {{ form_widget(registrationForm.lastname) }}
                 </div>
                 <div class="form_item">
-                    {{ form_label(registrationForm.firstname) }}
+                    {{ form_label(registrationForm.firstname, 'Prénom') }}
                     {{ form_widget(registrationForm.firstname) }}
                 </div>
                 <div class="form_item">

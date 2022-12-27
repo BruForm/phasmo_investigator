@@ -5,6 +5,11 @@
 {% block main_class %}main_container{% endblock %}
 
 {% block main %}
+    <div class="message_box bg-success">
+        {% for message in app.flashes('success') %}
+            <span>{{ message }}</span>
+        {% endfor %}
+    </div>
     <div class="text_zone">
         <p>Venez profiter de l’aide précieuse de l’enquêteur
             pour réussir à coup sûr toutes vos investigations...
@@ -141,7 +146,7 @@
                     class="twitter-timeline"
                     data-lang="fr"
                     data-width="100%"
-                    data-height="450"
+                    data-height="430"
                     data-theme="dark"
                     href="https://twitter.com/KineticGame?ref_src=twsrc%5Etfw"
                     data-tweet-limit="3"

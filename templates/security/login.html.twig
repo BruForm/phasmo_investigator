@@ -9,17 +9,12 @@
         <div class="form_main">
             <form method="post">
                 <div class="form_content">
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error }}</div>
-                    {% endif %}
-
                     {% if app.user %}
                         <div class="mb-3">
                             You are logged in as {{ app.user.userIdentifier }}, <a
                                     href="{{ path('app_logout') }}">Logout</a>
                         </div>
                     {% endif %}
-
                     <h1 class="h3 mb-3 font-weight-normal">
                         {% if not app.user %}
                             Connexion à votre compte
@@ -27,6 +22,11 @@
                             Suppression de votre compte ?
                         {% endif %}
                     </h1>
+                    <div class="message_box bg-danger">
+                        {% for message in app.flashes('error') %}
+                            <span>{{ message }}</span>
+                        {% endfor %}
+                    </div>
                     <div class="form_item">
                         <label for="inputEmail">Email</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
@@ -54,18 +54,12 @@
                     #}
                 </div>
                 {% if not app.user %}
-                    <button class="btn btn-lg btn-primary" type="submit">
-                        Sign in
-                    </button>
-                {% else %}
-                    <button class="btn btn-lg btn-danger" type="submit">
-                        Delete
-                    </button>
-                {% endif %}
-                {% if not app.user %}
+                    <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
                     <div>
                         <a href="{{ path('app_register') }}">New Account</a>
                     </div>
+                {% else %}
+                    <button class="btn btn-lg btn-danger" type="submit">Delete</button>
                 {% endif %}
             </form>
         </div>

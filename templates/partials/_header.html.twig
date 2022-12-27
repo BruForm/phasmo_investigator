@@ -26,32 +26,32 @@
             <div class="navlinks-container">
                 {#                <a href="#" aria-current="page">Home</a> #}
                 <a href="{{ path('app_home') }}"
-                   class="{{ app.request.get('_route')[4:4] == 'maps' ? 'active' : '' }}">
+                   class="{{ app.request.get('_route') == 'app_maps' ? 'active' : '' }}">
                     Maps
                 </a>
                 <a href="{{ path('app_home') }}"
-                   class="{{ app.request.get('_route')[4:4] == 'objects' ? 'active' : '' }}">
+                   class="{{ app.request.get('_route') == 'app_objects' ? 'active' : '' }}">
                     Objets
                 </a>
                 <a href="{{ path('app_home') }}"
-                   class="{{ app.request.get('_route')[4:10] == 'equipments' ? 'active' : '' }}">
+                   class="{{ app.request.get('_route') == 'app_equipments' ? 'active' : '' }}">
                     Matos
                 </a>
                 <a href="{{ path('app_home') }}"
-                   class="{{ app.request.get('_route')[4:9] == 'evidences' ? 'active' : '' }}">
+                   class="{{ app.request.get('_route') == 'app_evidences' ? 'active' : '' }}">
                     Preuves
                 </a>
                 <a href="{{ path('app_home') }}"
-                   class="{{ app.request.get('_route')[4:8] == 'entities' ? 'active' : '' }}">
+                   class="{{ app.request.get('_route') == 'app_entities' ? 'active' : '' }}">
                     Entitées
                 </a>
                 <a href="{{ path('app_home') }}"
-                   class="{{ app.request.get('_route')[4:13] == 'optionalGoals' ? 'active' : '' }}">
+                   class="{{ app.request.get('_route') == 'app_optionalGoals' ? 'active' : '' }}">
                     Objectifs
                 </a>
                 {% if (is_granted('ROLE_ADMIN')) %}
                     <a href="{{ path('app_admin') }}"
-                       class="{{ app.request.get('_route')[4:5] == 'admin' ? 'active' : '' }}">
+                       class="{{ app.request.get('_route') == 'app_admin' ? 'active' : '' }}">
                         Admin
                     </a>
                 {% endif %}

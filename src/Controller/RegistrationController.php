@@ -13,11 +13,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(
+        Request                     $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        UserAuthenticatorInterface  $userAuthenticator,
+        LoginFormAuthenticator      $authenticator,
+        EntityManagerInterface      $entityManager,
+        ValidatorInterface          $validator,
+    ): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -49,8 +57,24 @@ class RegistrationController extends AbstractController
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
-                $request
+                $request,
             );
+        } else {
+            if ($validator->validate($user)->count() > 0) {
+                foreach ($validator->validate($user) as $i => $test){
+                    $this->addFlash(
+                        'error',
+                        $validator->validate($user)->get($i)->getMessage()
+                    );
+                }
+            } else {
+                if ($form->get('plainPassword')->getData() && strlen($form->get('plainPassword')->getData()) < 6) {
+                    $this->addFlash(
+                        'error',
+                        'Le mot de passe doit contenir au moins 6 caractères!'
+                    );
+                }
+            }
         }
 
         return $this->render('registration/register.html.twig', [
