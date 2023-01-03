@@ -63,13 +63,12 @@ function investigationResult(): void {
                         displayPopup(data.message);
                     }
                 });
-        });
+        }, {once: true});
 
         endGameZone.querySelector('.buttons .js-cancel').addEventListener('click', () => {
             // Masquage de la popup de validation
             endGameZone.removeAttribute('open');
-        });
-
+        }, {once: true});
     }
 }
 

@@ -50,7 +50,7 @@
 }
 
 .evidences_zone {
-  grid-column: 2 / 4;
+  grid-column: 2 / 3;
   grid-row: 1 / 5;
   @include zone_border;
 
@@ -130,7 +130,7 @@
 }
 
 .entities_zone {
-  grid-column: 4 / -1;
+  grid-column: 3 / -1;
   grid-row: 1 / 12;
   @include zone_border;
   height: 100%;
@@ -181,7 +181,7 @@
 //  }
 //}
 .result_btn_zone {
-  grid-column: 4 / -1;
+  grid-column: 3 / -1;
   grid-row: 12 / -1;
   @include zone_border;
 
@@ -199,7 +199,7 @@
 }
 
 .entity_information_zone {
-  grid-column: 2 / 4;
+  grid-column: 2 / 3;
   grid-row: 5 / -1;
   @include zone_border;
   margin: 0 10px;
