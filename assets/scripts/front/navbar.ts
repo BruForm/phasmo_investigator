@@ -4,7 +4,8 @@ const navlinksContainer: HTMLDivElement = document.querySelector('.navlinks-cont
 const navbar: HTMLElement = document.querySelector('.navbar');
 
 // -- Hamburger -- DEBUT ---
-const toggleNav: EventListenerOrEventListenerObject = function () {
+// const toggleNav: EventListenerOrEventListenerObject = function () {
+function toggleNav() {
     hamburgerToggler.classList.toggle('open');
 
     const ariaToggle: string =
@@ -14,13 +15,14 @@ const toggleNav: EventListenerOrEventListenerObject = function () {
     hamburgerToggler.setAttribute('aria-expanded', ariaToggle);
 
     navlinksContainer.classList.toggle('open');
-};
+}
+
 hamburgerToggler.addEventListener('click', toggleNav);
 // -- Hamburger -- FIN ---
 
 // -- Resize Screen -- DEBUT --
 new ResizeObserver((entries) => {
-    if (entries[0].contentRect.width <= 1000) {
+    if (entries[0].contentRect.width <= 900) {
         navlinksContainer.style.transition = 'transform 0.3s ease-out';
 
         // Hauteur de la nav-links :

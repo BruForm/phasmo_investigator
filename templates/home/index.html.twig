@@ -22,8 +22,8 @@
             {% endif %}
             lancez une
             {% if(app.user) %}
-                <a href="{{ path('app_investigation') }}">nouvelle enquette</a>
-            {% else %}nouvelle enquette
+                <a href="{{ path('app_investigation') }}">nouvelle enquête</a>
+            {% else %}nouvelle enquête
             {% endif %}
             sans hésiter !!!
         </p>
@@ -44,7 +44,11 @@
                 <th scope="row">Temps libre</th>
                 {% for level in levels %}
                     <td>
-                        {{ format_time(level.freeRunTime) }}
+                        {% if level.freeRunTime|date('i:s') > "00:00" %}
+                            {{ format_time(level.freeRunTime) }}
+                        {% else %}
+                            -
+                        {% endif %}
                     </td>
                 {% endfor %}
             </tr>
@@ -104,14 +108,14 @@
         </h3>
         <table>
             <tr>
-                <td>Nombre d'enquètes:</td>
+                <td>Nombre d'enquêtes:</td>
                 <td>{{ stats.nbInvestigTotal }}</td>
                 {% if app.user %}
                     <td>[{{ statsUser[0].nbInvestigTotal }}]</td>
                 {% endif %}
             </tr>
             <tr>
-                <td>Enquètes résolues:</td>
+                <td>Enquêtes résolues:</td>
                 <td>{{ stats.nbSuccessTotal }}</td>
                 {% if app.user %}
                     <td>[{{ statsUser[0].nbSuccessTotal }}]</td>
@@ -125,7 +129,7 @@
                 {% endif %}
             </tr>
             <tr>
-                <td>Enquètes non résolues:</td>
+                <td>Enquêtes non résolues:</td>
                 <td>{{ stats.nbFailTotal }}</td>
                 {% if app.user %}
                     <td>[{{ statsUser[0].nbFailTotal }}]</td>
