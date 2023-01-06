@@ -8,10 +8,10 @@
                     aria-current="page"
             >
                 <span>Phasmophobia: L'enquêteur</span><br>
-                {% if app.user %}
-                    <a href="{{ path('app_delete_account') }}"><span class="userName">{{ app.user.nickname }}</span></a>
-                {% endif %}
             </a>
+            {% if app.user %}
+                <a href="{{ path('app_delete_account') }}"><span class="userName">{{ app.user.nickname }}</span></a>
+            {% endif %}
         </div>
         <div class="nav-links">
             <button
