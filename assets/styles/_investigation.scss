@@ -130,7 +130,7 @@
 }
 
 .entities_zone {
-  grid-column: 3 / -1;
+  grid-column: 3 / 4;
   grid-row: 1 / 12;
   @include zone_border;
   height: 100%;
@@ -181,7 +181,7 @@
 //  }
 //}
 .result_btn_zone {
-  grid-column: 3 / -1;
+  grid-column: 3 / 4;
   grid-row: 12 / -1;
   @include zone_border;
 
